@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Send a message — FaceoffEdge</title>
+<meta name="description" content="Send a message to the FaceoffEdge team."/>
+<link rel="stylesheet" href="assets/site.css"/>
+<link rel="stylesheet" href="assets/home.css"/>
+<style>
+  /* ─── Routed message panel — deliberately distinct from the contact-card form ─── */
+  .msg-panel {
+    max-width: 640px;
+    margin: 48px auto 0;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    overflow: hidden;
+    --accent: #3B6EF2;
+    --accent-soft: rgba(59,110,242,0.10);
+  }
+  .route-support { --accent: #3B6EF2; --accent-soft: rgba(59,110,242,0.10); }
+  .route-press   { --accent: #8B5CF6; --accent-soft: rgba(139,92,246,0.12); }
+
+  /* Header band */
+  .msg-head {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    padding: 28px 32px;
+    background: var(--accent-soft);
+    border-bottom: 1px solid var(--line);
+  }
+  .msg-head-icon {
+    width: 48px; height: 48px;
+    flex-shrink: 0;
+    border-radius: 13px;
+    background: var(--accent);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 18px -6px var(--accent);
+  }
+  .msg-head h1 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 2px 0 6px;
+    line-height: 1.15;
+  }
+  .msg-head p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .msg-deliver {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    margin-top: 12px;
+  }
+  .msg-deliver .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* Body */
+  .msg-body { padding: 28px 32px 32px; }
+
+  .fieldset { display: none; }
+  .fieldset.active { display: block; }
+
+  /* Grouped "filled-field" — distinct from the contact form's plain boxed inputs */
+  .field {
+    display: block;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 9px 14px 10px;
+    margin-bottom: 12px;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .field:focus-within {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .field > span {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    color: var(--text-dim);
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .field .opt { text-transform: none; letter-spacing: 0; color: var(--text-dim); font-weight: 400; }
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    border: none;
+    background: transparent;
+    padding: 2px 0;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 15px;
+  }
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus { outline: none; }
+  .field textarea { resize: vertical; min-height: 150px; line-height: 1.5; }
+  .field select option { color: #0a1020; background: #fff; }
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .field-row .field { margin-bottom: 12px; }
+  @media (max-width: 520px) {
+    .field-row { grid-template-columns: 1fr; gap: 0; }
+  }
+
+  .msg-submit {
+    width: 100%;
+    margin-top: 8px;
+    background: var(--accent);
+    border: none;
+    color: #fff;
+  }
+  .msg-submit:hover { filter: brightness(1.07); }
+  .msg-fine {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin: 14px 0 0;
+    text-align: center;
+  }
+
+  .msg-success { display: none; text-align: center; padding: 20px 0 8px; }
+  .msg-success.show { display: block; }
+  .check-circle {
+    width: 56px; height: 56px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: rgba(79,179,138,0.14);
+    color: #4FB38A;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    border: 1px solid rgba(79,179,138,0.3);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" data-screen-label="message-nav">
+  <div class="nav-inner">
+    <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="nav-logo">
+      <img class="logo-mark" src="assets/logo.png?v=3" alt="FaceoffEdge logo" width="28" height="28"/>
+      <img class="wordmark" src="assets/wordmark.png?v=1" alt="FaceoffEdge"/>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="app.html">App</a>
+      <a href="sensor.html">Sensor</a>
+      <a href="preorder.html">Pre-order</a>
+      <a href="contact.html" class="active">Contact us</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <div class="nav-cta">
+      <a href="index.html#download" class="btn btn-primary" style="padding: 9px 16px; font-size: 14px;">Get the app</a>
+    </div>
+  </div>
+</nav>
+  <div class="nav-backdrop"></div>
+  <aside class="nav-drawer" aria-label="Mobile navigation">
+      <img class="nav-drawer-logo" src="assets/logo.png?v=3" alt="FaceoffEdge logo" width="38" height="38"/>
+      <a href="index.html">Home</a>
+      <a href="app.html">App</a>
+      <a href="sensor.html">Sensor</a>
+      <a href="preorder.html">Pre-order</a>
+      <a href="contact.html" class="active">Contact us</a>
+  </aside>
+
+<!-- ─── MESSAGE FORM ─── -->
+<section class="section tall" data-screen-label="message-hero">
+  <div class="glow-blue" style="top: -200px; left: 50%; transform: translateX(-50%); width: 1100px; height: 900px;"></div>
+  <div class="container" style="position: relative;">
+
+    <a href="contact.html" style="display: inline-flex; align-items: center; gap: 7px; color: var(--text-muted); font-size: 14px; font-weight: 500;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to contact
+    </a>
+
+    <div class="msg-panel route-support" id="msg-panel">
+      <div class="msg-head">
+        <div class="msg-head-icon" id="msg-icon"></div>
+        <div>
+          <h1 id="msg-title">Support</h1>
+          <p id="msg-intro"></p>
+          <div class="msg-deliver"><span class="dot"></span><span id="msg-deliver-email">support@faceoffedge.com</span></div>
+        </div>
+      </div>
+
+      <div class="msg-body">
+        <form id="msg-form" onsubmit="return submitMessage(event)">
+
+          <!-- Shared identity fields -->
+          <div class="field-row">
+            <label class="field">
+              <span>First name</span>
+              <input type="text" data-role="first" placeholder="First" required/>
+            </label>
+            <label class="field">
+              <span>Last name</span>
+              <input type="text" data-role="last" placeholder="Last" required/>
+            </label>
+          </div>
+          <label class="field">
+            <span>Your email</span>
+            <input type="email" data-role="email" placeholder="you@example.com" required/>
+          </label>
+
+          <!-- ── SUPPORT fieldset ── -->
+          <div class="fieldset active" id="fs-support">
+            <label class="field">
+              <span>What issue are you having?</span>
+              <select data-extra="Issue" data-req>
+                <option>Sensor not connecting</option>
+                <option>Battery not lasting</option>
+                <option>Sensor not charging</option>
+                <option>Sensor doesn't fit onto my shaft</option>
+                <option>Sensor is inaccurately measuring reps</option>
+                <option>App isn't functioning</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Tell us more</span>
+              <textarea data-role="message" data-req placeholder="Describe what's going on. The more detail, the faster we can help…"></textarea>
+            </label>
+          </div>
+
+          <!-- ── PRESS fieldset ── -->
+          <div class="fieldset" id="fs-press">
+            <div class="field-row">
+              <label class="field">
+                <span>Organization / outlet</span>
+                <input type="text" data-extra="Organization" data-req placeholder="Company, team, or publication"/>
+              </label>
+              <label class="field">
+                <span>Your role <span class="opt">— optional</span></span>
+                <input type="text" data-extra="Role" placeholder="e.g. Staff writer"/>
+              </label>
+            </div>
+            <label class="field">
+              <span>Type of inquiry</span>
+              <select data-extra="Inquiry type" data-req>
+                <option>Press / media request</option>
+                <option>Brand partnership</option>
+                <option>Team or program pricing</option>
+                <option>Sponsorship / ambassador</option>
+                <option>Equipment / rules conversation</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <div class="field-row">
+              <label class="field">
+                <span>Website or social <span class="opt">— optional</span></span>
+                <input type="text" data-extra="Link" placeholder="Link we can check out"/>
+              </label>
+              <label class="field">
+                <span>Deadline <span class="opt">— optional</span></span>
+                <input type="text" data-extra="Deadline" placeholder="e.g. need a reply by Fri"/>
+              </label>
+            </div>
+            <label class="field">
+              <span>Details</span>
+              <textarea data-role="message" data-req placeholder="Tell us what you have in mind…"></textarea>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg msg-submit">Send message</button>
+          <p class="msg-fine">We reply within one business day. Usually faster.</p>
+
+          <div class="msg-success">
+            <div class="check-circle">✓</div>
+            <h3 class="h-3" style="margin-top: 20px;">Message sent.</h3>
+            <p class="muted" style="margin-top: 8px; max-width: 34ch; margin-left: auto; margin-right: auto;">
+              Thanks for reaching out — we'll be in touch shortly.
+            </p>
+            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+              <button type="button" onclick="resetMessageForm()" style="background: none; border: 1px solid rgba(255,255,255,0.18); color: var(--text); padding: 10px 20px; border-radius: 6px; font-size: 14px; cursor: pointer;">Send another</button>
+              <a href="contact.html" class="btn btn-secondary" style="padding: 10px 20px; font-size: 14px;">Back to contact</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="nav-logo" style="margin-bottom: 16px; color: var(--text);">
+          <img class="logo-mark" src="assets/logo.png?v=3" alt="FaceoffEdge logo" width="28" height="28"/>
+          <img class="wordmark" src="assets/wordmark.png?v=1" alt="FaceoffEdge"/>
+        </div>
+        <p style="font-size: 14px; max-width: 32ch; line-height: 1.55; margin: 0;">
+          Finally, real numbers on your faceoff. Built by faceoff specialists, for faceoff specialists.
+        </p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="app.html">The app</a>
+          <a href="sensor.html">The sensor</a>
+        </div>
+      </div>
+      <div>
+        <h4>Get it</h4>
+        <div class="footer-links">
+          <a href="index.html#download">Download for iOS</a>
+          <a href="preorder.html">Reserve the sensor</a>
+          <a href="index.html#faq">FAQ</a>
+        </div>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <div class="footer-links">
+          <a href="contact.html">Contact us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+<script>
+const ICON_MAIL = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const ICON_PRESS = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 11v2a1 1 0 001 1h2l5 4V6L6 10H4a1 1 0 00-1 1z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 8a4 4 0 010 8M18.5 5.5a8 8 0 010 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+
+const MSG_ROUTES = {
+  support: {
+    key: '592eff52-d589-4a87-8bf1-f4060ee71335',
+    email: 'support@faceoffedge.com',
+    title: 'Support',
+    intro: "Having trouble with the app or your sensor? Tell us what's going on and it lands straight in our inbox.",
+    fromName: 'FaceoffEdge Support',
+    fieldset: 'fs-support',
+    routeClass: 'route-support',
+    icon: ICON_MAIL,
+    subjectPrefix: 'Support'
+  },
+  press: {
+    key: '912933ab-4896-445b-a7b7-76bbc27c98e6',
+    email: 'press@faceoffedge.com',
+    title: 'Press &amp; partnerships',
+    intro: "Media requests, brand collaborations, program pricing, or equipment-rules conversations. Tell us who you are and what you have in mind.",
+    fromName: 'FaceoffEdge Press',
+    fieldset: 'fs-press',
+    routeClass: 'route-press',
+    icon: ICON_PRESS,
+    subjectPrefix: 'Press'
+  }
+};
+
+function currentRoute() {
+  const to = new URLSearchParams(location.search).get('to');
+  return MSG_ROUTES[to] || MSG_ROUTES.support;
+}
+
+// Wire up the page for the active route.
+(function initRoute() {
+  const r = currentRoute();
+  const panel = document.getElementById('msg-panel');
+  panel.classList.remove('route-support', 'route-press');
+  panel.classList.add(r.routeClass);
+  document.getElementById('msg-icon').innerHTML = r.icon;
+  document.getElementById('msg-title').innerHTML = r.title;
+  document.getElementById('msg-intro').textContent = r.intro;
+  document.getElementById('msg-deliver-email').textContent = r.email;
+  document.title = (r.subjectPrefix) + ' — FaceoffEdge';
+
+  // Activate the right fieldset; disable inputs in the hidden one so their
+  // required state never blocks submit.
+  document.querySelectorAll('.fieldset').forEach(fs => {
+    const active = fs.id === r.fieldset;
+    fs.classList.toggle('active', active);
+    fs.querySelectorAll('input, select, textarea').forEach(el => { el.disabled = !active; });
+  });
+  // Apply required only to active, marked fields.
+  document.querySelectorAll('.fieldset.active [data-req]').forEach(el => { el.required = true; });
+})();
+
+async function submitMessage(e) {
+  e.preventDefault();
+  const r = currentRoute();
+  const form = document.getElementById('msg-form');
+  const active = document.querySelector('.fieldset.active');
+
+  const role = sel => { const el = form.querySelector('[data-role="' + sel + '"]'); return el ? el.value.trim() : ''; };
+  const first = role('first'), last = role('last');
+
+  const payload = {
+    access_key: r.key,
+    from_name: r.fromName,
+    name: (first + ' ' + last).trim(),
+    email: role('email'),
+    message: active.querySelector('[data-role="message"]').value.trim()
+  };
+
+  // Route-specific extras → readable keys Web3Forms shows as labels.
+  active.querySelectorAll('[data-extra]').forEach(el => {
+    const v = (el.value || '').trim();
+    if (v) payload[el.dataset.extra] = v;
+  });
+
+  // Subject line built from the most useful route field.
+  const headline = payload['Issue'] || payload['Inquiry type'] || 'New message';
+  const who = payload['Organization'] ? ' — ' + payload['Organization'] : '';
+  payload.subject = '[' + r.subjectPrefix + '] ' + headline + who;
+
+  const btn = form.querySelector('button[type="submit"]');
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+  try {
+    await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  } catch (err) {
+    /* show success regardless */
+  }
+
+  form.querySelector('.msg-success').classList.add('show');
+  form.querySelectorAll('.field, .fieldset.active, button[type="submit"], .msg-fine').forEach(el => el.style.display = 'none');
+  // keep the two shared rows hidden too
+  form.querySelectorAll('.field-row').forEach(el => el.style.display = 'none');
+  return false;
+}
+
+function resetMessageForm() {
+  const form = document.getElementById('msg-form');
+  form.querySelector('.msg-success').classList.remove('show');
+  form.querySelectorAll('.field, button[type="submit"], .msg-fine, .field-row').forEach(el => { el.style.display = ''; });
+  const active = document.querySelector('.fieldset.active');
+  active.style.display = '';
+  form.reset();
+  const btn = form.querySelector('button[type="submit"]');
+  if (btn) { btn.disabled = false; btn.textContent = 'Send message'; }
+}
+</script>
+
+</body>
+</html>

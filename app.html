@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>The App — FaceoffEdge</title>
+<meta name="description" content="The FaceoffEdge iOS app — measure every millisecond of your faceoff training. Free on the App Store."/>
+<link rel="stylesheet" href="assets/site.css"/>
+<link rel="stylesheet" href="assets/home.css"/>
+<link rel="stylesheet" href="assets/product.css"/>
+<style>
+  /* Phone-screen frame for screenshot images */
+  .screen-frame {
+    width: 100%;
+    max-width: 220px;
+    aspect-ratio: 1179/2556;
+    border-radius: 22px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 12px 28px -12px rgba(0,0,0,0.25);
+    margin: 0 auto;
+  }
+  .screen-frame img { width: 100%; height: auto; display: block; image-rendering: auto; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" data-screen-label="app-nav">
+  <div class="nav-inner">
+    <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="nav-logo">
+      <img class="logo-mark" src="assets/logo.png?v=3" alt="FaceoffEdge logo" width="28" height="28"/>
+      <img class="wordmark" src="assets/wordmark.png?v=1" alt="FaceoffEdge"/>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="app.html" class="active">App</a>
+      <a href="sensor.html">Sensor</a>
+      <a href="preorder.html">Pre-order</a>
+      <a href="contact.html">Contact us</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <div class="nav-cta">
+      <a href="index.html#download" class="btn btn-primary" style="padding: 9px 16px; font-size: 14px;">Get the app</a>
+    </div>
+  </div>
+</nav>
+  <div class="nav-backdrop"></div>
+  <aside class="nav-drawer" aria-label="Mobile navigation">
+      <img class="nav-drawer-logo" src="assets/logo.png?v=3" alt="FaceoffEdge logo" width="38" height="38"/>
+      <a href="index.html">Home</a>
+      <a href="app.html" class="active">App</a>
+      <a href="sensor.html">Sensor</a>
+      <a href="preorder.html">Pre-order</a>
+      <a href="contact.html">Contact us</a>
+  </aside>
+
+<!-- ─── HERO ─── -->
+<section class="hero hero-split" data-screen-label="app-hero">
+  <div class="glow-blue" style="top: -200px; left: -200px;"></div>
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow">Coming soon · iOS</div>
+      <h1 class="h-display" style="margin-top: 18px;">
+        A live coach<br/>in your pocket
+      </h1>
+      <p class="lead" style="margin-top: 22px;">
+        The FaceoffEdge app turns your stick into an instrumented training rig. Run a
+        session anywhere &mdash; backyard, basement, before practice &mdash; and get
+        immediate, objective feedback on every rep.
+      </p>
+      <div class="hero-cta">
+        <a href="index.html#download" class="btn btn-primary btn-lg">Download for iOS</a>
+        <a href="#screens" class="btn btn-secondary btn-lg">Tour the screens ↓</a>
+      </div>
+    </div>
+
+    <!-- Phone mockup: app home screen -->
+    <div class="hero-phone">
+      <div style="width: 300px; height: 652px; overflow: hidden; border-radius: 46px; margin: 0 auto; filter: drop-shadow(0 40px 60px rgba(0,0,0,0.6)) drop-shadow(0 0 60px rgba(59,110,242,0.2));">
+        <img src="assets/screens/home-hero.png" alt="FaceoffEdge app home screen" style="width: 100%; height: auto; display: block;"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FEATURES ─── -->
+<section class="section" id="features" data-screen-label="app-features">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Features</div>
+      <h2 class="h-1" style="margin-top: 14px; max-width: 18ch;">What the app does<br/>for your training</h2>
+    </div>
+
+    <ul class="feature-list" style="margin-top: 48px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px 48px;">
+      <li>
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" stroke="#3B6EF2" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="feature-title">Randomized whistle cadence</div>
+          <div class="feature-desc">Short, normal, long, or variable. Trains true reaction — not pattern recognition.</div>
+        </div>
+      </li>
+      <li>
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#3B6EF2" stroke-width="1.8"/><path d="M12 7v5l3 2" stroke="#3B6EF2" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <div class="feature-title">Reaction + clamp, separately</div>
+          <div class="feature-desc">Diagnose where you're losing — the whistle response, or the rotation to 90°.</div>
+        </div>
+      </li>
+      <li>
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3L2 20h20L12 3z" stroke="#3B6EF2" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 10v4M12 17.5v.1" stroke="#3B6EF2" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <div class="feature-title">Early-jump detection</div>
+          <div class="feature-desc">Catches false starts the eye can't — with visual and audio feedback in the moment.</div>
+        </div>
+      </li>
+      <li>
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 20h18M6 16V9M11 16V5M16 16v-7M21 16v-4" stroke="#3B6EF2" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <div class="feature-title">Trend tracking</div>
+          <div class="feature-desc">Watch your median reaction time drop week over week. Consistency comes next.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ─── SCREENS ─── -->
+<section class="section light" id="screens" data-screen-label="app-screens">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Every screen</div>
+      <h2 class="h-1" style="margin-top: 14px; max-width: 22ch;">Six screens you'll<br/>use every session</h2>
+      <p class="lead" style="margin-top: 22px; max-width: 60ch;">
+        Stays out of your way during reps. Gets sharp when you need to review them.
+      </p>
+    </div>
+
+    <div class="screen-grid">
+      <article class="screen-card">
+        <div class="screen-mock">
+          <div class="screen-frame">
+            <img src="assets/screens/live.png?v=2" alt="Progress screen — 30-day median chart, streak, reps this month, calendar" loading="lazy"/>
+          </div>
+        </div>
+        <div class="screen-meta">
+          <h3 class="h-3">Progress</h3>
+          <p class="muted">30-day median, current streak, monthly rep volume, and an activity calendar. Watch yourself drop time, week after week.</p>
+        </div>
+      </article>
+
+      <article class="screen-card">
+        <div class="screen-mock">
+          <div class="screen-frame">
+            <img src="assets/screens/summary.png?v=2" alt="New session setup — sensor pairing, reps, whistle variability, audio cues" loading="lazy"/>
+          </div>
+        </div>
+        <div class="screen-meta">
+          <h3 class="h-3">New session</h3>
+          <p class="muted">Pick rep count, choose whistle variability and audio cues. A few taps and you're training.</p>
+        </div>
+      </article>
+
+      <article class="screen-card">
+        <div class="screen-mock">
+          <div class="screen-frame">
+            <img src="assets/screens/progress.png?v=2" alt="Weekly goals — sessions target, median target, early-jump cap" loading="lazy"/>
+          </div>
+        </div>
+        <div class="screen-meta">
+          <h3 class="h-3">Weekly goals</h3>
+          <p class="muted">Sessions per week, a target median time, and a maximum early-jump rate. Train against numbers you set yourself.</p>
+        </div>
+      </article>
+
+      <article class="screen-card">
+        <div class="screen-mock">
+          <div class="screen-frame">
+            <img src="assets/screens/goals.png?v=2" alt="Session summary — 0.27s median, median splits, rep-by-rep chart" loading="lazy"/>
+          </div>
+        </div>
+        <div class="screen-meta">
+          <h3 class="h-3">Session summary</h3>
+          <p class="muted">Median total, reaction/clamp/early splits, and a rep-by-rep chart for the set you just finished.</p>
+        </div>
+      </article>
+
+      <article class="screen-card">
+        <div class="screen-mock">
+          <div class="screen-frame">
+            <img src="assets/screens/new-session.png?v=2" alt="Live session screen — REP 03 of 50, SET cue, pause control" loading="lazy"/>
+          </div>
+        </div>
+        <div class="screen-meta">
+          <h3 class="h-3">Live session</h3>
+          <p class="muted">Rep counter, audio and visual cues. Pause anytime. Stays out of your way during reps.</p>
+        </div>
+      </article>
+
+      <article class="screen-card">
+        <div class="screen-mock">
+          <div class="screen-frame">
+            <img src="assets/screens/home.png?v=2" alt="Home dashboard — last session delta, weekly sessions ring, personal best, recent sessions" loading="lazy"/>
+          </div>
+        </div>
+        <div class="screen-meta">
+          <h3 class="h-3">Home</h3>
+          <p class="muted">Your dashboard. Connection status, last-session data, weekly progress ring, personal best, and recent activity.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="nav-logo" style="margin-bottom: 16px; color: var(--text);">
+          <img class="logo-mark" src="assets/logo.png?v=3" alt="FaceoffEdge logo" width="28" height="28"/>
+          <img class="wordmark" src="assets/wordmark.png?v=1" alt="FaceoffEdge"/>
+        </div>
+        <p style="font-size: 14px; max-width: 32ch; line-height: 1.55; margin: 0;">
+          Finally, real numbers on your faceoff. Built by faceoff specialists, for faceoff specialists.
+        </p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="app.html">The app</a>
+          <a href="sensor.html">The sensor</a>
+        </div>
+      </div>
+      <div>
+        <h4>Get it</h4>
+        <div class="footer-links">
+          <a href="index.html#download">Download for iOS</a>
+          <a href="preorder.html">Reserve the sensor</a>
+          <a href="index.html#faq">FAQ</a>
+        </div>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <div class="footer-links">
+          <a href="contact.html">Contact us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+
+</body>
+</html>

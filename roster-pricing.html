@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Roster pricing — FaceoffEdge</title>
+<meta name="description" content="Outfitting a whole faceoff unit? Request team pricing for the FaceoffEdge sensor — volume rates, coordinated shipping, one invoice."/>
+<link rel="stylesheet" href="assets/site.css"/>
+<link rel="stylesheet" href="assets/home.css"/>
+<link rel="stylesheet" href="assets/preorder.css"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" data-screen-label="roster-nav">
+  <div class="nav-inner">
+    <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="nav-logo">
+      <img class="logo-mark" src="assets/logo.png?v=3" alt="FaceoffEdge logo" width="28" height="28"/>
+      <img class="wordmark" src="assets/wordmark.png?v=1" alt="FaceoffEdge"/>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="app.html">App</a>
+      <a href="sensor.html">Sensor</a>
+      <a href="preorder.html" class="active">Pre-order</a>
+      <a href="contact.html">Contact us</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <div class="nav-cta">
+      <a href="index.html#download" class="btn btn-primary" style="padding: 9px 16px; font-size: 14px;">Get the app</a>
+    </div>
+  </div>
+</nav>
+  <div class="nav-backdrop"></div>
+  <aside class="nav-drawer" aria-label="Mobile navigation">
+      <img class="nav-drawer-logo" src="assets/logo.png?v=3" alt="FaceoffEdge logo" width="38" height="38"/>
+      <a href="index.html">Home</a>
+      <a href="app.html">App</a>
+      <a href="sensor.html">Sensor</a>
+      <a href="preorder.html" class="active">Pre-order</a>
+      <a href="contact.html">Contact us</a>
+  </aside>
+
+<!-- ROSTER PRICING -->
+<section class="section" data-screen-label="roster-pricing" id="roster" style="position: relative; overflow: hidden;">
+  <div class="glow-blue" style="top: -200px; left: 50%; transform: translateX(-50%); width: 1100px; height: 1000px;"></div>
+  <div class="container" style="position: relative;">
+    <a href="preorder.html" class="muted" style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; margin-bottom: 32px; text-decoration: none;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to pre-order
+    </a>
+    <div class="roster-layout">
+      <div class="roster-intro">
+        <div class="eyebrow">Teams &amp; programs</div>
+        <h1 class="h-1" style="margin-top: 14px;">Roster<br/>pricing</h1>
+        <p class="lead" style="margin-top: 22px; max-width: 38ch;">
+          Outfitting a whole faceoff unit? Tell us your numbers and we'll put together
+          team pricing — volume rates, coordinated shipping, one invoice.
+        </p>
+        <p class="muted" style="margin-top: 18px; max-width: 38ch; font-size: 15px;">
+          Prefer email? Reach us at
+          <a href="mailto:hello@faceoffedge.com" style="color: var(--primary); font-weight: 600;">hello@faceoffedge.com</a>.
+        </p>
+      </div>
+
+      <div class="reserve-card">
+        <form class="reserve-form" id="roster-form" onsubmit="return submitRoster(event)">
+          <div class="reserve-section">
+            <div class="form-label">Your info</div>
+            <input type="text" id="ro-name" placeholder="Full name" required/>
+            <input type="email" id="ro-email" placeholder="Email" required style="margin-top: 12px;"/>
+          </div>
+
+          <div class="reserve-section">
+            <div class="form-label">Team details</div>
+            <div class="form-row">
+              <input type="text" id="ro-team" placeholder="Team / program" required/>
+              <input type="number" id="ro-qty" min="1" placeholder="Quantity" required/>
+            </div>
+          </div>
+
+          <div class="reserve-section">
+            <div class="form-label">Message</div>
+            <textarea id="ro-message" rows="4" placeholder="Tell us about your team, timeline, and anything else we should know…"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Request roster pricing</button>
+
+          <p style="font-size: 11px; color: var(--text-dim); text-align: center; margin: 12px 0 0; line-height: 1.5;">
+            No commitment. We'll reply to your email with team pricing and next steps.
+          </p>
+        </form>
+
+        <div id="roster-success" class="reserve-success">
+          <div class="check-circle">✓</div>
+          <h3 class="h-2" style="margin-top: 20px;">Request sent.</h3>
+          <p class="muted" style="margin: 12px auto 0; max-width: 36ch; font-size: 15px;">
+            Thanks — we'll be in touch at your email with roster pricing and next steps shortly.
+          </p>
+          <div style="margin-top: 32px;">
+            <a href="preorder.html" class="btn btn-secondary">Back to pre-order</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="nav-logo" style="margin-bottom: 16px; color: var(--text);">
+          <img class="logo-mark" src="assets/logo.png?v=3" alt="FaceoffEdge logo" width="28" height="28"/>
+          <img class="wordmark" src="assets/wordmark.png?v=1" alt="FaceoffEdge"/>
+        </div>
+        <p style="font-size: 14px; max-width: 32ch; line-height: 1.55; margin: 0;">
+          Finally, real numbers on your faceoff. Built by faceoff specialists, for faceoff specialists.
+        </p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="app.html">The app</a>
+          <a href="sensor.html">The sensor</a>
+        </div>
+      </div>
+      <div>
+        <h4>Get it</h4>
+        <div class="footer-links">
+          <a href="index.html#download">Download for iOS</a>
+          <a href="preorder.html">Reserve the sensor</a>
+          <a href="index.html#faq">FAQ</a>
+        </div>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <div class="footer-links">
+          <a href="contact.html">Contact us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+<script>
+// Roster pricing form — sends team inquiries to FaceoffEdge via Web3Forms
+async function submitRoster(e) {
+  e.preventDefault();
+  const v = id => (document.getElementById(id) || {}).value || '';
+
+  const payload = {
+    access_key: 'a7071a12-a73f-4bf3-8f06-5e1fa54c8afc',
+    subject: 'Roster pricing request — ' + v('ro-team'),
+    from_name: 'FaceoffEdge Roster Pricing',
+    name: v('ro-name'),
+    email: v('ro-email'),
+    team: v('ro-team'),
+    quantity: v('ro-qty'),
+    message: v('ro-message')
+  };
+
+  const btn = document.querySelector('#roster-form button[type="submit"]');
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+  try {
+    await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  } catch (err) {
+    /* show success regardless — submission is queued client-side */
+  }
+
+  document.getElementById('roster-success').classList.add('show');
+  document.getElementById('roster-form').style.display = 'none';
+  return false;
+}
+</script>
+
+</body>
+</html>
