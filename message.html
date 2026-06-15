@@ -149,10 +149,6 @@
     border: 1px solid rgba(79,179,138,0.3);
   }
 </style>
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
 
@@ -364,7 +360,7 @@ const MSG_ROUTES = {
     subjectPrefix: 'Support'
   },
   press: {
-    key: '912933ab-4896-445b-a7b7-76bbc27c98e6',
+    key: '592eff52-d589-4a87-8bf1-f4060ee71335',
     email: 'press@faceoffedge.com',
     title: 'Press &amp; partnerships',
     intro: "Media requests, brand collaborations, program pricing, or equipment-rules conversations. Tell us who you are and what you have in mind.",
@@ -415,9 +411,10 @@ async function submitMessage(e) {
 
   const payload = {
     access_key: r.key,
-    from_name: r.fromName,
+    from_name: (first + ' ' + last).trim() || r.fromName,
     name: (first + ' ' + last).trim(),
     email: role('email'),
+    replyto: role('email'),
     message: active.querySelector('[data-role="message"]').value.trim()
   };
 
@@ -433,22 +430,36 @@ async function submitMessage(e) {
   payload.subject = '[' + r.subjectPrefix + '] ' + headline + who;
 
   const btn = form.querySelector('button[type="submit"]');
+  const oldErr = form.querySelector('.form-error');
+  if (oldErr) oldErr.remove();
   if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
 
+  let success = false;
   try {
-    await fetch('https://api.web3forms.com/submit', {
+    const res = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(payload)
     });
+    const data = await res.json();
+    success = data.success === true;
   } catch (err) {
-    /* show success regardless */
+    success = false;
   }
 
-  form.querySelector('.msg-success').classList.add('show');
-  form.querySelectorAll('.field, .fieldset.active, button[type="submit"], .msg-fine').forEach(el => el.style.display = 'none');
-  // keep the two shared rows hidden too
-  form.querySelectorAll('.field-row').forEach(el => el.style.display = 'none');
+  if (success) {
+    form.querySelector('.msg-success').classList.add('show');
+    form.querySelectorAll('.field, .fieldset.active, button[type="submit"], .msg-fine').forEach(el => el.style.display = 'none');
+    // keep the two shared rows hidden too
+    form.querySelectorAll('.field-row').forEach(el => el.style.display = 'none');
+  } else {
+    if (btn) { btn.disabled = false; btn.textContent = 'Send message'; }
+    const err = document.createElement('p');
+    err.className = 'form-error';
+    err.style.cssText = 'color: #e05a5a; font-size: 13px; text-align: center; margin: 12px 0 0;';
+    err.textContent = 'Something went wrong — please try again or email us directly.';
+    btn.insertAdjacentElement('afterend', err);
+  }
   return false;
 }
 

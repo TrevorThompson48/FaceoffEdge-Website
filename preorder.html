@@ -19,10 +19,6 @@
     <text x="600" y="507" font-family="sans-serif" font-size="20" fill="#000000" text-anchor="middle" font-weight="600">Reserve my sensor</text>
   </svg>
 </template>
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
 
@@ -412,12 +408,14 @@ async function submitReserve(e) {
   const qty = qtyEl ? qtyEl.value : '1';
   const first = v('r-first'), last = v('r-last');
 
+  const email = v('r-email');
   const payload = {
-    access_key: 'e7eed6b2-1dec-4095-9405-307aafb8c44e',
+    access_key: '592eff52-d589-4a87-8bf1-f4060ee71335',
     subject: 'New sensor reservation — ' + (first + ' ' + last).trim(),
-    from_name: 'FaceoffEdge Reservations',
+    from_name: (first + ' ' + last).trim() || 'FaceoffEdge Reservations',
     name: (first + ' ' + last).trim(),
-    email: v('r-email'),
+    email: email,
+    replyto: email,
     quantity: qty,
     role: v('r-role'),
     level: v('r-level'),
@@ -427,21 +425,36 @@ async function submitReserve(e) {
     country: v('r-country')
   };
 
+  const form = document.getElementById('reserve-form');
   const btn = document.querySelector('#reserve-form button[type="submit"]');
+  const oldErr = form.querySelector('.form-error');
+  if (oldErr) oldErr.remove();
   if (btn) { btn.disabled = true; btn.textContent = 'Reserving…'; }
 
+  let success = false;
   try {
-    await fetch('https://api.web3forms.com/submit', {
+    const res = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(payload)
     });
+    const data = await res.json();
+    success = data.success === true;
   } catch (err) {
-    /* show success regardless — submission is queued client-side */
+    success = false;
   }
 
-  document.getElementById('reserve-success').classList.add('show');
-  document.getElementById('reserve-form').style.display = 'none';
+  if (success) {
+    document.getElementById('reserve-success').classList.add('show');
+    form.style.display = 'none';
+  } else {
+    if (btn) { btn.disabled = false; btn.textContent = 'Reserve my sensor'; }
+    const err = document.createElement('p');
+    err.className = 'form-error';
+    err.style.cssText = 'color: #e05a5a; font-size: 12px; text-align: center; margin: 12px 0 0;';
+    err.textContent = 'Something went wrong — please try again or email hello@faceoffedge.com.';
+    btn.insertAdjacentElement('afterend', err);
+  }
   return false;
 }
 </script>

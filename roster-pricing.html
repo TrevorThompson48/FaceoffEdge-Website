@@ -8,10 +8,6 @@
 <link rel="stylesheet" href="assets/site.css"/>
 <link rel="stylesheet" href="assets/home.css"/>
 <link rel="stylesheet" href="assets/preorder.css"/>
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
 
@@ -159,32 +155,49 @@ async function submitRoster(e) {
   e.preventDefault();
   const v = id => (document.getElementById(id) || {}).value || '';
 
+  const email = v('ro-email');
   const payload = {
-    access_key: 'a7071a12-a73f-4bf3-8f06-5e1fa54c8afc',
+    access_key: '592eff52-d589-4a87-8bf1-f4060ee71335',
     subject: 'Roster pricing request — ' + v('ro-team'),
-    from_name: 'FaceoffEdge Roster Pricing',
+    from_name: v('ro-name') || 'FaceoffEdge Roster Pricing',
     name: v('ro-name'),
-    email: v('ro-email'),
+    email: email,
+    replyto: email,
     team: v('ro-team'),
     quantity: v('ro-qty'),
     message: v('ro-message')
   };
 
+  const form = document.getElementById('roster-form');
   const btn = document.querySelector('#roster-form button[type="submit"]');
+  const oldErr = form.querySelector('.form-error');
+  if (oldErr) oldErr.remove();
   if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
 
+  let success = false;
   try {
-    await fetch('https://api.web3forms.com/submit', {
+    const res = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(payload)
     });
+    const data = await res.json();
+    success = data.success === true;
   } catch (err) {
-    /* show success regardless — submission is queued client-side */
+    success = false;
   }
 
-  document.getElementById('roster-success').classList.add('show');
-  document.getElementById('roster-form').style.display = 'none';
+  if (success) {
+    document.getElementById('roster-success').classList.add('show');
+    form.style.display = 'none';
+  } else {
+    if (btn) { btn.disabled = false; btn.textContent = 'Request roster pricing'; }
+    const err = document.createElement('p');
+    err.className = 'form-error';
+    err.style.cssText = 'color: #e05a5a; font-size: 12px; text-align: center; margin: 12px 0 0;';
+    err.textContent = 'Something went wrong — please try again or email hello@faceoffedge.com.';
+    btn.insertAdjacentElement('afterend', err);
+  }
   return false;
 }
 </script>
