@@ -15,6 +15,7 @@
   .hero-grid { grid-template-columns: 1fr; gap: 56px; }
   .hero-phone { display: flex; justify-content: center; }
 }
+.hero-phone { display: flex; justify-content: center; }
 .hero-copy { max-width: 600px; }
 
 /* Hero wordmark banner — black bg keyed out to blend into the dark hero */
