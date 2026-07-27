@@ -3,261 +3,54 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>FaceoffEdge — Faceoff training, instrumented.</title>
-<meta name="description" content="The first stick-mounted system that measures every millisecond of your faceoff. Train against the data, not the eye test."/>
-<link rel="stylesheet" href="assets/site.css"/>
-<link rel="stylesheet" href="assets/home.css"/>
-<template id="__bundler_thumbnail" data-bg-color="#05080F">
-  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
-    <rect width="1200" height="800" fill="#05080F"/>
-    <g transform="translate(600 400)">
-      <circle r="180" fill="none" stroke="#ffffff" stroke-width="8"/>
-      <path d="M-90 90 L90 -90" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
-      <path d="M-90 -90 L90 90" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
-      <circle r="22" fill="#3B6EF2"/>
-    </g>
-  </svg>
-</template>
+<title>FaceoffEdge — Coming Soon</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#05080F;color:#fff;font-family:'JetBrains Mono',monospace;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;position:relative;overflow:hidden}
+body::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(59,110,242,0.14),transparent 60%);pointer-events:none}
+.logo{width:88px;height:88px;object-fit:contain;margin-bottom:32px;position:relative}
+.wordmark{font-family:'Archivo',sans-serif;font-weight:900;text-transform:uppercase;font-size:clamp(36px,7vw,64px);line-height:0.95;letter-spacing:-0.01em;position:relative}
+.wordmark span{color:#3B6EF2}
+.tagline{margin-top:18px;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);position:relative}
+.message{margin-top:40px;max-width:480px;font-size:15px;line-height:1.7;color:rgba(255,255,255,0.65);position:relative}
+.signup{margin-top:36px;display:flex;gap:10px;position:relative}
+.signup input{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:6px;padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:14px;color:#fff;width:260px}
+.signup input::placeholder{color:rgba(255,255,255,0.35)}
+.signup input:focus{outline:none;border-color:rgba(59,110,242,0.5)}
+.signup button{background:#3B6EF2;border:none;border-radius:6px;padding:12px 20px;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:#fff;cursor:pointer}
+.signup button:hover{background:#2f5adb}
+.signup-note{margin-top:14px;font-size:12px;color:rgba(255,255,255,0.4);position:relative}
+@media (max-width:520px){.signup{flex-direction:column;align-items:center}.signup input{width:260px}}
+.footer{margin-top:56px;font-size:12px;letter-spacing:0.08em;color:rgba(255,255,255,0.3);position:relative}
+</style>
 </head>
 <body>
-
-<!-- ──────────── NAV ──────────── -->
-<nav class="nav" data-screen-label="home-nav">
-  <div class="nav-inner">
-    <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <a href="index.html" class="nav-logo">
-      <img class="logo-mark" src="assets/logo.png?v=3" alt="FaceoffEdge logo" width="28" height="28"/>
-      <img class="wordmark" src="assets/wordmark.png?v=1" alt="FaceoffEdge"/>
-    </a>
-    <div class="nav-links">
-      <a href="index.html" class="active">Home</a>
-      <a href="app.html">App</a>
-      <a href="sensor.html">Sensor</a>
-      <a href="preorder.html">Pre-order</a>
-      <a href="contact.html">Contact us</a>
-    </div>
-    <div class="nav-spacer"></div>
-    <div class="nav-cta">
-      <a href="#download" class="btn btn-primary" style="padding: 9px 16px; font-size: 14px;">Get the app</a>
-    </div>
-  </div>
-</nav>
-  <div class="nav-backdrop"></div>
-  <aside class="nav-drawer" aria-label="Mobile navigation">
-      <img class="nav-drawer-logo" src="assets/logo.png?v=3" alt="FaceoffEdge logo" width="38" height="38"/>
-      <a href="index.html" class="active">Home</a>
-      <a href="app.html">App</a>
-      <a href="sensor.html">Sensor</a>
-      <a href="preorder.html">Pre-order</a>
-      <a href="contact.html">Contact us</a>
-  </aside>
-
-<!-- ──────────── HERO ──────────── -->
-<section class="hero hero-split" data-screen-label="hero">
-  <div class="glow-blue" style="top: -200px; left: -200px;"></div>
-  <div class="container hero-grid">
-    <div class="hero-copy">
-      <div class="eyebrow">For lacrosse faceoff specialists</div>
-      <h1 class="h-display" style="margin-top: 18px;">
-        Real data.<br/>Real results.
-      </h1>
-      <p class="lead" style="margin-top: 22px;">
-        FaceoffEdge is a stick-mounted system that measures every millisecond
-        between the whistle and the clamp. Stop guessing. Your data is right there.
-      </p>
-      <div class="hero-cta">
-        <a href="#download" class="btn btn-primary btn-lg">Get the app</a>
-        <a href="preorder.html" class="btn btn-secondary btn-lg">Reserve the sensor</a>
-      </div>
-    </div>
-
-    <!-- Sensor product shot -->
-    <div class="hero-phone">
-      <img src="assets/sensor-hero.png?v=1" alt="FaceoffEdge stick-mounted sensor" style="width: 100%; max-width: 560px; height: auto; display: block; filter: drop-shadow(0 30px 50px rgba(0,0,0,0.6)) drop-shadow(0 0 60px rgba(120,150,220,0.18));"/>
-    </div>
-  </div>
-</section>
-
-<!-- ──────────── HOW IT WORKS ──────────── -->
-<section class="section light alt" id="how" data-screen-label="how-it-works">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">How it works</div>
-    </div>
-
-    <div class="how-grid">
-      <div class="how-step reveal">
-        <div class="how-num mono">01</div>
-        <div class="how-art product-placeholder light" style="height: 180px;">
-          <div class="label">SENSOR · CLIP-ON<br/>STICK-MOUNTED</div>
-        </div>
-        <h3 class="h-3" style="margin-top: 20px;">Clip the sensor</h3>
-        <p class="muted" style="margin-top: 8px; font-size: 15px; line-height: 1.55;">
-          The FaceoffEdge sensor clips anywhere on your shaft — no tools, no tape,
-          no adjustments. Snap it on and start training.
-        </p>
-      </div>
-
-      <div class="how-step reveal">
-        <div class="how-num mono">02</div>
-        <div class="how-art" style="height: 180px; background: #fff; border: 1px solid var(--light-line); border-radius: 24px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
-          <!-- Whistle waveform -->
-          <svg viewBox="0 0 280 100" width="80%" height="60%">
-            <defs>
-              <linearGradient id="wave-grad" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0" stop-color="#3B6EF2" stop-opacity="0.2"/>
-                <stop offset="0.5" stop-color="#3B6EF2"/>
-                <stop offset="1" stop-color="#3B6EF2" stop-opacity="0.2"/>
-              </linearGradient>
-            </defs>
-            <g stroke="url(#wave-grad)" stroke-width="2" stroke-linecap="round">
-              <line x1="20" y1="50" x2="20" y2="50"/>
-              <line x1="40" y1="40" x2="40" y2="60"/>
-              <line x1="60" y1="30" x2="60" y2="70"/>
-              <line x1="80" y1="20" x2="80" y2="80"/>
-              <line x1="100" y1="10" x2="100" y2="90"/>
-              <line x1="120" y1="5" x2="120" y2="95"/>
-              <line x1="140" y1="2" x2="140" y2="98"/>
-              <line x1="160" y1="5" x2="160" y2="95"/>
-              <line x1="180" y1="10" x2="180" y2="90"/>
-              <line x1="200" y1="20" x2="200" y2="80"/>
-              <line x1="220" y1="30" x2="220" y2="70"/>
-              <line x1="240" y1="40" x2="240" y2="60"/>
-              <line x1="260" y1="50" x2="260" y2="50"/>
-            </g>
-          </svg>
-        </div>
-        <h3 class="h-3" style="margin-top: 20px;">Wait for the whistle</h3>
-        <p class="muted" style="margin-top: 8px; font-size: 15px; line-height: 1.55;">
-          The app fires randomized whistle cadences just like a real ref — so you can't
-          memorize the timing. Every rep is a true reaction test.
-        </p>
-      </div>
-
-      <div class="how-step reveal">
-        <div class="how-num mono">03</div>
-        <div class="how-art" style="height: 180px; background: #fff; border: 1px solid var(--light-line); border-radius: 24px; padding: 28px; display: flex; flex-direction: column; justify-content: center;">
-          <div class="mono" style="font-size: 44px; font-weight: 600; letter-spacing: -0.04em; color: var(--light-text);">412<span style="font-size: 18px; color: var(--light-text-muted); margin-left: 2px;">ms</span></div>
-          <div style="display: flex; gap: 16px; margin-top: 4px; font-size: 11px; color: var(--light-text-muted); letter-spacing: 0.08em; text-transform: uppercase;">
-            <span>Reaction <span class="mono" style="color: var(--light-text);">198</span></span>
-            <span>Clamp <span class="mono" style="color: var(--light-text);">214</span></span>
-          </div>
-        </div>
-        <h3 class="h-3" style="margin-top: 20px;">See every millisecond</h3>
-        <p class="muted" style="margin-top: 8px; font-size: 15px; line-height: 1.55;">
-          Reaction time, clamp time, exit speed, jumps, consistency — broken down rep by rep,
-          session by session, week by week.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ──────────── FAQ ──────────── -->
-<section class="section light" id="faq" data-screen-label="faq">
-  <div class="container">
-    <div class="faq-layout">
-      <div>
-        <div class="eyebrow">Frequently asked</div>
-        <h2 class="h-1" style="margin-top: 14px;">Answers,<br/>quickly.</h2>
-        <p class="muted" style="margin-top: 18px; max-width: 32ch; font-size: 15px;">
-          Reservation-specific questions live on the <a href="preorder.html" style="color: var(--primary); font-weight: 600;">pre-order page →</a>
-        </p>
-        <p class="muted" style="margin-top: 12px; max-width: 32ch; font-size: 15px;">
-          Don't see your question?<br/>
-          <a href="mailto:ryan.thompson237@gmail.com" style="color: var(--primary); font-weight: 600;">ryan.thompson237@gmail.com →</a>
-        </p>
-      </div>
-
-      <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-q">Does the app work without the sensor?<span class="faq-icon"></span></button>
-          <div class="faq-a">
-            <p>Yes — partially. The app includes whistle training on its own, so you can drill your reaction to a randomized whistle anytime. Trend tracking, measurements, and rep-by-rep analysis all require the sensor.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">Is the sensor legal for game use?<span class="faq-icon"></span></button>
-          <div class="faq-a">
-            <p>No — the FaceoffEdge sensor is built for <strong>clamp and faceoff work only</strong>, and shouldn't be used during games. It's a practice tool designed to live on your training shaft, not your gamer.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">How precise is the measurement?<span class="faq-icon"></span></button>
-          <div class="faq-a">
-            <p>End-to-end calibrated against 240fps video. Full numbers and methodology are on the <a href="sensor.html#methodology" style="color: var(--primary); font-weight: 600;">product page →</a></p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">Does it work on any lacrosse stick?<span class="faq-icon"></span></button>
-          <div class="faq-a">
-            <p>Yes — it fits any standard men's lacrosse shaft. No tools, no tape, no permanent modification — just clip it on.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">What about Android?<span class="faq-icon"></span></button>
-          <div class="faq-a">
-            <p>iOS first. The audio timing pipeline we rely on is dramatically tighter on iOS today, but Android is on the roadmap — sign up for the waitlist and you'll be the first to know.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ──────────── FOOTER ──────────── -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <div class="nav-logo" style="margin-bottom: 16px; color: var(--text);">
-          <img class="logo-mark" src="assets/logo.png?v=3" alt="FaceoffEdge logo" width="28" height="28"/>
-          <img class="wordmark" src="assets/wordmark.png?v=1" alt="FaceoffEdge"/>
-        </div>
-        <p style="font-size: 14px; max-width: 32ch; line-height: 1.55; margin: 0;">
-          Finally, real numbers on your faceoff. Built by faceoff specialists, for faceoff specialists.
-        </p>
-      </div>
-      <div>
-        <h4>Explore</h4>
-        <div class="footer-links">
-          <a href="index.html">Home</a>
-          <a href="app.html">The app</a>
-          <a href="sensor.html">The sensor</a>
-        </div>
-      </div>
-      <div>
-        <h4>Get it</h4>
-        <div class="footer-links">
-          <a href="#download">Download for iOS</a>
-          <a href="preorder.html">Reserve the sensor</a>
-          <a href="#faq">FAQ</a>
-        </div>
-      </div>
-      <div>
-        <h4>Company</h4>
-        <div class="footer-links">
-          <a href="contact.html">Contact us</a>
-        </div>
-        <div class="footer-social">
-        <a href="https://www.instagram.com/faceoffedge" target="_blank" rel="noopener" aria-label="FaceoffEdge on Instagram">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4577-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9.423-.1649 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7714 6.1506-6.1746-.0065-3.4032-2.772-6.1559-6.1753-6.1494-3.4032.0066-6.1551 2.772-6.1483 6.1747M8 12.0048a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0048"/></svg>
-        </a>
-        <a href="https://www.youtube.com/channel/UCmw1U1eLQ_W5Q6YO7ce5nGw" target="_blank" rel="noopener" aria-label="FaceoffEdge on YouTube">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-        </a>
-        <a href="https://www.facebook.com/profile.php?id=61590442025001" target="_blank" rel="noopener" aria-label="FaceoffEdge on Facebook">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<script src="assets/site.js"></script>
-
+<img class="logo" src="assets/logo.png" alt="FaceoffEdge logo"/>
+<div class="wordmark">FACEOFF<span>EDGE</span></div>
+<div class="tagline">Faceoff training instrumented</div>
+<p class="message">In the works. Were heads down building... check back soon.</p>
+<form class="signup" id="signup-form" onsubmit="return submitSignup(event)">
+<input type="email" id="signup-email" placeholder="you@email.com" required/>
+<button type="submit">Join email list</button>
+</form>
+<div class="signup-note" id="signup-note">Be the first to know when we launch.</div>
+<div class="footer">© 2026 FaceoffEdge</div>
+<script>
+async function submitSignup(e){
+e.preventDefault();
+const email=document.getElementById('signup-email').value;
+const note=document.getElementById('signup-note');
+const btn=document.querySelector('#signup-form button');
+btn.disabled=true;btn.textContent='Joining…';
+try{
+await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({access_key:'5d700d60-75a3-42f3-b160-d00175db77c8',subject:'New coming-soon email signup',from_name:'FaceoffEdge Coming Soon',email:email,message:'Email list signup: '+email})});
+}catch(err){}
+document.getElementById('signup-form').style.display='none';
+note.textContent="You're on the list — we'll be in touch.";
+return false;
+}
+</script>
 </body>
 </html>
