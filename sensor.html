@@ -30,7 +30,7 @@
     </div>
     <div class="nav-spacer"></div>
     <div class="nav-cta">
-      <a href="index.html#download" class="btn btn-primary" style="padding: 9px 16px; font-size: 14px;">Get the app</a>
+      <a href="index.html#download" class="btn btn-primary" style="padding: 9px 16px; font-size: 14px;">Coming soon to the App Store</a>
     </div>
   </div>
 </nav>
@@ -52,8 +52,8 @@
       <div class="eyebrow" style="justify-content: center;">The hardware</div>
       <h1 class="h-display" style="margin-top: 18px;">Every millisecond,<br/>measured.</h1>
       <p class="lead" style="margin: 28px auto 0; max-width: 56ch;">
-        A stick-mounted, 6-axis IMU sampling at 208 Hz. Built around one job: capture the
-        truth of a faceoff and report it to your phone before you're starting the next rep.
+        A stick-mounted, 6-axis IMU sampling at 208 Hz. Built around one job: capture
+        all the data of a faceoff and report it to your phone before you're starting the next rep.
       </p>
       <div class="hero-cta" style="justify-content: center; margin-top: 36px;">
         <a href="preorder.html" class="btn btn-primary btn-lg">Reserve the sensor</a>
@@ -165,10 +165,10 @@
   <div class="container">
     <div class="section-head">
       <div class="eyebrow">Measurement methodology</div>
-      <h2 class="h-1" style="margin-top: 14px; max-width: 24ch;">The numbers match<br/>the film.</h2>
+      <h2 class="h-1" style="margin-top: 14px; max-width: 24ch;">How the measurement<br/>actually works.</h2>
       <p class="lead" style="margin-top: 22px; max-width: 60ch;">
-        FaceoffEdge exists because the eye test isn't enough. Here's exactly how we get from a
-        sound wave hitting a clip-on sensor to a coachable number in your app.
+        FaceoffEdge&trade; exists because the eye test isn't enough. Here's exactly how we get from the
+        whistle to a coachable number in your app.
       </p>
     </div>
 
@@ -177,23 +177,24 @@
         <div class="method-num mono">01</div>
         <div>
           <h3 class="h-3">Whistle event captured</h3>
-          <p style="color: var(--text-muted);">The iOS app emits a calibrated whistle waveform with a precisely-timestamped onset.
-          The sensor doesn't <em style="color: var(--text);">hear</em> the whistle — it knows when the phone fired it, down to the millisecond.</p>
+          <p style="color: var(--text-muted);">The sensor streams its full motion data continuously. When the app fires the whistle, it timestamps
+          that exact instant and correlates it against the incoming stream — establishing a millisecond-accurate
+          reference point without the sensor ever needing to hear anything.</p>
         </div>
       </li>
       <li style="border-color: var(--line);">
         <div class="method-num mono">02</div>
         <div>
           <h3 class="h-3">First-movement threshold</h3>
-          <p style="color: var(--text-muted);">Reaction time ends when the sensor detects movement above a per-player calibrated noise floor,
-          combining linear acceleration and angular velocity to ignore tremor, breathing, and bracing.</p>
+          <p style="color: var(--text-muted);">Reaction time ends when the sensor detects movement above a noise floor we've tuned for accuracy,
+          detecting jumps but not flagging clean reps.</p>
         </div>
       </li>
       <li style="border-color: var(--line);">
         <div class="method-num mono">03</div>
         <div>
           <h3 class="h-3">90° rotation detection</h3>
-          <p style="color: var(--text-muted);">Clamp time ends at the moment the stick head reaches 90° rotation from face-off attitude —
+          <p style="color: var(--text-muted);">Clamp time ends at the moment the stick head reaches 90° rotation from where you were lined up —
           measured by integrating gyroscope data.</p>
         </div>
       </li>
@@ -256,6 +257,10 @@
         </a>
         </div>
       </div>
+    </div>
+    <div class="footer-bottom" style="flex-direction: column; align-items: flex-start; gap: 6px; margin-top: 32px;">
+      <p style="margin:0;">© 2026 T &amp; R Technologies, LLC. All rights reserved.</p>
+      <p style="margin:0;">FaceoffEdge, FaceoffEdge Clip, Faceoff Training Instrumented, Get Your EDGE, and the FaceoffEdge logo are trademarks of T &amp; R Technologies, LLC.</p>
     </div>
   </div>
 </footer>
