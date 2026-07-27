@@ -15,21 +15,7 @@
   .hero-grid { grid-template-columns: 1fr; gap: 56px; }
   .hero-phone { display: flex; justify-content: center; }
 }
-.hero-phone { display: flex; justify-content: center; }
 .hero-copy { max-width: 600px; }
-
-/* Hero wordmark banner — black bg keyed out to blend into the dark hero */
-.hero-banner {
-  display: block;
-  width: 100%;
-  max-width: 560px;
-  height: auto;
-  margin: -14px 0 -10px -10px;
-  mix-blend-mode: lighten;
-}
-@media (max-width: 920px) {
-  .hero-banner { margin-left: 0; max-width: 480px; }
-}
 .hero-cta { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; }
 .hero-meta {
   display: flex; gap: 40px; margin-top: 48px;
