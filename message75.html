@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="robots" content="noindex, nofollow"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Send a message — FaceoffEdge</title>
+<meta name="description" content="Send a message to the FaceoffEdge team."/>
+<link rel="stylesheet" href="assets/site.css"/>
+<link rel="stylesheet" href="assets/home.css"/>
+<style>
+  /* ─── Routed message panel — deliberately distinct from the contact-card form ─── */
+  .msg-panel {
+    max-width: 640px;
+    margin: 48px auto 0;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    overflow: hidden;
+    --accent: #3B6EF2;
+    --accent-soft: rgba(59,110,242,0.10);
+  }
+  .route-support { --accent: #3B6EF2; --accent-soft: rgba(59,110,242,0.10); }
+  .route-press   { --accent: #8B5CF6; --accent-soft: rgba(139,92,246,0.12); }
+
+  /* Header band */
+  .msg-head {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    padding: 28px 32px;
+    background: var(--accent-soft);
+    border-bottom: 1px solid var(--line);
+  }
+  .msg-head-icon {
+    width: 48px; height: 48px;
+    flex-shrink: 0;
+    border-radius: 13px;
+    background: var(--accent);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 18px -6px var(--accent);
+  }
+  .msg-head h1 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 2px 0 6px;
+    line-height: 1.15;
+  }
+  .msg-head p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .msg-deliver {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    margin-top: 12px;
+  }
+  .msg-deliver .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* Body */
+  .msg-body { padding: 28px 32px 32px; }
+
+  .fieldset { display: none; }
+  .fieldset.active { display: block; }
+
+  /* Grouped "filled-field" — distinct from the contact form's plain boxed inputs */
+  .field {
+    display: block;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 9px 14px 10px;
+    margin-bottom: 12px;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .field:focus-within {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .field > span {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    color: var(--text-dim);
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .field .opt { text-transform: none; letter-spacing: 0; color: var(--text-dim); font-weight: 400; }
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    border: none;
+    background: transparent;
+    padding: 2px 0;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 15px;
+  }
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus { outline: none; }
+  .field textarea { resize: vertical; min-height: 150px; line-height: 1.5; }
+  .field select option { color: #0a1020; background: #fff; }
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .field-row .field { margin-bottom: 12px; }
+  @media (max-width: 520px) {
+    .field-row { grid-template-columns: 1fr; gap: 0; }
+  }
+
+  .msg-submit {
+    width: 100%;
+    margin-top: 8px;
+    background: var(--accent);
+    border: none;
+    color: #fff;
+  }
+  .msg-submit:hover { filter: brightness(1.07); }
+  .msg-fine {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin: 14px 0 0;
+    text-align: center;
+  }
+
+  .msg-success { display: none; text-align: center; padding: 20px 0 8px; }
+  .msg-success.show { display: block; }
+  .check-circle {
+    width: 56px; height: 56px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: rgba(79,179,138,0.14);
+    color: #4FB38A;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    border: 1px solid rgba(79,179,138,0.3);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" data-screen-label="message-nav">
+  <div class="nav-inner">
+    <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="home75.html" class="nav-logo">
+      <img class="logo-mark" src="assets/logo.png?v=3" alt="FaceoffEdge logo" width="28" height="28"/>
+      <img class="wordmark" src="assets/wordmark.png?v=1" alt="FaceoffEdge"/>
+    </a>
+    <div class="nav-links">
+      <a href="home75.html">Home</a>
+      <a href="app75.html">App</a>
+      <a href="sensor75.html">Sensor</a>
+      <a href="setup.html">Setup</a>
+      <a href="preorder75.html">Pre-order</a>
+      <a href="contact75.html" class="active">Contact us</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <div class="nav-cta">
+      <a href="home75.html#download" class="btn btn-primary" style="padding: 9px 16px; font-size: 14px;">Coming soon to the App Store</a>
+    </div>
+  </div>
+</nav>
+  <div class="nav-backdrop"></div>
+  <aside class="nav-drawer" aria-label="Mobile navigation">
+      <img class="nav-drawer-logo" src="assets/logo.png?v=3" alt="FaceoffEdge logo" width="38" height="38"/>
+      <a href="home75.html">Home</a>
+      <a href="app75.html">App</a>
+      <a href="sensor75.html">Sensor</a>
+      <a href="setup.html">Setup</a>
+      <a href="preorder75.html">Pre-order</a>
+      <a href="contact75.html" class="active">Contact us</a>
+  </aside>
+
+<!-- ─── MESSAGE FORM ─── -->
+<section class="section" data-screen-label="message-hero" style="padding-top: 32px;">
+  <div class="glow-blue" style="top: -200px; left: 50%; transform: translateX(-50%); width: 1100px; height: 900px;"></div>
+  <div class="container" style="position: relative;">
+
+    <a href="contact75.html" style="display: inline-flex; align-items: center; gap: 7px; color: var(--text-muted); font-size: 14px; font-weight: 500;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to contact
+    </a>
+
+    <div class="msg-panel route-support" id="msg-panel">
+      <div class="msg-head">
+        <div class="msg-head-icon" id="msg-icon"></div>
+        <div>
+          <h1 id="msg-title">Support</h1>
+          <p id="msg-intro"></p>
+          <div class="msg-deliver"><span class="dot"></span><span id="msg-deliver-email">support@faceoffedge.com</span></div>
+        </div>
+      </div>
+
+      <div class="msg-body">
+        <form id="msg-form" onsubmit="return submitMessage(event)">
+          <input type="checkbox" name="botcheck" id="msg-botcheck" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; opacity:0;" aria-hidden="true"/>
+
+          <!-- Shared identity fields -->
+          <div class="field-row">
+            <label class="field">
+              <span>First name</span>
+              <input type="text" data-role="first" placeholder="First" required/>
+            </label>
+            <label class="field">
+              <span>Last name</span>
+              <input type="text" data-role="last" placeholder="Last" required/>
+            </label>
+          </div>
+          <label class="field">
+            <span>Your email</span>
+            <input type="email" data-role="email" placeholder="you@example.com" required/>
+          </label>
+
+          <!-- ── SUPPORT fieldset ── -->
+          <div class="fieldset active" id="fs-support">
+            <label class="field">
+              <span>What issue are you having?</span>
+              <select data-extra="Issue" data-req>
+                <option>Sensor not connecting</option>
+                <option>Battery not lasting</option>
+                <option>Sensor not charging</option>
+                <option>Sensor doesn't fit onto my shaft</option>
+                <option>Sensor is inaccurately measuring reps</option>
+                <option>App isn't functioning</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Tell us more</span>
+              <textarea data-role="message" data-req placeholder="Describe what's going on. The more detail, the faster we can help…"></textarea>
+            </label>
+          </div>
+
+          <!-- ── PRESS fieldset ── -->
+          <div class="fieldset" id="fs-press">
+            <div class="field-row">
+              <label class="field">
+                <span>Organization / outlet</span>
+                <input type="text" data-extra="Organization" data-req placeholder="Company, team, or publication"/>
+              </label>
+              <label class="field">
+                <span>Your role <span class="opt">— optional</span></span>
+                <input type="text" data-extra="Role" placeholder="e.g. Staff writer"/>
+              </label>
+            </div>
+            <label class="field">
+              <span>Type of inquiry</span>
+              <select data-extra="Inquiry type" data-req>
+                <option>Press / media request</option>
+                <option>Brand partnership</option>
+                <option>Team or program pricing</option>
+                <option>Sponsorship / ambassador</option>
+                <option>Equipment / rules conversation</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <div class="field-row">
+              <label class="field">
+                <span>Website or social <span class="opt">— optional</span></span>
+                <input type="text" data-extra="Link" placeholder="Link we can check out"/>
+              </label>
+              <label class="field">
+                <span>Deadline <span class="opt">— optional</span></span>
+                <input type="text" data-extra="Deadline" placeholder="e.g. need a reply by Fri"/>
+              </label>
+            </div>
+            <label class="field">
+              <span>Details</span>
+              <textarea data-role="message" data-req placeholder="Tell us what you have in mind…"></textarea>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg msg-submit">Send message</button>
+          <p class="msg-fine">We reply within one business day.</p>
+
+          <div class="msg-success">
+            <div class="check-circle">✓</div>
+            <h3 class="h-3" style="margin-top: 20px;">Message sent.</h3>
+            <p class="muted" style="margin-top: 8px; max-width: 34ch; margin-left: auto; margin-right: auto;">
+              Thanks for reaching out — we'll be in touch shortly.
+            </p>
+            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+              <button type="button" onclick="resetMessageForm()" style="background: none; border: 1px solid rgba(255,255,255,0.18); color: var(--text); padding: 10px 20px; border-radius: 6px; font-size: 14px; cursor: pointer;">Send another</button>
+              <a href="contact75.html" class="btn btn-secondary" style="padding: 10px 20px; font-size: 14px;">Back to contact</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="nav-logo" style="margin-bottom: 16px; color: var(--text);">
+          <img class="logo-mark" src="assets/logo.png?v=3" alt="FaceoffEdge logo" width="28" height="28"/>
+          <img class="wordmark" src="assets/wordmark.png?v=1" alt="FaceoffEdge"/>
+        </div>
+        <p style="font-size: 14px; max-width: 32ch; line-height: 1.55; margin: 0;">
+          Finally, real numbers on your faceoff. Built by faceoff specialists, for faceoff specialists.
+        </p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <div class="footer-links">
+          <a href="home75.html">Home</a>
+          <a href="app75.html">The app</a>
+          <a href="sensor75.html">The sensor</a>
+        </div>
+      </div>
+      <div>
+        <h4>Get it</h4>
+        <div class="footer-links">
+          <a href="home75.html#download">Download for iOS</a>
+          <a href="preorder75.html">Reserve the sensor</a>
+          <a href="home75.html#faq">FAQ</a>
+        </div>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <div class="footer-links">
+          <a href="contact75.html">Contact us</a>
+        </div>
+        <div class="footer-social">
+        <a href="https://www.instagram.com/faceoffedge" target="_blank" rel="noopener" aria-label="FaceoffEdge on Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4577-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9.423-.1649 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7714 6.1506-6.1746-.0065-3.4032-2.772-6.1559-6.1753-6.1494-3.4032.0066-6.1551 2.772-6.1483 6.1747M8 12.0048a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0048"/></svg>
+        </a>
+        <a href="https://www.youtube.com/channel/UCmw1U1eLQ_W5Q6YO7ce5nGw" target="_blank" rel="noopener" aria-label="FaceoffEdge on YouTube">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61590442025001" target="_blank" rel="noopener" aria-label="FaceoffEdge on Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom" style="flex-direction: column; align-items: flex-start; gap: 6px; margin-top: 32px;">
+      <p style="margin:0;">© 2026 T &amp; R Technologies, LLC. All rights reserved.</p>
+      <p style="margin:0;">FaceoffEdge, FaceoffEdge Clip, Faceoff Training Instrumented, Get Your EDGE, and the FaceoffEdge logo are trademarks of T &amp; R Technologies, LLC.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+<script>
+const ICON_MAIL = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const ICON_PRESS = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 11v2a1 1 0 001 1h2l5 4V6L6 10H4a1 1 0 00-1 1z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 8a4 4 0 010 8M18.5 5.5a8 8 0 010 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+
+const MSG_ROUTES = {
+  support: {
+    key: '592eff52-d589-4a87-8bf1-f4060ee71335',
+    email: 'support@faceoffedge.com',
+    title: 'Support',
+    intro: "Having trouble with the app or your sensor? Tell us what's going on and it lands straight in our inbox.",
+    fromName: 'FaceoffEdge Support',
+    fieldset: 'fs-support',
+    routeClass: 'route-support',
+    icon: ICON_MAIL,
+    subjectPrefix: 'Support'
+  },
+  press: {
+    key: '912933ab-4896-445b-a7b7-76bbc27c98e6',
+    email: 'press@faceoffedge.com',
+    title: 'Press &amp; partnerships',
+    intro: "Media requests, brand collaborations, or program pricing. Tell us who you are and what you have in mind.",
+    fromName: 'FaceoffEdge Press',
+    fieldset: 'fs-press',
+    routeClass: 'route-press',
+    icon: ICON_PRESS,
+    subjectPrefix: 'Press'
+  }
+};
+
+function currentRoute() {
+  const to = new URLSearchParams(location.search).get('to');
+  return MSG_ROUTES[to] || MSG_ROUTES.support;
+}
+
+// Wire up the page for the active route.
+(function initRoute() {
+  const r = currentRoute();
+  const panel = document.getElementById('msg-panel');
+  panel.classList.remove('route-support', 'route-press');
+  panel.classList.add(r.routeClass);
+  document.getElementById('msg-icon').innerHTML = r.icon;
+  document.getElementById('msg-title').innerHTML = r.title;
+  document.getElementById('msg-intro').textContent = r.intro;
+  document.getElementById('msg-deliver-email').textContent = r.email;
+  document.title = (r.subjectPrefix) + ' — FaceoffEdge';
+
+  // Activate the right fieldset; disable inputs in the hidden one so their
+  // required state never blocks submit.
+  document.querySelectorAll('.fieldset').forEach(fs => {
+    const active = fs.id === r.fieldset;
+    fs.classList.toggle('active', active);
+    fs.querySelectorAll('input, select, textarea').forEach(el => { el.disabled = !active; });
+  });
+  // Apply required only to active, marked fields.
+  document.querySelectorAll('.fieldset.active [data-req]').forEach(el => { el.required = true; });
+})();
+
+async function submitMessage(e) {
+  e.preventDefault();
+  const r = currentRoute();
+  const form = document.getElementById('msg-form');
+  const active = document.querySelector('.fieldset.active');
+
+  const role = sel => { const el = form.querySelector('[data-role="' + sel + '"]'); return el ? el.value.trim() : ''; };
+  const first = role('first'), last = role('last');
+
+  const payload = {
+    access_key: r.key,
+    from_name: (first + ' ' + last).trim() || r.fromName,
+    name: (first + ' ' + last).trim(),
+    email: role('email'),
+    replyto: role('email'),
+    message: active.querySelector('[data-role="message"]').value.trim(),
+    botcheck: (document.getElementById('msg-botcheck') || {}).checked || false
+  };
+
+  // Route-specific extras → readable keys Web3Forms shows as labels.
+  active.querySelectorAll('[data-extra]').forEach(el => {
+    const v = (el.value || '').trim();
+    if (v) payload[el.dataset.extra] = v;
+  });
+
+  // Subject line built from the most useful route field.
+  const headline = payload['Issue'] || payload['Inquiry type'] || 'New message';
+  const who = payload['Organization'] ? ' — ' + payload['Organization'] : '';
+  payload.subject = '[' + r.subjectPrefix + '] ' + headline + who;
+
+  const btn = form.querySelector('button[type="submit"]');
+  const oldErr = form.querySelector('.form-error');
+  if (oldErr) oldErr.remove();
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+  let success = false;
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    success = data.success === true;
+  } catch (err) {
+    success = false;
+  }
+
+  if (success) {
+    form.querySelector('.msg-success').classList.add('show');
+    form.querySelectorAll('.field, .fieldset.active, button[type="submit"], .msg-fine').forEach(el => el.style.display = 'none');
+    // keep the two shared rows hidden too
+    form.querySelectorAll('.field-row').forEach(el => el.style.display = 'none');
+  } else {
+    if (btn) { btn.disabled = false; btn.textContent = 'Send message'; }
+    const err = document.createElement('p');
+    err.className = 'form-error';
+    err.style.cssText = 'color: #e05a5a; font-size: 13px; text-align: center; margin: 12px 0 0;';
+    err.textContent = 'Something went wrong — please try again or email us directly.';
+    btn.insertAdjacentElement('afterend', err);
+  }
+  return false;
+}
+
+function resetMessageForm() {
+  const form = document.getElementById('msg-form');
+  form.querySelector('.msg-success').classList.remove('show');
+  form.querySelectorAll('.field, button[type="submit"], .msg-fine, .field-row').forEach(el => { el.style.display = ''; });
+  const active = document.querySelector('.fieldset.active');
+  active.style.display = '';
+  form.reset();
+  const btn = form.querySelector('button[type="submit"]');
+  if (btn) { btn.disabled = false; btn.textContent = 'Send message'; }
+}
+</script>
+
+</body>
+</html>

@@ -214,9 +214,10 @@
 /* ─── Setup step slideshow ─── */
 .steps{max-width:900px;margin:0 auto}
 .steps-stage{position:relative;width:100%;max-width:320px;margin:0 auto;aspect-ratio:9/19.5;border-radius:16px;background:transparent}
+.steps-stage-wrap{}
 .steps-slide{position:absolute;inset:0;opacity:0;visibility:hidden;display:flex;align-items:center;justify-content:center;will-change:transform,opacity}
-.steps-slide[data-active]{opacity:1;visibility:visible;animation:stepIn .55s cubic-bezier(.22,1,.36,1) both}
-.steps-slide[data-leaving]{opacity:0;visibility:visible;animation:stepOut .45s cubic-bezier(.4,0,.2,1) both}
+.steps-slide[data-active]{opacity:1;visibility:visible;animation:stepIn .6s cubic-bezier(.33,1,.68,1) both}
+.steps-slide[data-leaving]{opacity:0;visibility:visible;animation:stepOut .6s cubic-bezier(.33,1,.68,1) both}
 .steps[data-dir="prev"] .steps-slide[data-active]{animation-name:stepInBack}
 .steps[data-dir="prev"] .steps-slide[data-leaving]{animation-name:stepOutBack}
 .steps-slide .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(45deg,rgba(120,150,220,0.04) 0 12px,transparent 12px 24px)}
@@ -242,10 +243,10 @@
 .substep-dots span[data-sub-current]{background:#fff}
 
 /* ─── Setup slideshow motion (v2) ─── */
-@keyframes stepIn{from{opacity:0;transform:translateX(40px) scale(.96)}to{opacity:1;transform:none}}
-@keyframes stepOut{from{opacity:1;transform:none}to{opacity:0;transform:translateX(-34px) scale(.97)}}
-@keyframes stepInBack{from{opacity:0;transform:translateX(-40px) scale(.96)}to{opacity:1;transform:none}}
-@keyframes stepOutBack{from{opacity:1;transform:none}to{opacity:0;transform:translateX(34px) scale(.97)}}
+@keyframes stepIn{0%{opacity:0;transform:translateX(120px) scale(.94)}100%{opacity:1;transform:none}}
+@keyframes stepOut{0%{opacity:1;transform:none}100%{opacity:0;transform:translateX(-120px) scale(.94)}}
+@keyframes stepInBack{0%{opacity:0;transform:translateX(-120px) scale(.94)}100%{opacity:1;transform:none}}
+@keyframes stepOutBack{0%{opacity:1;transform:none}100%{opacity:0;transform:translateX(120px) scale(.94)}}
 @keyframes copyUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @keyframes stageFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 @keyframes glowPulse{0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(1)}50%{opacity:.85;transform:translate(-50%,-50%) scale(1.09)}}
@@ -275,7 +276,7 @@
 /* ─── Setup slideshow: progress bar ─── */
 .steps-progress{position:absolute;left:0;top:0;height:100%;border-radius:99px;background:var(--primary);transition:width .5s cubic-bezier(.22,1,.36,1)}
 .steps-track{position:relative;flex:1;height:4px;border-radius:99px;background:var(--line);overflow:hidden}
-.rec-mask{position:absolute;left:23.5%;top:0;width:50%;height:6.2%;background:#000;border-radius:0 0 22px 22px;z-index:2;pointer-events:none}
+.rec-mask{position:absolute;left:23.5%;top:0;width:50%;height:6.2%;background:#000;border-radius:0 0 22px 22px;z-index:4;pointer-events:none}
 
 /* ─── Video scrubber ─── */
 .vid-ctrl{display:none;align-items:center;gap:12px;max-width:320px;margin:16px auto 0}
@@ -292,5 +293,11 @@
 .vid-scrub .vid-knob{transform:scale(1)}
 .vid-scrub[data-drag] .vid-knob{transform:scale(1.35)}
 .vid-time{flex:none;font-size:12px;letter-spacing:.06em;color:var(--text-dim);min-width:34px;text-align:right}
+.vid-pause{flex:none;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--text-dim);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:color .2s,border-color .2s,transform .18s}
+.vid-pause:hover{color:var(--primary);border-color:var(--primary)}
+.vid-pause:active{transform:scale(.9)}
+.vid-pause .icon-pause{display:none}
+.vid-pause[data-playing] .icon-play{display:none}
+.vid-pause[data-playing] .icon-pause{display:block}
 .vid-scrub-canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;border-radius:44px;z-index:3;opacity:0;pointer-events:none;transition:opacity .08s}
 .vid-scrub-canvas[data-on]{opacity:1}

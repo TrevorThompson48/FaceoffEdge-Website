@@ -19,33 +19,33 @@
     <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
-    <a href="/home/" class="nav-logo">
+    <a href="/home75/" class="nav-logo">
       <img class="logo-mark" src="../assets/logo.png?v=3" alt="FaceoffEdge logo" width="28" height="28"/>
       <img class="wordmark" src="../assets/wordmark.png?v=1" alt="FaceoffEdge"/>
     </a>
     <div class="nav-links">
-      <a href="/home/">Home</a>
-      <a href="/app">App</a>
-      <a href="/sensor">Sensor</a>
+      <a href="/home75/">Home</a>
+      <a href="/app75">App</a>
+      <a href="/sensor75">Sensor</a>
       <a href="/setup" class="active">Setup</a>
-      <a href="/preorder">Pre-order</a>
-      <a href="/contact">Contact us</a>
+      <a href="/preorder75">Pre-order</a>
+      <a href="/contact75">Contact us</a>
     </div>
     <div class="nav-spacer"></div>
     <div class="nav-cta">
-      <a href="/#download" class="btn btn-primary" style="padding: 9px 16px; font-size: 14px;">Coming soon to the App Store</a>
+      <a href="/home75#download" class="btn btn-primary" style="padding: 9px 16px; font-size: 14px;">Coming soon to the App Store</a>
     </div>
   </div>
 </nav>
   <div class="nav-backdrop"></div>
   <aside class="nav-drawer" aria-label="Mobile navigation">
       <img class="nav-drawer-logo" src="../assets/logo.png?v=3" alt="FaceoffEdge logo" width="38" height="38"/>
-      <a href="/home/">Home</a>
-      <a href="/app">App</a>
-      <a href="/sensor">Sensor</a>
+      <a href="/home75/">Home</a>
+      <a href="/app75">App</a>
+      <a href="/sensor75">Sensor</a>
       <a href="/setup" class="active">Setup</a>
-      <a href="/preorder">Pre-order</a>
-      <a href="/contact">Contact us</a>
+      <a href="/preorder75">Pre-order</a>
+      <a href="/contact75">Contact us</a>
   </aside>
 
 <!-- ─── HERO ─── -->
@@ -88,6 +88,7 @@
       </div>
       <div class="vid-ctrl">
         <button type="button" class="vid-replay" data-vid-replay aria-label="Restart video"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="vid-pause" data-vid-pause data-playing aria-label="Pause video"><svg class="icon-pause" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="icon-play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
         <div class="vid-scrub" data-vid-scrub role="slider" tabindex="0" aria-label="Video position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="vid-fill" data-vid-fill></div><div class="vid-knob" data-vid-knob></div></div>
         <div class="vid-time mono" data-vid-time>0:00</div>
       </div>
@@ -123,14 +124,14 @@
     slides.forEach(function(s,k){
       s.removeAttribute('data-leaving');
       if(k===i){s.setAttribute('data-active','');}
-      else{s.removeAttribute('data-active');if(k===oldI&&root.hasAttribute('data-ready')){s.setAttribute('data-leaving','');setTimeout(function(){s.removeAttribute('data-leaving');},460);}}
+      else{s.removeAttribute('data-active');if(k===oldI&&root.hasAttribute('data-ready')){s.setAttribute('data-leaving','');setTimeout(function(){s.removeAttribute('data-leaving');},620);}}
     });
     dots.forEach(function(d,k){d.setAttribute('aria-current',k===i);});
     slides.forEach(function(s,k){var v=s.querySelector('video');if(!v)return;if(k===i){try{v.currentTime=0;v.play();}catch(e){}}else{v.pause();}});
     num.textContent='STEP '+data[i].n+' / '+data.length;
     title.textContent=data[i].t;desc.textContent=data[i].d;
     copy.removeAttribute('data-anim');void copy.offsetWidth;copy.setAttribute('data-anim','');
-    if(curVid()){root.setAttribute('data-video','');}else{root.removeAttribute('data-video');}
+    if(curVid()){root.setAttribute('data-video','');pauseBtn.setAttribute('data-playing','');pauseBtn.setAttribute('aria-label','Pause video');}else{root.removeAttribute('data-video');}
     fill.style.width='0%';knob.style.left='0%';timeEl.textContent='0:00';
     prev.disabled=i===0;next.textContent=i===data.length-1?'Start over':'Next';
     root.setAttribute('data-ready','');
@@ -154,37 +155,49 @@
     fill.style.width=p+'%';knob.style.left=p+'%';timeEl.textContent=fmt(v.currentTime);
     scrub.setAttribute('aria-valuenow',Math.round(p));
   }
-  // Pre-decode each video into low-res frames so scrubbing is instant
-  var FPS=15,caches=new WeakMap(),building=new WeakMap();
+  // Capture frames during ONE linear playback pass (seeking is unreliable on these files)
+  var FPS=12,caches=new WeakMap(),building=new WeakMap();
   function buildCache(v){
     if(caches.has(v)||building.get(v)||!v.duration||!isFinite(v.duration))return;
+    if(!('requestVideoFrameCallback' in HTMLVideoElement.prototype))return;
     building.set(v,1);
-    var w=200,h=Math.round(w*(v.videoHeight/v.videoWidth||2.17));
-    var n=Math.max(2,Math.min(240,Math.round(v.duration*FPS))),frames=new Array(n),done=0;
+    var w=180,h=Math.round(w*((v.videoHeight/v.videoWidth)||2.17));
+    var n=Math.max(2,Math.min(200,Math.round(v.duration*FPS)));
+    var frames=new Array(n),got=0;
     var d=document.createElement('video');
     d.src=v.currentSrc||v.src;d.muted=true;d.playsInline=true;d.preload='auto';
-    d.addEventListener('loadeddata',function(){
-      var c=document.createElement('canvas');c.width=w;c.height=h;var cx=c.getContext('2d');
-      function grab(k){
-        if(k>=n){caches.set(v,{frames:frames,n:n,w:w,h:h});building.set(v,0);return;}
-        var t=Math.min(Math.max(0,d.duration-0.05),k/(n-1)*d.duration),went=false,tries=0;
-        function capture(force){
-          if(went)return;
-          if(!force&&(d.readyState<2||Math.abs(d.currentTime-t)>0.06)){
-            if(++tries<40){setTimeout(capture,50);return;}
-            force=true;
-          }
-          went=true;
-          try{cx.drawImage(d,0,0,w,h);}catch(e){grab(k+1);return;}
-          createImageBitmap(c).then(function(bm){frames[k]=bm;done++;grab(k+1);}).catch(function(){grab(k+1);});
-        }
-        d.addEventListener('seeked',function(){capture(false);},{once:true});
-        if(d.requestVideoFrameCallback)d.requestVideoFrameCallback(function(){capture(false);});
-        setTimeout(function(){capture(false);},60);
-        try{d.currentTime=t;}catch(e){capture(true);}
+    d.style.cssText='position:fixed;left:-9999px;top:0;width:2px;height:2px;opacity:0;pointer-events:none';
+    document.body.appendChild(d);
+    var c=document.createElement('canvas');c.width=w;c.height=h;var cx=c.getContext('2d');
+    var pend=0;
+    function finish(){
+      if(!building.get(v))return;
+      building.set(v,0);
+      try{d.pause();}catch(e){}
+      d.remove();
+      for(var k=0,last=null;k<n;k++){if(frames[k])last=frames[k];else if(last)frames[k]=last;}
+      for(var k2=n-1,nxt=null;k2>=0;k2--){if(frames[k2])nxt=frames[k2];else if(nxt)frames[k2]=nxt;}
+      if(got>n*0.5)caches.set(v,{frames:frames,n:n,w:w,h:h});
+    }
+    function onFrame(now,meta){
+      if(!building.get(v))return;
+      var t=meta&&meta.mediaTime!=null?meta.mediaTime:d.currentTime;
+      var k=Math.max(0,Math.min(n-1,Math.round(t/d.duration*(n-1))));
+      if(!frames[k]&&d.readyState>=2){
+        try{
+          cx.drawImage(d,0,0,w,h);pend++;
+          createImageBitmap(c).then(function(bm){if(!frames[k]){frames[k]=bm;got++;}pend--;}).catch(function(){pend--;});
+        }catch(e){}
       }
-      grab(0);
+      if(d.ended||got>=n)setTimeout(finish,120);else d.requestVideoFrameCallback(onFrame);
+    }
+    d.addEventListener('loadeddata',function(){
+      d.requestVideoFrameCallback(onFrame);
+      d.play().then(function(){},function(){finish();});
+      setTimeout(function(){if(building.get(v))finish();},(d.duration+3)*1000);
     },{once:true});
+    d.addEventListener('ended',function(){setTimeout(finish,150);});
+    d.addEventListener('error',finish);
     d.load();
   }
   var overlay=document.createElement('canvas');
@@ -193,7 +206,7 @@
     var c=caches.get(v);if(!c)return false;
     var k=Math.max(0,Math.min(c.n-1,Math.round(p*(c.n-1))));
     var bm=c.frames[k];if(!bm)return false;
-    if(overlay.parentNode!==v.parentNode){v.parentNode.appendChild(overlay);}
+    if(overlay.parentNode!==v.parentNode)v.parentNode.appendChild(overlay);
     if(overlay.width!==c.w){overlay.width=c.w;overlay.height=c.h;}
     overlay.getContext('2d').drawImage(bm,0,0);
     overlay.setAttribute('data-on','');
@@ -246,7 +259,13 @@
     if(e.key==='ArrowLeft'){v.currentTime=Math.max(0,v.currentTime-1);paint();e.preventDefault();e.stopPropagation();}
     if(e.key==='ArrowRight'){v.currentTime=Math.min(v.duration,v.currentTime+1);paint();e.preventDefault();e.stopPropagation();}
   });
-  root.querySelector('[data-vid-replay]').addEventListener('click',function(){var v=curVid();if(!v)return;v.currentTime=0;v.play().catch(function(){});});
+  root.querySelector('[data-vid-replay]').addEventListener('click',function(){var v=curVid();if(!v)return;v.currentTime=0;v.play().catch(function(){});pauseBtn.setAttribute('data-playing','');pauseBtn.setAttribute('aria-label','Pause video');});
+  var pauseBtn=root.querySelector('[data-vid-pause]');
+  pauseBtn.addEventListener('click',function(){
+    var v=curVid();if(!v)return;
+    if(v.paused){v.play().catch(function(){});pauseBtn.setAttribute('data-playing','');pauseBtn.setAttribute('aria-label','Pause video');}
+    else{v.pause();pauseBtn.removeAttribute('data-playing');pauseBtn.setAttribute('aria-label','Play video');}
+  });
   root.querySelectorAll('video').forEach(function(v){v.addEventListener('timeupdate',function(){if(v===curVid()&&!scrub.hasAttribute('data-drag'))paint();});});
 
   function reveal(){root.removeAttribute('data-pre-reveal');root.setAttribute('data-revealed','');}
@@ -296,23 +315,23 @@
       <div>
         <h4>Explore</h4>
         <div class="footer-links">
-          <a href="/home/">Home</a>
-          <a href="/app">The app</a>
-          <a href="/sensor">The sensor</a>
+          <a href="/home75/">Home</a>
+          <a href="/app75">The app</a>
+          <a href="/sensor75">The sensor</a>
         </div>
       </div>
       <div>
         <h4>Get it</h4>
         <div class="footer-links">
-          <a href="/#download">Download for iOS</a>
-          <a href="/preorder">Reserve the sensor</a>
-          <a href="/#faq">FAQ</a>
+          <a href="/home75#download">Download for iOS</a>
+          <a href="/preorder75">Reserve the sensor</a>
+          <a href="/home75#faq">FAQ</a>
         </div>
       </div>
       <div>
         <h4>Company</h4>
         <div class="footer-links">
-          <a href="/contact">Contact us</a>
+          <a href="/contact75">Contact us</a>
         </div>
         <div class="footer-social">
         <a href="https://www.instagram.com/faceoffedge" target="_blank" rel="noopener" aria-label="FaceoffEdge on Instagram">
