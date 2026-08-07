@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /$
+Disallow: /home
+Disallow: /app
+Disallow: /sensor
+Disallow: /setup
+Disallow: /preorder
+Disallow: /contact
+Disallow: /roster-pricing
+Disallow: /message

@@ -214,11 +214,8 @@
 /* ─── Setup step slideshow ─── */
 .steps{max-width:900px;margin:0 auto}
 .steps-stage{position:relative;width:100%;max-width:320px;margin:0 auto;aspect-ratio:9/19.5;border-radius:16px;background:transparent}
-.steps-slide{position:absolute;inset:0;opacity:0;visibility:hidden;display:flex;align-items:center;justify-content:center;will-change:transform,opacity}
-.steps-slide[data-active]{opacity:1;visibility:visible;animation:stepIn .55s cubic-bezier(.22,1,.36,1) both}
-.steps-slide[data-leaving]{opacity:0;visibility:visible;animation:stepOut .45s cubic-bezier(.4,0,.2,1) both}
-.steps[data-dir="prev"] .steps-slide[data-active]{animation-name:stepInBack}
-.steps[data-dir="prev"] .steps-slide[data-leaving]{animation-name:stepOutBack}
+.steps-slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .35s ease;display:flex;align-items:center;justify-content:center}
+.steps-slide[data-active]{opacity:1;visibility:visible}
 .steps-slide .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(45deg,rgba(120,150,220,0.04) 0 12px,transparent 12px 24px)}
 .steps-slide .ph span{font-size:13px;letter-spacing:.04em;color:var(--text-dim)}
 .steps-slide image-slot{width:100%;height:100%;display:block}
@@ -240,57 +237,3 @@
 .substep-dots{position:absolute;left:0;right:0;bottom:16px;display:flex;justify-content:center;gap:6px;z-index:4;pointer-events:none}
 .substep-dots span{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.35)}
 .substep-dots span[data-sub-current]{background:#fff}
-
-/* ─── Setup slideshow motion (v2) ─── */
-@keyframes stepIn{from{opacity:0;transform:translateX(40px) scale(.96)}to{opacity:1;transform:none}}
-@keyframes stepOut{from{opacity:1;transform:none}to{opacity:0;transform:translateX(-34px) scale(.97)}}
-@keyframes stepInBack{from{opacity:0;transform:translateX(-40px) scale(.96)}to{opacity:1;transform:none}}
-@keyframes stepOutBack{from{opacity:1;transform:none}to{opacity:0;transform:translateX(34px) scale(.97)}}
-@keyframes copyUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-@keyframes stageFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
-@keyframes glowPulse{0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(1)}50%{opacity:.85;transform:translate(-50%,-50%) scale(1.09)}}
-@keyframes stepsReveal{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
-.steps[data-pre-reveal]{opacity:0}
-.steps[data-revealed]{animation:stepsReveal .8s cubic-bezier(.22,1,.36,1) both}
-.steps-stage-wrap{position:relative;width:100%;max-width:320px;margin:0 auto;animation:stageFloat 7s ease-in-out infinite}
-.steps-stage-wrap::before{content:"";position:absolute;left:50%;top:50%;width:150%;height:78%;border-radius:50%;background:radial-gradient(closest-side,color-mix(in oklch,var(--primary) 42%,transparent),transparent 72%);filter:blur(52px);transform:translate(-50%,-50%);z-index:0;pointer-events:none;animation:glowPulse 8s ease-in-out infinite}
-.steps-stage{z-index:1}
-.steps-copy[data-anim] .steps-num{animation:copyUp .5s cubic-bezier(.22,1,.36,1) both}
-.steps-copy[data-anim] h3{animation:copyUp .5s cubic-bezier(.22,1,.36,1) .06s both}
-.steps-copy[data-anim] p{animation:copyUp .5s cubic-bezier(.22,1,.36,1) .12s both}
-.steps-dots button{position:relative;overflow:hidden;transition:width .4s cubic-bezier(.22,1,.36,1),background .3s}
-.steps-dots button[aria-current="true"]{width:46px;box-shadow:0 0 12px color-mix(in oklch,var(--primary) 55%,transparent)}
-.steps-dots button:hover{background:color-mix(in oklch,var(--primary) 45%,var(--line))}
-.steps-nav .btn{transition:transform .18s ease,opacity .2s}
-.steps-nav .btn:active{transform:scale(.95)}
-.substep-slide{transition:opacity .4s ease,transform .4s cubic-bezier(.22,1,.36,1);transform:scale(.97)}
-.substep-slide[data-sub-active]{transform:none}
-.substep-next{transition:transform .2s cubic-bezier(.22,1,.36,1),background .2s}
-.substep-next:hover{transform:scale(1.12)}
-.substep-next:active{transform:scale(.92)}
-.substep-dots span{transition:background .3s,transform .3s}
-.substep-dots span[data-sub-current]{transform:scale(1.4)}
-@media(prefers-reduced-motion:reduce){.steps-stage-wrap,.steps-stage-wrap::before{animation:none}.steps-slide[data-active],.steps-slide[data-leaving],.steps-copy[data-anim] .steps-num,.steps-copy[data-anim] h3,.steps-copy[data-anim] p,.steps[data-revealed]{animation-duration:.01ms}}
-
-/* ─── Setup slideshow: progress bar ─── */
-.steps-progress{position:absolute;left:0;top:0;height:100%;border-radius:99px;background:var(--primary);transition:width .5s cubic-bezier(.22,1,.36,1)}
-.steps-track{position:relative;flex:1;height:4px;border-radius:99px;background:var(--line);overflow:hidden}
-.rec-mask{position:absolute;left:23.5%;top:0;width:50%;height:6.2%;background:#000;border-radius:0 0 22px 22px;z-index:2;pointer-events:none}
-
-/* ─── Video scrubber ─── */
-.vid-ctrl{display:none;align-items:center;gap:12px;max-width:320px;margin:16px auto 0}
-.steps[data-video] .vid-ctrl{display:flex}
-.vid-replay{flex:none;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--text-dim);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:color .2s,border-color .2s,transform .18s}
-.vid-replay:hover{color:var(--primary);border-color:var(--primary)}
-.vid-replay:active{transform:scale(.9)}
-.vid-scrub{flex:1;position:relative;height:26px;display:flex;align-items:center;cursor:grab;touch-action:none;-webkit-user-select:none;user-select:none}
-.vid-scrub[data-drag]{cursor:grabbing}
-.vid-scrub[data-drag] .vid-fill,.vid-scrub:hover .vid-fill,.vid-scrub[data-drag]::before,.vid-scrub:hover::before{height:5px}
-.vid-scrub::before{content:"";position:absolute;left:0;right:0;height:3px;border-radius:99px;background:var(--line)}
-.vid-fill{position:absolute;left:0;height:3px;border-radius:99px;background:var(--primary);width:0}
-.vid-knob{position:absolute;width:13px;height:13px;border-radius:50%;background:var(--primary);left:0;margin-left:-6.5px;box-shadow:0 0 0 3px color-mix(in oklch,var(--primary) 22%,transparent);transform:scale(0);transition:transform .18s}
-.vid-scrub .vid-knob{transform:scale(1)}
-.vid-scrub[data-drag] .vid-knob{transform:scale(1.35)}
-.vid-time{flex:none;font-size:12px;letter-spacing:.06em;color:var(--text-dim);min-width:34px;text-align:right}
-.vid-scrub-canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;border-radius:44px;z-index:3;opacity:0;pointer-events:none;transition:opacity .08s}
-.vid-scrub-canvas[data-on]{opacity:1}

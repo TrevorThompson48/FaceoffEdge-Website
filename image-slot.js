@@ -153,7 +153,7 @@
   // on SVG blobs is inconsistent). GIF is excluded because the canvas
   // re-encode keeps only the first frame, so an animated GIF would silently
   // go still — better to reject than surprise.
-  const ACCEPT = ['image/png', 'image/jpeg', 'image/webp', 'image/avif'];
+  const ACCEPT = ['image/png', 'image/jpeg', 'image/webp', 'image/avif', 'image/heic', 'image/heif'];
 
   // ── Shared sidecar store ────────────────────────────────────────────────
   // One fetch + immediate write-on-change for every <image-slot> on the
@@ -292,7 +292,7 @@
     '  font:13px/1.3 system-ui,-apple-system,sans-serif;' +
     '  width:100%;height:100%;aspect-ratio:3/2}' +
     '.empty .cap,.empty .sub{opacity:.75}' +
-    '.frame{position:absolute;inset:0;overflow:hidden;background:rgba(127,127,127,.08)}' +
+    '.frame{position:absolute;inset:0;overflow:hidden;background:transparent}' +
     // .frame img (clipped) and .spill (unclipped ghost + handles) share the
     // same left/top/width/height in frame-%, computed by _applyView(), so the
     // inside-mask crop and the outside-mask spill stay pixel-aligned.
@@ -331,8 +331,9 @@
     '.empty:hover .sub{opacity:1}' +
     ':host([data-over]) .frame{outline:2px solid #c96442;outline-offset:-2px;' +
     '  background:rgba(201,100,66,.10)}' +
-    '.ring{position:absolute;inset:0;pointer-events:none;border:1.5px dashed currentColor;' +
-    '  opacity:.35;transition:border-color .12s,opacity .12s}' +
+    '.ring{position:absolute;inset:0;pointer-events:none;border:1px solid currentColor;' +
+    '  opacity:0;transition:border-color .12s,opacity .12s}' +
+    ':host(:hover) .ring{opacity:.15}' +
     ':host([data-over]) .ring{border-color:#c96442;opacity:1}' +
     ':host([data-filled]) .ring{display:none}' +
     // Controls overlay INSIDE the frame, pinned to the top-right corner, so
@@ -526,7 +527,7 @@
         // element selection and the controls look dead.
         '<div class="ctl" popover="manual" data-dc-edit-transparent><button data-act="replace" title="Replace image">Replace</button>' +
         '  <button data-act="edit" title="Reframe image">Edit</button></div>' +
-        '<input type="file" accept="' + ACCEPT.join(',') + '" hidden>';
+        '<input type="file" accept="image/*" hidden>';
       this._frame = root.querySelector('.frame');
       this._ring = root.querySelector('.ring');
       this._img = root.querySelector('.frame img');
@@ -878,8 +879,9 @@
 
     async _ingest(file) {
       this._setError(null);
-      if (!file || ACCEPT.indexOf(file.type) < 0) {
-        this._setError('Drop a PNG, JPEG, WebP, or AVIF image.');
+      const extOk = /\.(png|jpe?g|heic|heif|webp|avif)$/i.test((file && file.name) || '');
+      if (!file || (ACCEPT.indexOf(file.type) < 0 && !(!file.type && extOk))) {
+        this._setError('Choose a PNG, JPEG, HEIC, WebP, or AVIF image.');
         return;
       }
       // toDataUrl can take hundreds of ms on a large photo. A Clear or a
