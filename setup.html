@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="assets/site.css"/>
 <link rel="stylesheet" href="assets/home.css"/>
 <link rel="stylesheet" href="assets/product.css"/>
-<script src="image-slot.js"></script>
 </head>
 <body>
 
@@ -32,9 +31,6 @@
       <a href="contact75.html">Contact us</a>
     </div>
     <div class="nav-spacer"></div>
-    <div class="nav-cta">
-      <a href="home75.html#download" class="btn btn-primary" style="padding: 9px 16px; font-size: 14px;">Coming soon to the App Store</a>
-    </div>
   </div>
 </nav>
   <div class="nav-backdrop"></div>
@@ -66,10 +62,10 @@
 <!-- ─── GRAPHIC SLOT (placeholder — drop the setup graphic here) ─── -->
 <section class="section" data-screen-label="setup-graphic" style="padding-top: 0;">
   <div class="container">
-    <div class="steps" data-steps>
+    <div class="steps" data-steps data-step="1">
       <div class="steps-stage-wrap"><div class="steps-stage">
         <div class="steps-slide" data-active role="group" aria-label="Step 01 of 4">
-          <image-slot id="setup-step-01" shape="rounded" radius="12" fit="contain" data-editable placeholder="Photo — sensor charging and mounted on shaft"></image-slot>
+          <img src="assets/setup-step-01.jpg" alt="Sensor charging and mounted on a shaft" style="width:100%;height:100%;object-fit:cover;border-radius:12px;display:block"/>
         </div>
         <div class="steps-slide" role="group" aria-label="Step 02 of 4">
           <video autoplay muted loop playsinline preload="auto" poster="assets/setup-step-02-poster.png" aria-label="Creating your profile in the FaceoffEdge app" style="width:100%;height:100%;object-fit:contain;border-radius:44px;display:block"><source src="assets/setup-step-02.mp4" type="video/mp4"/></video><div class="rec-mask" aria-hidden="true"></div>
@@ -119,7 +115,7 @@
   var prev=root.querySelector('[data-prev]'),next=root.querySelector('[data-next]'),i=0;
   function show(n){
     var t=Math.max(0,Math.min(data.length-1,n));if(t===i&&root.hasAttribute('data-ready'))return;
-    root.setAttribute('data-dir',t<i?'prev':'next');
+    root.setAttribute('data-dir',t<i?'prev':'next');root.setAttribute('data-step',String(t+1));
     var oldI=i;i=t;
     slides.forEach(function(s,k){
       s.removeAttribute('data-leaving');

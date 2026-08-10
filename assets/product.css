@@ -256,6 +256,8 @@
 .steps-stage-wrap{position:relative;width:100%;max-width:320px;margin:0 auto;animation:stageFloat 7s ease-in-out infinite}
 .steps-stage-wrap::before{content:"";position:absolute;left:50%;top:50%;width:150%;height:78%;border-radius:50%;background:radial-gradient(closest-side,color-mix(in oklch,var(--primary) 42%,transparent),transparent 72%);filter:blur(52px);transform:translate(-50%,-50%);z-index:0;pointer-events:none;animation:glowPulse 8s ease-in-out infinite}
 .steps-stage{z-index:1}
+.steps-stage,.steps-stage-wrap::before{transition:aspect-ratio .5s cubic-bezier(.22,1,.36,1)}
+.steps[data-step="1"] .steps-stage{aspect-ratio:4/5}
 .steps-copy[data-anim] .steps-num{animation:copyUp .5s cubic-bezier(.22,1,.36,1) both}
 .steps-copy[data-anim] h3{animation:copyUp .5s cubic-bezier(.22,1,.36,1) .06s both}
 .steps-copy[data-anim] p{animation:copyUp .5s cubic-bezier(.22,1,.36,1) .12s both}
