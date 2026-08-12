@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Archivo+Black&display=swap" rel="stylesheet"/>
+<style>
+  html, body { margin:0; padding:0; background:#05080F; color:#F2F4F8; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:#3B6EF2; text-decoration:none; }
+  a:hover { color:#7FA0FF; }
+  @keyframes fe-marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+  @keyframes fe-pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.35; transform:scale(.8); } }
+  [data-r~="burger"] { display:none; }
+  @media (max-width: 980px) {
+    [data-r~="nav-links"] { display:none !important; }
+    [data-r~="burger"] { display:flex !important; }
+    [data-r~="hero-grid"] { grid-template-columns:1fr !important; padding-bottom:56px !important; }
+    [data-r~="hero-card"] { justify-content:flex-start !important; }
+    [data-r~="step"] { grid-template-columns:1fr !important; gap:22px !important; padding:44px 0 !important; }
+    [data-r~="step"] img { height:240px !important; order:3; }
+    [data-r~="faq-grid"] { grid-template-columns:1fr !important; gap:40px !important; }
+  }
+  @media (max-width: 720px) {
+    [data-r~="pad"] { padding-left:20px !important; padding-right:20px !important; }
+    [data-r~="sect"] { padding-top:64px !important; padding-bottom:64px !important; }
+    [data-r~="footer-grid"] { grid-template-columns:1fr 1fr !important; gap:32px !important; }
+    [data-r~="step"] img { height:200px !important; }
+  }
+</style>
+</helmet>
+
+<div style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,'Helvetica Neue',sans-serif; background:#05080F; color:#F2F4F8; overflow-x:clip;">
+
+  <nav data-screen-label="nav" style="position:sticky; top:0; z-index:50; height:64px; backdrop-filter:blur(16px) saturate(120%); background:rgba(7,10,22,0.65); border-bottom:1px solid rgba(120,150,220,0.10);">
+    <div data-r="pad" style="height:100%; max-width:1200px; margin:0 auto; padding:0 28px; display:flex; align-items:center; gap:20px;">
+      <button data-r="burger" type="button" aria-label="Open menu" onClick="{{ toggleMenu }}" style="flex-direction:column; justify-content:center; gap:5px; width:40px; height:40px; margin-left:-8px; background:none; border:none; cursor:pointer; flex-shrink:0;">
+        <span style="display:block; width:22px; height:2px; border-radius:2px; background:#F2F4F8;"></span>
+        <span style="display:block; width:22px; height:2px; border-radius:2px; background:#F2F4F8;"></span>
+        <span style="display:block; width:22px; height:2px; border-radius:2px; background:#F2F4F8;"></span>
+      </button>
+      <a href="/home75" style="display:flex; align-items:center; gap:9px;">
+        <img src="assets/logo.png" alt="FaceoffEdge logo" width="28" height="28" style="width:28px; height:28px; border-radius:6px; display:block;"/>
+        <img src="assets/wordmark.png" alt="FaceoffEdge" style="height:17px; width:auto; display:block;"/>
+      </a>
+      <div data-r="nav-links" style="display:flex; gap:4px; margin-left:12px;">
+        <a href="/home75" style="padding:8px 12px; border-radius:999px; font-size:14px; font-weight:600; color:#F2F4F8; background:rgba(255,255,255,0.06);">Home</a>
+        <a href="/app75" style="padding:8px 12px; border-radius:999px; font-size:14px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.04);">App</a>
+        <a href="/sensor75" style="padding:8px 12px; border-radius:999px; font-size:14px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.04);">Sensor</a>
+        <a href="/setup" style="padding:8px 12px; border-radius:999px; font-size:14px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.04);">Setup</a>
+        <a href="/preorder75" style="padding:8px 12px; border-radius:999px; font-size:14px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.04);">Pre-order</a>
+        <a href="/contact75" style="padding:8px 12px; border-radius:999px; font-size:14px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.04);">Contact us</a>
+      </div>
+      <div style="flex:1;"></div>
+      <a href="/preorder75" style="padding:9px 18px; border-radius:999px; background:#3B6EF2; color:#fff; font-size:14px; font-weight:650;" style-hover="background:#1B3A8A;">Reserve</a>
+    </div>
+  </nav>
+
+  <div onClick="{{ closeMenu }}" style="{{ backdropStyle }}"></div>
+  <aside aria-label="Mobile navigation" style="{{ drawerStyle }}">
+    <img src="assets/logo.png" alt="FaceoffEdge logo" width="44" height="44" style="width:44px; height:44px; border-radius:8px; margin:0 0 22px 12px; display:block;"/>
+    <a href="/home75" onClick="{{ closeMenu }}" style="padding:13px 16px; border-radius:10px; font-size:16px; font-weight:600; color:#F2F4F8; background:rgba(255,255,255,0.07);">Home</a>
+    <a href="/app75" onClick="{{ closeMenu }}" style="padding:13px 16px; border-radius:10px; font-size:16px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.05);">App</a>
+    <a href="/sensor75" onClick="{{ closeMenu }}" style="padding:13px 16px; border-radius:10px; font-size:16px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.05);">Sensor</a>
+    <a href="/setup" onClick="{{ closeMenu }}" style="padding:13px 16px; border-radius:10px; font-size:16px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.05);">Setup</a>
+    <a href="/preorder75" onClick="{{ closeMenu }}" style="padding:13px 16px; border-radius:10px; font-size:16px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.05);">Pre-order</a>
+    <a href="/contact75" onClick="{{ closeMenu }}" style="padding:13px 16px; border-radius:10px; font-size:16px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.05);">Contact us</a>
+  </aside>
+
+  <section data-screen-label="hero" style="position:relative; min-height:calc(100vh - 64px); display:flex; align-items:flex-end; overflow:hidden; background:#05080F;">
+    <img src="assets/hero-sensor-web.png" alt="FaceoffEdge sensor clipped to a shaft on the field" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 58%;"/>
+    <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(5,8,15,0.50) 0%, rgba(5,8,15,0.02) 42%, rgba(5,8,15,0.42) 78%, #05080F 100%);"></div>
+    <div style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(5,8,15,0.50) 0%, rgba(5,8,15,0.02) 54%, rgba(5,8,15,0) 100%);"></div>
+    <div style="position:absolute; left:-260px; top:-180px; width:760px; height:760px; border-radius:50%; pointer-events:none; background:radial-gradient(circle, rgba(59,110,242,0.07) 0%, rgba(59,110,242,0) 62%); filter:blur(20px);"></div>
+
+    <div data-r="hero-grid pad" style="position:relative; width:100%; max-width:1200px; margin:0 auto; padding:0 28px 88px; display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr); gap:48px; align-items:end;">
+      <div>
+        <div style="display:inline-flex; align-items:center; gap:9px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8E97AC;">
+          <span style="width:7px; height:7px; border-radius:50%; background:#3B6EF2; box-shadow:0 0 12px #3B6EF2; animation:fe-pulse 2.4s ease-in-out infinite;"></span>
+          For lacrosse faceoff specialists
+        </div>
+        <h1 style="margin:20px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(52px,7.4vw,112px); line-height:0.9; letter-spacing:-0.035em; text-transform:uppercase; text-wrap:balance;">
+          Real data.<br/><span style="color:#3B6EF2;">Real results.</span>
+        </h1>
+        <p style="margin:26px 0 0; max-width:46ch; font-size:clamp(17px,1.6vw,20px); line-height:1.5; color:#C4CBDA; text-wrap:pretty;">
+          FaceoffEdge&trade; is a stick-mounted system that measures every millisecond
+          between the whistle and the clamp. Stop guessing. Your data is right there.
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:32px;">
+          <a href="#download" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; background:#fff; color:#000; font-size:16px; font-weight:650;" style-hover="background:#e8e8e8;">Coming soon to the App Store</a>
+          <a href="/preorder75" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); color:#F2F4F8; font-size:16px; font-weight:650;" style-hover="background:rgba(255,255,255,0.16);">Reserve the sensor</a>
+        </div>
+      </div>
+
+      <div data-r="hero-card" style="display:flex; justify-content:flex-end;">
+        <div style="width:100%; max-width:330px; padding:22px; border-radius:20px; background:rgba(10,16,32,0.62); backdrop-filter:blur(14px); border:1px solid rgba(120,150,220,0.20);">
+          <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:#5C657A;">Whistle to clamp</div>
+          <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-weight:700; font-size:46px; letter-spacing:-0.04em; line-height:1; margin-top:12px;">0.<span style="color:#3B6EF2;">387</span><span style="font-size:20px; color:#8E97AC; letter-spacing:0;">s</span></div>
+          <div style="height:1px; background:rgba(120,150,220,0.18); margin:18px 0;"></div>
+          <p style="margin:0; font-size:14px; line-height:1.55; color:#8E97AC;">Every rep, measured on the shaft — not by the eye test.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div data-screen-label="metric-marquee" style="border-top:1px solid rgba(120,150,220,0.12); border-bottom:1px solid rgba(120,150,220,0.12); background:#070A14; overflow:hidden; padding:18px 0;">
+    <div style="display:flex; width:max-content; animation:fe-marquee 32s linear infinite;">
+      <div style="display:flex; gap:44px; padding-right:44px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:#5C657A; white-space:nowrap;">
+        <span>Reaction time</span><span style="color:#3B6EF2;">/</span><span>Clamp time</span><span style="color:#3B6EF2;">/</span><span>Exit speed</span><span style="color:#3B6EF2;">/</span><span>Jumps</span><span style="color:#3B6EF2;">/</span><span>Consistency</span><span style="color:#3B6EF2;">/</span>
+      </div>
+      <div style="display:flex; gap:44px; padding-right:44px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:#5C657A; white-space:nowrap;">
+        <span>Reaction time</span><span style="color:#3B6EF2;">/</span><span>Clamp time</span><span style="color:#3B6EF2;">/</span><span>Exit speed</span><span style="color:#3B6EF2;">/</span><span>Jumps</span><span style="color:#3B6EF2;">/</span><span>Consistency</span><span style="color:#3B6EF2;">/</span>
+      </div>
+    </div>
+  </div>
+
+  <section data-screen-label="how-it-works" id="how" data-r="sect" style="background:#F4F2EE; color:#0a1020; padding:104px 0 112px;">
+    <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px;">
+      <div style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; flex-wrap:wrap; border-bottom:1px solid rgba(0,0,0,0.10); padding-bottom:22px;">
+        <div style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#5C657A;">
+          <span style="width:26px; height:1px; background:rgba(0,0,0,0.30);"></span>How it works
+        </div>
+        <h2 style="margin:0; font-family:'Archivo Black',sans-serif; font-size:clamp(32px,4.2vw,56px); line-height:1; letter-spacing:-0.035em; text-transform:uppercase;">Three steps.</h2>
+      </div>
+
+      <div data-r="step" style="display:grid; grid-template-columns:120px minmax(0,1fr) minmax(0,1fr); gap:40px; align-items:center; padding:56px 0; border-bottom:1px solid rgba(0,0,0,0.10);">
+        <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:64px; font-weight:700; letter-spacing:-0.05em; color:#3B6EF2; line-height:1;">01</div>
+        <div>
+          <h3 style="margin:0; font-size:clamp(26px,2.6vw,36px); font-weight:800; letter-spacing:-0.03em;">Clip the sensor</h3>
+          <p style="margin:14px 0 0; max-width:44ch; font-size:17px; line-height:1.6; color:#4A5468; text-wrap:pretty;">
+            The FaceoffEdge sensor clips anywhere on your shaft — no tools, no tape,
+            no adjustments. Snap it on and start training.
+          </p>
+        </div>
+        <img src="assets/how-sensor-clip.jpg" alt="Sensor clipped to a stick shaft" style="width:100%; height:280px; object-fit:cover; border-radius:20px;"/>
+      </div>
+
+      <div data-r="step" style="display:grid; grid-template-columns:120px minmax(0,1fr) minmax(0,1fr); gap:40px; align-items:center; padding:56px 0; border-bottom:1px solid rgba(0,0,0,0.10);">
+        <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:64px; font-weight:700; letter-spacing:-0.05em; color:#3B6EF2; line-height:1;">02</div>
+        <img src="assets/how-step2-web.png" alt="Waiting for the whistle" style="width:100%; height:280px; object-fit:cover; border-radius:20px;"/>
+        <div>
+          <h3 style="margin:0; font-size:clamp(26px,2.6vw,36px); font-weight:800; letter-spacing:-0.03em;">Wait for the whistle</h3>
+          <p style="margin:14px 0 0; max-width:44ch; font-size:17px; line-height:1.6; color:#4A5468; text-wrap:pretty;">
+            The app fires randomized whistle cadences just like a real ref — so you can't
+            memorize the timing. Every rep is a true reaction test.
+          </p>
+        </div>
+      </div>
+
+      <div data-r="step" style="display:grid; grid-template-columns:120px minmax(0,1fr) minmax(0,1fr); gap:40px; align-items:center; padding:56px 0;">
+        <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:64px; font-weight:700; letter-spacing:-0.05em; color:#3B6EF2; line-height:1;">03</div>
+        <div>
+          <h3 style="margin:0; font-size:clamp(26px,2.6vw,36px); font-weight:800; letter-spacing:-0.03em;">See every millisecond</h3>
+          <p style="margin:14px 0 0; max-width:44ch; font-size:17px; line-height:1.6; color:#4A5468; text-wrap:pretty;">
+            Reaction time, clamp time, exit speed, jumps, consistency — broken down rep by rep,
+            session by session, week by week.
+          </p>
+        </div>
+        <img src="assets/how-stats.jpg" alt="Shot metrics in the FaceoffEdge app" style="width:100%; height:280px; object-fit:cover; border-radius:20px;"/>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="faq" id="faq" data-r="sect" style="background:#05080F; padding:104px 0 96px; position:relative; overflow:hidden;">
+    <div style="position:absolute; right:-300px; top:-200px; width:760px; height:760px; border-radius:50%; pointer-events:none; background:radial-gradient(circle, rgba(59,110,242,0.16) 0%, rgba(59,110,242,0) 62%); filter:blur(20px);"></div>
+    <div data-r="faq-grid pad" style="position:relative; max-width:1200px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr); gap:64px;">
+      <div>
+        <div style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8E97AC;">
+          <span style="width:26px; height:1px; background:rgba(255,255,255,0.30);"></span>Frequently asked
+        </div>
+        <h2 style="margin:18px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(34px,4.2vw,56px); line-height:0.98; letter-spacing:-0.035em; text-transform:uppercase;">Answers,<br/>quickly.</h2>
+        <p style="margin:22px 0 0; max-width:32ch; font-size:15px; line-height:1.6; color:#8E97AC;">
+          Reservation-specific questions live on the <a href="/preorder75" style="color:#3B6EF2; font-weight:600;">pre-order page →</a>
+        </p>
+        <p style="margin:12px 0 0; max-width:32ch; font-size:15px; line-height:1.6; color:#8E97AC;">
+          Don't see your question?<br/>
+          <a href="mailto:hello@faceoffedge.com" style="color:#3B6EF2; font-weight:600;">hello@faceoffedge.com →</a>
+        </p>
+      </div>
+
+      <div style="display:flex; flex-direction:column;">
+        <sc-for list="{{ faqs }}" as="item" hint-placeholder-count="5">
+          <div style="border-bottom:1px solid rgba(120,150,220,0.14);">
+            <button type="button" onClick="{{ item.toggle }}" style="width:100%; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:24px 0; background:none; border:none; cursor:pointer; text-align:left; font-family:inherit; font-size:19px; font-weight:600; letter-spacing:-0.015em; color:#F2F4F8;">
+              <span>{{ item.q }}</span>
+              <span style="flex-shrink:0; width:30px; height:30px; border-radius:50%; border:1px solid rgba(120,150,220,0.28); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:18px; color:#3B6EF2;">{{ item.icon }}</span>
+            </button>
+            <sc-if value="{{ item.open }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:0 0 26px; max-width:62ch; font-size:16px; line-height:1.65; color:#8E97AC;">{{ item.a }}</div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="cta" data-r="sect" style="background:#070A14; border-top:1px solid rgba(120,150,220,0.12); padding:88px 0;">
+    <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px; display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap;">
+      <h2 style="margin:0; font-family:'Archivo Black',sans-serif; font-size:clamp(30px,3.6vw,48px); line-height:1; letter-spacing:-0.035em; text-transform:uppercase; max-width:16ch;">Stop guessing.<br/>Get your edge.</h2>
+      <div style="display:flex; flex-wrap:wrap; gap:12px;">
+        <a href="/preorder75" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; background:#3B6EF2; color:#fff; font-size:16px; font-weight:650;" style-hover="background:#1B3A8A;">Reserve the sensor</a>
+        <a href="/sensor75" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); color:#F2F4F8; font-size:16px; font-weight:650;" style-hover="background:rgba(255,255,255,0.16);">See the sensor</a>
+      </div>
+    </div>
+  </section>
+
+  <footer data-screen-label="footer" style="background:#070A14; border-top:1px solid rgba(120,150,220,0.08); padding:64px 0 32px; color:#8E97AC;">
+    <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px;">
+      <div data-r="footer-grid" style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:48px; margin-bottom:56px;">
+        <div>
+          <div style="display:flex; align-items:center; gap:9px; margin-bottom:16px;">
+            <img src="assets/logo.png" alt="FaceoffEdge logo" width="28" height="28" style="width:28px; height:28px; border-radius:6px; display:block;"/>
+            <img src="assets/wordmark.png" alt="FaceoffEdge" style="height:17px; width:auto; display:block;"/>
+          </div>
+          <p style="font-size:14px; max-width:32ch; line-height:1.55; margin:0;">
+            Finally, real numbers on your faceoff. Built by faceoff specialists, for faceoff specialists.
+          </p>
+        </div>
+        <div>
+          <h4 style="font-size:11px; text-transform:uppercase; letter-spacing:0.14em; color:#5C657A; font-weight:600; margin:0 0 14px;">Explore</h4>
+          <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
+            <a href="/home75" style="color:#8E97AC;" style-hover="color:#F2F4F8;">Home</a>
+            <a href="/app75" style="color:#8E97AC;" style-hover="color:#F2F4F8;">The app</a>
+            <a href="/sensor75" style="color:#8E97AC;" style-hover="color:#F2F4F8;">The sensor</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:11px; text-transform:uppercase; letter-spacing:0.14em; color:#5C657A; font-weight:600; margin:0 0 14px;">Get it</h4>
+          <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
+            <a href="#download" style="color:#8E97AC;" style-hover="color:#F2F4F8;">Download for iOS</a>
+            <a href="/preorder75" style="color:#8E97AC;" style-hover="color:#F2F4F8;">Reserve the sensor</a>
+            <a href="#faq" style="color:#8E97AC;" style-hover="color:#F2F4F8;">FAQ</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:11px; text-transform:uppercase; letter-spacing:0.14em; color:#5C657A; font-weight:600; margin:0 0 14px;">Company</h4>
+          <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
+            <a href="/contact75" style="color:#8E97AC;" style-hover="color:#F2F4F8;">Contact us</a>
+          </div>
+          <div style="display:flex; gap:12px; align-items:center; margin-top:40px;">
+            <a href="https://www.instagram.com/faceoffedge" target="_blank" rel="noopener" aria-label="FaceoffEdge on Instagram" style="display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:999px; color:#8E97AC; border:1px solid rgba(120,150,220,0.14);" style-hover="color:#F2F4F8; border-color:rgba(120,150,220,0.35); background:rgba(120,150,220,0.06);">
+              <svg viewBox="0 0 24 24" aria-hidden="true" style="width:18px; height:18px; display:block;"><path fill="currentColor" d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.71-2.13 1.38C1.34 2.68.93 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.71 1.46 1.38 2.13.67.67 1.34 1.08 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.71 2.13-1.38.67-.67 1.08-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.71-1.46-1.38-2.13C21.32 1.34 20.65.93 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zm0 10.16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.4a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/channel/UCmw1U1eLQ_W5Q6YO7ce5nGw" target="_blank" rel="noopener" aria-label="FaceoffEdge on YouTube" style="display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:999px; color:#8E97AC; border:1px solid rgba(120,150,220,0.14);" style-hover="color:#F2F4F8; border-color:rgba(120,150,220,0.35); background:rgba(120,150,220,0.06);">
+              <svg viewBox="0 0 24 24" aria-hidden="true" style="width:18px; height:18px; display:block;"><path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61590442025001" target="_blank" rel="noopener" aria-label="FaceoffEdge on Facebook" style="display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:999px; color:#8E97AC; border:1px solid rgba(120,150,220,0.14);" style-hover="color:#F2F4F8; border-color:rgba(120,150,220,0.35); background:rgba(120,150,220,0.06);">
+              <svg viewBox="0 0 24 24" aria-hidden="true" style="width:18px; height:18px; display:block;"><path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,0.05); padding-top:24px; display:flex; flex-direction:column; align-items:flex-start; gap:6px; font-size:12px; color:#5C657A;">
+        <p style="margin:0;">© 2026 T &amp; R Technologies, LLC. All rights reserved.</p>
+        <p style="margin:0;">FaceoffEdge, FaceoffEdge Clip, Faceoff Training Instrumented, Get Your EDGE, and the FaceoffEdge logo are trademarks of T &amp; R Technologies, LLC.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { open: 0, menu: false };
+
+  renderVals() {
+    const openIdx = this.state.open;
+    const menu = this.state.menu;
+    const backdropStyle = `position:fixed; inset:0; z-index:60; background:rgba(0,0,0,0.55); transition:opacity .25s; opacity:${menu ? 1 : 0}; pointer-events:${menu ? 'auto' : 'none'};`;
+    const drawerStyle = `display:flex; flex-direction:column; gap:4px; position:fixed; top:0; left:0; bottom:0; z-index:61; width:230px; max-width:74vw; padding:26px 12px 24px; background:#05080F; border-right:1px solid rgba(120,150,220,0.14); transition:transform .28s cubic-bezier(.16,1,.3,1); transform:translateX(${menu ? '0' : '-105%'});`;
+    const data = [
+      { q: "Does the app work without the sensor?", a: "Yes — partially. The app includes whistle training on its own, so you can drill your reaction to a randomized whistle anytime. Trend tracking, measurements, and rep-by-rep analysis all require the sensor." },
+      { q: "Is the sensor legal for game use?", a: "No — the FaceoffEdge sensor is built for clamp and faceoff work only, and shouldn't be used during games. It's a practice tool designed to live on your training shaft, not your gamer." },
+      { q: "How precise is the measurement?", a: "Calibrated against 240fps video. Full numbers and methodology are on the product page →" },
+      { q: "Does it work on any lacrosse stick?", a: "Yes — it fits any standard men's lacrosse shaft. No tools, no tape, no permanent modification — just clip it on." },
+      { q: "What about Android?", a: "We're starting on iOS first, but we're looking at Android for the future — sign up for the waitlist and you'll be the first to know." }
+    ];
+    return {
+      backdropStyle,
+      drawerStyle,
+      toggleMenu: () => this.setState(s => ({ menu: !s.menu })),
+      closeMenu: () => this.setState({ menu: false }),
+      faqs: data.map((f, i) => ({
+        q: f.q,
+        a: f.a,
+        open: openIdx === i,
+        icon: openIdx === i ? "–" : "+",
+        toggle: () => this.setState(s => ({ open: s.open === i ? -1 : i }))
+      }))
+    };
+  }
+}
+
+</script>
+</body>
+</html>

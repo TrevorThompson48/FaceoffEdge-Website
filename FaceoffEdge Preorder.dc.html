@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Archivo+Black&display=swap" rel="stylesheet"/>
+<style>
+  html, body { margin:0; padding:0; background:#05080F; color:#F2F4F8; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:#3B6EF2; text-decoration:none; }
+  a:hover { color:#7FA0FF; }
+  input, select, textarea { width:100%; padding:12px 14px; background:rgba(255,255,255,0.03); border:1px solid rgba(120,150,220,0.16); border-radius:10px; color:#F2F4F8; font-family:inherit; font-size:14px; }
+  input::placeholder { color:#5C657A; }
+  input:focus, select:focus { outline:none; border-color:#3B6EF2; background:rgba(59,110,242,0.05); }
+  select option { color:#0a1020; background:#fff; }
+  @keyframes fe-pulse { 0%,100% { opacity:1; } 50% { opacity:.35; } }
+  @media (max-width: 1080px) {
+    [data-r~="roadmap"] { grid-template-columns:repeat(2, minmax(0,1fr)) !important; }
+  }
+  @media (max-width: 980px) {
+    [data-r~="hero-grid"] { grid-template-columns:1fr !important; gap:36px !important; }
+    [data-r~="reserve-grid"] { grid-template-columns:1fr !important; gap:32px !important; }
+    [data-r~="faq-grid"] { grid-template-columns:1fr !important; gap:36px !important; }
+  }
+  @media (max-width: 720px) {
+    [data-r~="pad"] { padding-left:20px !important; padding-right:20px !important; }
+    [data-r~="sect"] { padding-top:56px !important; padding-bottom:64px !important; }
+    [data-r~="row"] { grid-template-columns:1fr !important; }
+    [data-r~="roadmap"] { grid-template-columns:1fr !important; }
+    [data-r~="stats"] { grid-template-columns:1fr !important; }
+    [data-r~="stat"] { border-left:none !important; padding-left:0 !important; padding-right:0 !important; border-top:1px solid rgba(120,150,220,0.14); }
+    [data-r~="stat-first"] { border-top:none !important; }
+  }
+</style>
+</helmet>
+
+<div style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,'Helvetica Neue',sans-serif; background:#05080F; color:#F2F4F8; overflow-x:clip;">
+
+  <dc-import name="SiteNav" active="preorder" hint-size="100%,64px"></dc-import>
+
+  <section data-screen-label="preorder-hero" data-r="sect" style="position:relative; overflow:hidden; padding:72px 0 0;">
+    <div style="position:absolute; left:50%; top:-320px; transform:translateX(-50%); width:1100px; height:1000px; border-radius:50%; pointer-events:none; background:radial-gradient(circle, rgba(59,110,242,0.22) 0%, rgba(59,110,242,0) 60%); filter:blur(22px);"></div>
+    <div data-r="pad hero-grid" style="position:relative; max-width:1200px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,0.9fr); gap:56px; align-items:center;">
+      <div style="min-width:0;">
+        <div style="display:inline-flex; align-items:center; gap:9px; padding:7px 14px; border-radius:999px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.10); font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; letter-spacing:0.10em; text-transform:uppercase; color:#8E97AC;">
+          <span style="width:7px; height:7px; border-radius:50%; background:#4FB38A; box-shadow:0 0 8px #4FB38A; animation:fe-pulse 2.4s ease-in-out infinite;"></span>
+          Pre-order · sensor in development
+        </div>
+        <h1 style="margin:24px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(38px,4.6vw,68px); line-height:0.9; letter-spacing:-0.04em; text-transform:uppercase; overflow-wrap:break-word;">Reserve the<br/><span style="color:#3B6EF2;">FaceoffEdge Clip<span style="font-size:0.32em; vertical-align:0.9em; margin-left:0.12em; letter-spacing:0;">&trade;</span></span></h1>
+        <p style="margin:26px 0 0; max-width:48ch; font-size:19px; line-height:1.55; color:#C4CBDA; text-wrap:pretty;">
+          The sensor isn't shipping yet — but reservations lock in launch pricing
+          and early access to the first production run.
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:32px;">
+          <a href="#reserve" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; background:#fff; color:#000; font-size:16px; font-weight:650;" style-hover="background:#e8e8e8;">Reserve my sensor ↓</a>
+          <a href="/sensor75" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; border:1px solid rgba(255,255,255,0.16); color:#F2F4F8; font-size:16px; font-weight:650;" style-hover="background:rgba(255,255,255,0.10);">See the specs</a>
+        </div>
+      </div>
+      <img src="assets/preorder-hero.jpg" alt="FaceoffEdge Sensor V1 hero shot" style="width:100%; aspect-ratio:4/3; object-fit:cover; object-position:50% 77%; border-radius:24px; display:block; border:1px solid rgba(120,150,220,0.16); box-shadow:0 50px 90px -40px rgba(0,0,0,0.9);"/>
+    </div>
+
+    <div data-r="pad" style="position:relative; max-width:1200px; margin:64px auto 0; padding:0 28px;">
+      <div data-r="stats" style="display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); border-top:1px solid rgba(120,150,220,0.14); border-bottom:1px solid rgba(120,150,220,0.14);">
+        <div data-r="stat stat-first" style="padding:26px 24px 26px 0;">
+          <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:34px; font-weight:700; letter-spacing:-0.04em;">$0</div>
+          <div style="margin-top:6px; font-size:14px; color:#8E97AC;">Reservation deposit — pay nothing today</div>
+        </div>
+        <div data-r="stat" style="padding:26px 24px; border-left:1px solid rgba(120,150,220,0.14);">
+          <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:34px; font-weight:700; letter-spacing:-0.04em;">Q3 2026</div>
+          <div style="margin-top:6px; font-size:14px; color:#8E97AC;">Estimated ship window</div>
+        </div>
+        <div data-r="stat" style="padding:26px 0 26px 24px; border-left:1px solid rgba(120,150,220,0.14);">
+          <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:34px; font-weight:700; letter-spacing:-0.04em;">Free</div>
+          <div style="margin-top:6px; font-size:14px; color:#8E97AC;">Shipping on reserved units</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="preorder-roadmap" data-r="sect" style="padding:96px 0;">
+    <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px;">
+      <div style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; flex-wrap:wrap;">
+        <div style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8E97AC;">
+          <span style="width:26px; height:1px; background:rgba(255,255,255,0.30);"></span>Roadmap
+        </div>
+        <h2 style="margin:0; font-family:'Archivo Black',sans-serif; font-size:clamp(28px,3.6vw,48px); line-height:1; letter-spacing:-0.035em; text-transform:uppercase;">What's shipping when</h2>
+      </div>
+
+      <div data-r="roadmap" style="display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:0; margin-top:52px;">
+        <sc-for list="{{ roadmap }}" as="r" hint-placeholder-count="5">
+          <div style="{{ r.colStyle }}">
+            <div style="{{ r.dot }}"></div>
+            <div style="margin-top:20px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:{{ r.dateColor }};">{{ r.date }}</div>
+            <div style="margin-top:8px; font-size:16px; font-weight:700; letter-spacing:-0.015em; line-height:1.25;">{{ r.title }}</div>
+            <p style="margin:10px 0 0; font-size:14px; line-height:1.6; color:#8E97AC; text-wrap:pretty;">{{ r.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="preorder-reserve" data-r="sect" id="reserve" style="padding:0 0 104px;">
+    <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px;">
+      <div style="padding:40px; border-radius:30px; background:linear-gradient(165deg, rgba(26,34,56,0.92) 0%, rgba(10,16,32,0.94) 65%); border:1px solid rgba(120,150,220,0.18); box-shadow:0 50px 90px -50px rgba(0,0,0,0.95);">
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <div data-r="reserve-grid" style="display:grid; grid-template-columns:minmax(0,0.8fr) minmax(0,1.2fr); gap:56px; align-items:start;">
+            <div>
+              <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8E97AC;">Reserve</div>
+              <h2 style="margin:10px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(28px,3.2vw,42px); line-height:1; letter-spacing:-0.035em; text-transform:uppercase;">FaceoffEdge Clip</h2>
+
+              <div style="margin-top:28px;">
+                <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.12em; color:#8E97AC; font-weight:600;">Quantity</div>
+                <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:12px;">
+                  <sc-for list="{{ qtyOptions }}" as="q" hint-placeholder-count="3">
+                    <button type="button" onClick="{{ q.pick }}" style="{{ q.style }}">
+                      <span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:22px; font-weight:700;">{{ q.num }}</span>
+                      <span style="font-size:12px; color:#8E97AC;">{{ q.label }}</span>
+                    </button>
+                  </sc-for>
+                </div>
+                <p style="margin:12px 0 0; font-size:13px; line-height:1.55; color:#8E97AC;">
+                  Reserving 3+? Visit the <a href="/preorder75" style="color:#3B6EF2; font-weight:600;">roster pricing page</a> and we'll put together team rates.
+                </p>
+              </div>
+
+              <div style="margin-top:30px; padding-top:26px; border-top:1px solid rgba(120,150,220,0.16);">
+                <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.12em; color:#8E97AC; font-weight:600;">Reservation perks</div>
+                <div style="display:flex; flex-direction:column; gap:12px; margin-top:14px;">
+                  <div style="display:flex; gap:10px; align-items:flex-start; font-size:14px; line-height:1.5; color:#C4CBDA;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:1px;"><path d="M5 12l5 5L20 7" stroke="#4FB38A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Launch pricing locked in (before retail markup)
+                  </div>
+                  <div style="display:flex; gap:10px; align-items:flex-start; font-size:14px; line-height:1.5; color:#C4CBDA;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:1px;"><path d="M5 12l5 5L20 7" stroke="#4FB38A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    First in line when production starts shipping
+                  </div>
+                  <div style="display:flex; gap:10px; align-items:flex-start; font-size:14px; line-height:1.5; color:#C4CBDA;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:1px;"><path d="M5 12l5 5L20 7" stroke="#4FB38A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Free shipping
+                  </div>
+                </div>
+              </div>
+
+              <div style="display:flex; gap:12px; margin-top:30px; flex-wrap:wrap;">
+                <div style="flex:1; min-width:140px; display:flex; gap:12px; align-items:flex-start; padding:16px; border-radius:16px; background:rgba(255,255,255,0.03); border:1px solid rgba(120,150,220,0.14);">
+                  <div style="color:#3B6EF2; flex-shrink:0;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v6c0 5 4 9 9 10 5-1 9-5 9-10V7l-9-5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 12l3 3 5-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>
+                  <div>
+                    <div style="font-size:14px; font-weight:700;">$0 today</div>
+                    <div style="margin-top:4px; font-size:13px; line-height:1.5; color:#8E97AC;">Pay nothing to reserve. Cancel anytime.</div>
+                  </div>
+                </div>
+                <div style="flex:1; min-width:140px; display:flex; gap:12px; align-items:flex-start; padding:16px; border-radius:16px; background:rgba(255,255,255,0.03); border:1px solid rgba(120,150,220,0.14);">
+                  <div style="color:#3B6EF2; flex-shrink:0;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 12h18M3 12l4-4M3 12l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="13" y="4" width="8" height="16" rx="1" stroke="currentColor" stroke-width="1.6"/></svg>
+                  </div>
+                  <div>
+                    <div style="font-size:14px; font-weight:700;">First in line</div>
+                    <div style="margin-top:4px; font-size:13px; line-height:1.5; color:#8E97AC;">Reservations ship before retail.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <form onSubmit="{{ submit }}">
+              <input type="checkbox" name="botcheck" tabIndex="-1" autoComplete="off" style="position:absolute; left:-9999px; opacity:0; width:auto;" aria-hidden="true"/>
+              <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.12em; color:#8E97AC; font-weight:600;">Your info</div>
+              <div data-r="row" style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
+                <input type="text" name="first" placeholder="First name" required="{{ true }}"/>
+                <input type="text" name="last" placeholder="Last name" required="{{ true }}"/>
+              </div>
+              <input type="email" name="email" placeholder="Email" required="{{ true }}" style="margin-top:12px;"/>
+              <input type="text" name="address" placeholder="Street address" required="{{ true }}" style="margin-top:12px;"/>
+              <div data-r="row" style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
+                <input type="text" name="state" placeholder="State / province" required="{{ true }}"/>
+                <input type="text" name="zip" placeholder="ZIP / postal code" required="{{ true }}"/>
+              </div>
+              <input type="text" name="country" placeholder="Country" defaultValue="United States" required="{{ true }}" style="margin-top:12px;"/>
+
+              <div style="margin-top:26px; font-size:12px; text-transform:uppercase; letter-spacing:0.12em; color:#8E97AC; font-weight:600;">Tell us about you (optional)</div>
+              <div data-r="row" style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
+                <select name="role">
+                  <option>Faceoff specialist</option>
+                  <option>Coach</option>
+                  <option>Parent</option>
+                  <option>Other</option>
+                  <option>Prefer not to say</option>
+                </select>
+                <select name="level" defaultValue="High School">
+                  <option>Club / Youth</option>
+                  <option>High School</option>
+                  <option>College</option>
+                  <option>Pro / Elite</option>
+                  <option>Other</option>
+                  <option>Prefer not to say</option>
+                </select>
+              </div>
+
+              <div style="display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-top:26px; padding:22px; border-radius:18px; background:rgba(59,110,242,0.07); border:1px solid rgba(59,110,242,0.22);">
+                <div>
+                  <div style="font-size:12px; color:#8E97AC; text-transform:uppercase; letter-spacing:0.1em;">Reservation deposit</div>
+                  <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:34px; font-weight:700; letter-spacing:-0.03em; margin-top:4px;">$0</div>
+                  <div style="font-size:12px; color:#8E97AC; margin-top:2px;">Pay nothing today</div>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:10px; justify-content:center; min-width:200px;">
+                  <div style="display:flex; gap:14px; justify-content:space-between; font-size:13px;">
+                    <span style="color:#8E97AC;">Final price</span>
+                    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;">TBD · pre-launch</span>
+                  </div>
+                  <div style="display:flex; gap:14px; justify-content:space-between; font-size:13px;">
+                    <span style="color:#8E97AC;">Estimated ship</span>
+                    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;">Q3 2026</span>
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" disabled="{{ sending }}" style="{{ submitStyle }}">{{ submitLabel }}</button>
+
+              <p style="font-size:11px; color:#5C657A; text-align:center; margin:12px 0 0; line-height:1.5;">
+                No charge today. We'll email you when production starts. Cancel anytime — no questions asked.
+              </p>
+            </form>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align:center; padding:48px 0;">
+            <div style="width:56px; height:56px; margin:0 auto; border-radius:50%; background:rgba(79,179,138,0.14); color:#4FB38A; display:flex; align-items:center; justify-content:center; font-size:24px; border:1px solid rgba(79,179,138,0.3);">✓</div>
+            <h3 style="margin:20px 0 0; font-family:'Archivo Black',sans-serif; font-size:36px; letter-spacing:-0.035em; text-transform:uppercase;">You're in.</h3>
+            <p style="margin:14px auto 0; max-width:38ch; font-size:16px; line-height:1.6; color:#8E97AC;">
+              Reservation locked. We'll email with progress updates and ship-date confirmations.
+              You're in. We'll take it from here.
+            </p>
+            <div style="margin-top:32px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+              <a href="/home75#download" style="display:inline-flex; align-items:center; padding:13px 22px; border-radius:999px; background:#fff; color:#000; font-size:15px; font-weight:650;">Download the app</a>
+              <a href="/home75" style="display:inline-flex; align-items:center; padding:13px 22px; border-radius:999px; border:1px solid rgba(255,255,255,0.16); color:#F2F4F8; font-size:15px; font-weight:650;">Back to home</a>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="preorder-faq" data-r="sect" style="background:#F4F2EE; color:#0a1020; padding:100px 0;">
+    <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px;">
+      <div data-r="faq-grid" style="display:grid; grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr); gap:64px;">
+        <div>
+          <div style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#5C657A;">
+            <span style="width:26px; height:1px; background:rgba(0,0,0,0.30);"></span>Reservation questions
+          </div>
+          <h2 style="margin:16px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(32px,4vw,54px); line-height:0.98; letter-spacing:-0.035em; text-transform:uppercase;">Honest<br/>answers</h2>
+          <p style="margin:18px 0 0; max-width:32ch; font-size:15px; line-height:1.6; color:#4A5468;">
+            We're a small team. Reach us directly:<br/>
+            <a href="mailto:hello@faceoffedge.com" style="color:#3B6EF2; font-weight:600;">hello@faceoffedge.com →</a>
+          </p>
+        </div>
+        <div>
+          <sc-for list="{{ faqs }}" as="item" hint-placeholder-count="3">
+            <div style="border-bottom:1px solid rgba(0,0,0,0.10);">
+              <button type="button" onClick="{{ item.toggle }}" style="width:100%; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:24px 0; background:none; border:none; cursor:pointer; text-align:left; font-family:inherit; font-size:19px; font-weight:600; letter-spacing:-0.015em; color:#0a1020;">
+                <span>{{ item.q }}</span>
+                <span style="flex-shrink:0; width:30px; height:30px; border-radius:50%; border:1px solid rgba(0,0,0,0.18); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:18px; color:#3B6EF2;">{{ item.icon }}</span>
+              </button>
+              <sc-if value="{{ item.open }}" hint-placeholder-val="{{ false }}">
+                <div style="padding:0 0 26px; max-width:64ch; font-size:16px; line-height:1.65; color:#4A5468;">{{ item.a }}</div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { qty: "1", status: "idle", open: -1 };
+
+  async submit(e) {
+    e.preventDefault();
+    const f = e.target;
+    const g = n => (f.elements[n] || {}).value || "";
+    if (g("botcheck")) return;
+    const first = g("first"), last = g("last"), email = g("email");
+    this.setState({ status: "sending" });
+    const payload = {
+      access_key: "e7eed6b2-1dec-4095-9405-307aafb8c44e",
+      subject: "New sensor reservation — " + (first + " " + last).trim(),
+      from_name: (first + " " + last).trim() || "FaceoffEdge Reservations",
+      name: (first + " " + last).trim(),
+      email,
+      replyto: email,
+      quantity: this.state.qty,
+      role: g("role"),
+      level: g("level"),
+      address: g("address"),
+      state: g("state"),
+      zip: g("zip"),
+      country: g("country")
+    };
+    try {
+      await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload)
+      });
+    } catch (err) {}
+    this.setState({ status: "sent" });
+  }
+
+  renderVals() {
+    const { qty, status, open } = this.state;
+    const qtyOpt = (num, label, val) => ({
+      num, label,
+      pick: () => this.setState({ qty: val }),
+      style: `display:flex; flex-direction:column; align-items:center; gap:2px; padding:14px 8px; border-radius:14px; cursor:pointer; font-family:inherit; color:#F2F4F8; transition:background .2s, border-color .2s; background:${qty === val ? "rgba(59,110,242,0.16)" : "rgba(255,255,255,0.03)"}; border:1px solid ${qty === val ? "rgba(59,110,242,0.55)" : "rgba(120,150,220,0.16)"};`
+    });
+    const dot = kind => {
+      const c = kind === "done" ? "#4FB38A" : kind === "active" ? "#3B6EF2" : "rgba(120,150,220,0.35)";
+      const glow = kind === "active" ? "box-shadow:0 0 14px #3B6EF2;" : "";
+      return `width:14px; height:14px; border-radius:50%; background:${c}; ${glow}`;
+    };
+    const faqData = [
+      { q: "Am I being charged anything today?", a: "No. Reservations are $0 today, and you can cancel any time before we ship — no questions asked. We'll email you well before any charge with a final price and a shipping confirmation request." },
+      { q: "When will the sensor actually ship?", a: "Pilot units are targeted for Q3 2026, with general availability scheduled for Q4 2026. We'll update reserved customers monthly. If timelines slip, we'll be honest about it long before the date — that's the whole point of reserving instead of pre-paying." },
+      { q: "What will the sensor cost at launch?", a: "Final pricing isn't locked yet — we're still finalizing component costs. Reserving today guarantees you the founders' price (below retail) once we publish it, and you'll see the number before you ever commit to buy." }
+    ];
+    const road = [
+      { kind: "done", date: "Done", title: "FaceoffEdge app · iOS", desc: "Whistle training, session logging, trend tracking. Built and ready — App Store release coming soon." },
+      { kind: "done", date: "Done", title: "Sensor engineering · prototyping & testing", desc: "Building and iterating on working prototypes — IMU selection, enclosure design, firmware. Testing against 240fps video before anything ships." },
+      { kind: "done", date: "Done", title: "Pilot program ships", desc: "Early units shipped for test usage — reporting feedback and shaping the design before launch." },
+      { kind: "active", date: "Q3 2026 · in progress", title: "Sensor V1 · engineering", desc: "Final lab testing — validating IMU accuracy, enclosure durability, and BLE firmware against 240fps video." },
+      { kind: "next", date: "Q3 2026 · target", title: "General availability", desc: "Open ordering. Full retail launch with team pricing available." }
+    ];
+    return {
+      qtyOptions: [qtyOpt("1", "Individual", "1"), qtyOpt("2", "Pair", "2"), qtyOpt("3+", "Roster", "3")],
+      roadmap: road.map((r, i) => ({
+        ...r,
+        dot: dot(r.kind),
+        dateColor: r.kind === "done" ? "#4FB38A" : r.kind === "active" ? "#3B6EF2" : "#5C657A",
+        colStyle: `padding:26px 24px 8px; border-top:1px solid ${r.kind === "active" ? "rgba(59,110,242,0.55)" : "rgba(120,150,220,0.18)"}; ${i === 0 ? "padding-left:0;" : ""}`
+      })),
+      notSent: status !== "sent",
+      sent: status === "sent",
+      sending: status === "sending",
+      submitLabel: status === "sending" ? "Reserving…" : "Reserve my sensor",
+      submitStyle: `width:100%; margin-top:22px; padding:17px 24px; border-radius:999px; border:none; font-family:inherit; font-size:16px; font-weight:650; background:#fff; color:#000; cursor:${status === "sending" ? "default" : "pointer"}; opacity:${status === "sending" ? 0.6 : 1};`,
+      submit: e => this.submit(e),
+      faqs: faqData.map((f, i) => ({
+        q: f.q, a: f.a,
+        open: open === i,
+        icon: open === i ? "–" : "+",
+        toggle: () => this.setState(s => ({ open: s.open === i ? -1 : i }))
+      }))
+    };
+  }
+}
+
+</script>
+</body>
+</html>

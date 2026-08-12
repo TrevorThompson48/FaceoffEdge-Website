@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Archivo+Black&display=swap" rel="stylesheet"/>
+<style>
+  html, body { margin:0; padding:0; background:#05080F; color:#F2F4F8; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:#3B6EF2; text-decoration:none; }
+  a:hover { color:#7FA0FF; }
+  [data-r="burger"] { display:none; }
+  @media (max-width: 980px) {
+    [data-r~="nav-links"] { display:none !important; }
+    [data-r~="burger"] { display:flex !important; }
+  }
+  @media (max-width: 720px) {
+    [data-r~="pad"] { padding-left:20px !important; padding-right:20px !important; }
+    [data-r~="sect"] { padding-top:64px !important; padding-bottom:64px !important; }
+    [data-r~="footer-grid"] { grid-template-columns:1fr 1fr !important; gap:32px !important; }
+  }
+</style>
+</helmet>
+
+<div style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;">
+  <nav data-screen-label="nav" style="position:sticky; top:0; z-index:50; height:64px; backdrop-filter:blur(16px) saturate(120%); background:rgba(7,10,22,0.65); border-bottom:1px solid rgba(120,150,220,0.10);">
+    <div data-r="pad" style="height:100%; max-width:1200px; margin:0 auto; padding:0 28px; display:flex; align-items:center; gap:20px;">
+      <button data-r="burger" type="button" aria-label="Open menu" onClick="{{ toggleMenu }}" style="flex-direction:column; justify-content:center; gap:5px; width:40px; height:40px; margin-left:-8px; background:none; border:none; cursor:pointer; flex-shrink:0;">
+        <span style="display:block; width:22px; height:2px; border-radius:2px; background:#F2F4F8;"></span>
+        <span style="display:block; width:22px; height:2px; border-radius:2px; background:#F2F4F8;"></span>
+        <span style="display:block; width:22px; height:2px; border-radius:2px; background:#F2F4F8;"></span>
+      </button>
+      <a href="/home75" style="display:flex; align-items:center; gap:9px;">
+        <img src="assets/logo.png" alt="FaceoffEdge logo" width="28" height="28" style="width:28px; height:28px; border-radius:6px; display:block;"/>
+        <img src="assets/wordmark.png" alt="FaceoffEdge" style="height:17px; width:auto; display:block;"/>
+      </a>
+      <div data-r="nav-links" style="display:flex; gap:4px; margin-left:12px;">
+        <sc-for list="{{ links }}" as="l" hint-placeholder-count="6">
+          <a href="{{ l.href }}" style="{{ l.style }}">{{ l.label }}</a>
+        </sc-for>
+      </div>
+      <div style="flex:1;"></div>
+      <a href="/preorder75" style="padding:9px 18px; border-radius:999px; background:#3B6EF2; color:#fff; font-size:14px; font-weight:650;" style-hover="background:#1B3A8A;">Reserve</a>
+    </div>
+  </nav>
+
+  <div onClick="{{ closeMenu }}" style="{{ backdropStyle }}"></div>
+  <aside aria-label="Mobile navigation" style="{{ drawerStyle }}">
+    <img src="assets/logo.png" alt="FaceoffEdge logo" width="44" height="44" style="width:44px; height:44px; border-radius:8px; margin:0 0 22px 12px; display:block;"/>
+    <sc-for list="{{ links }}" as="l" hint-placeholder-count="6">
+      <a href="{{ l.href }}" onClick="{{ closeMenu }}" style="{{ l.drawerStyle }}">{{ l.label }}</a>
+    </sc-for>
+  </aside>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;app&quot;,&quot;sensor&quot;,&quot;setup&quot;,&quot;preorder&quot;,&quot;contact&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { menu: false };
+
+  renderVals() {
+    const menu = this.state.menu;
+    const active = this.props.active || "home";
+    const base = "padding:8px 12px; border-radius:999px; font-size:14px; font-weight:500; color:#8E97AC; white-space:nowrap;";
+    const on = "padding:8px 12px; border-radius:999px; font-size:14px; font-weight:600; color:#F2F4F8; background:rgba(255,255,255,0.06); white-space:nowrap;";
+    const dBase = "padding:13px 16px; border-radius:10px; font-size:16px; font-weight:500; color:#8E97AC;";
+    const dOn = "padding:13px 16px; border-radius:10px; font-size:16px; font-weight:600; color:#F2F4F8; background:rgba(255,255,255,0.07);";
+    const items = [
+      ["home", "Home", "FaceoffEdge%20Home.dc.html"],
+      ["app", "App", "FaceoffEdge%20App.dc.html"],
+      ["sensor", "Sensor", "FaceoffEdge%20Sensor.dc.html"],
+      ["setup", "Setup", "FaceoffEdge%20Setup.dc.html"],
+      ["preorder", "Pre-order", "FaceoffEdge%20Preorder.dc.html"],
+      ["contact", "Contact us", "FaceoffEdge%20Contact.dc.html"]
+    ];
+    return {
+      links: items.map(([id, label, href]) => ({
+        label, href,
+        style: id === active ? on : base,
+        drawerStyle: id === active ? dOn : dBase
+      })),
+      backdropStyle: `position:fixed; inset:0; z-index:60; background:rgba(0,0,0,0.55); transition:opacity .25s; opacity:${menu ? 1 : 0}; pointer-events:${menu ? "auto" : "none"};`,
+      drawerStyle: `display:flex; flex-direction:column; gap:4px; position:fixed; top:0; left:0; bottom:0; z-index:61; width:230px; max-width:74vw; padding:26px 12px 24px; background:#05080F; border-right:1px solid rgba(120,150,220,0.14); transition:transform .28s cubic-bezier(.16,1,.3,1); transform:translateX(${menu ? "0" : "-105%"});`,
+      toggleMenu: () => this.setState(s => ({ menu: !s.menu })),
+      closeMenu: () => this.setState({ menu: false })
+    };
+  }
+}
+
+</script>
+</body>
+</html>

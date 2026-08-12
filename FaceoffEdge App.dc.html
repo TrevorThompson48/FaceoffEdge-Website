@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Archivo+Black&display=swap" rel="stylesheet"/>
+<style>
+  html, body { margin:0; padding:0; background:#05080F; color:#F2F4F8; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:#3B6EF2; text-decoration:none; }
+  a:hover { color:#7FA0FF; }
+  @keyframes fe-marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+  @media (max-width: 980px) {
+    [data-r~="hero-grid"] { grid-template-columns:1fr !important; gap:44px !important; }
+    [data-r~="hero-phone"] { justify-content:flex-start !important; }
+    [data-r~="feat"] { grid-template-columns:1fr !important; gap:10px !important; }
+    [data-r~="screen-grid"] { grid-template-columns:repeat(2, minmax(0,1fr)) !important; }
+    [data-r~="offset"] { margin-top:0 !important; }
+  }
+  @media (max-width: 720px) {
+    [data-r~="pad"] { padding-left:20px !important; padding-right:20px !important; }
+    [data-r~="sect"] { padding-top:64px !important; padding-bottom:64px !important; }
+    [data-r~="screen-grid"] { grid-template-columns:1fr !important; }
+  }
+</style>
+</helmet>
+
+<div style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,'Helvetica Neue',sans-serif; background:#05080F; color:#F2F4F8; overflow-x:clip;">
+
+  <dc-import name="SiteNav" active="app" hint-size="100%,64px"></dc-import>
+
+  <section data-screen-label="app-hero" data-r="sect" style="position:relative; overflow:hidden; padding:72px 0 0;">
+    <div style="position:absolute; right:-180px; top:-120px; width:900px; height:900px; border-radius:50%; pointer-events:none; background:radial-gradient(circle, rgba(59,110,242,0.30) 0%, rgba(59,110,242,0) 62%); filter:blur(24px);"></div>
+    <div data-r="pad hero-grid" style="position:relative; max-width:1200px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:minmax(0,1fr) 380px; gap:40px; align-items:end;">
+      <div style="padding-bottom:96px;">
+        <div style="display:inline-flex; align-items:center; gap:9px; padding:7px 14px; border-radius:999px; border:1px solid rgba(120,150,220,0.24); font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#8E97AC;">Coming soon · iOS</div>
+        <h1 style="margin:24px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(46px,7.6vw,116px); line-height:0.84; letter-spacing:-0.045em; text-transform:uppercase;">
+          Instant<br/>feedback<br/><span style="color:#3B6EF2;">in your pocket</span>
+        </h1>
+        <p style="margin:30px 0 0; max-width:48ch; font-size:clamp(17px,1.5vw,20px); line-height:1.55; color:#C4CBDA; text-wrap:pretty;">
+          The FaceoffEdge&trade; app turns your stick into an instrumented training rig. Run a
+          session anywhere &mdash; backyard, basement, before practice &mdash; and get
+          immediate, objective feedback on every rep.
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:34px;">
+          <a href="/home75#download" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; background:#fff; color:#000; font-size:16px; font-weight:650;" style-hover="background:#e8e8e8;">Coming soon to the App Store</a>
+          <a href="#screens" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; border:1px solid rgba(255,255,255,0.16); color:#F2F4F8; font-size:16px; font-weight:650;" style-hover="background:rgba(255,255,255,0.10);">Tour the screens ↓</a>
+        </div>
+      </div>
+
+      <div data-r="hero-phone" style="display:flex; justify-content:flex-end; align-items:flex-end;">
+        <div style="position:relative;">
+          <div style="position:absolute; inset:-40px -30px 60px; border-radius:60px; background:radial-gradient(circle at 50% 40%, rgba(59,110,242,0.35), transparent 70%); filter:blur(30px);"></div>
+          <img src="assets/screens/home-hero.png" alt="FaceoffEdge app home screen" style="position:relative; width:340px; max-width:82vw; display:block; border-radius:44px 44px 0 0; box-shadow:0 -20px 80px -30px rgba(59,110,242,0.6);"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div data-screen-label="app-marquee" style="border-top:1px solid rgba(120,150,220,0.12); border-bottom:1px solid rgba(120,150,220,0.12); background:#070A14; overflow:hidden; padding:16px 0;">
+    <div style="display:flex; width:max-content; animation:fe-marquee 30s linear infinite;">
+      <div style="display:flex; gap:40px; padding-right:40px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:#5C657A; white-space:nowrap;">
+        <span>Whistle training</span><span style="color:#3B6EF2;">/</span><span>Session logging</span><span style="color:#3B6EF2;">/</span><span>Trend tracking</span><span style="color:#3B6EF2;">/</span><span>Early-jump alerts</span><span style="color:#3B6EF2;">/</span>
+      </div>
+      <div style="display:flex; gap:40px; padding-right:40px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:#5C657A; white-space:nowrap;">
+        <span>Whistle training</span><span style="color:#3B6EF2;">/</span><span>Session logging</span><span style="color:#3B6EF2;">/</span><span>Trend tracking</span><span style="color:#3B6EF2;">/</span><span>Early-jump alerts</span><span style="color:#3B6EF2;">/</span>
+      </div>
+    </div>
+  </div>
+
+  <section data-screen-label="app-features" data-r="sect" id="features" style="padding:104px 0;">
+    <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px;">
+      <div style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8E97AC;">
+        <span style="width:26px; height:1px; background:rgba(255,255,255,0.30);"></span>Features
+      </div>
+      <h2 style="margin:18px 0 0; max-width:18ch; font-family:'Archivo Black',sans-serif; font-size:clamp(30px,4.2vw,58px); line-height:0.98; letter-spacing:-0.035em; text-transform:uppercase;">What the app does<br/>for your training</h2>
+
+      <div style="margin-top:48px; border-top:1px solid rgba(120,150,220,0.14);">
+        <sc-for list="{{ features }}" as="f" hint-placeholder-count="4">
+          <div data-r="feat" style="display:grid; grid-template-columns:100px minmax(0,1.1fr) minmax(0,1fr); gap:32px; align-items:baseline; padding:32px 0; border-bottom:1px solid rgba(120,150,220,0.14);">
+            <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:15px; letter-spacing:0.2em; color:#3B6EF2;">{{ f.n }}</div>
+            <h3 style="margin:0; font-size:clamp(22px,2.4vw,32px); font-weight:800; letter-spacing:-0.03em;">{{ f.title }}</h3>
+            <p style="margin:0; font-size:16px; line-height:1.6; color:#8E97AC; text-wrap:pretty;">{{ f.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="app-screens" data-r="sect" id="screens" style="background:#F4F2EE; color:#0a1020; padding:104px 0 120px;">
+    <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px;">
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:32px; flex-wrap:wrap;">
+        <div>
+          <div style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#5C657A;">
+            <span style="width:26px; height:1px; background:rgba(0,0,0,0.30);"></span>Every screen
+          </div>
+          <h2 style="margin:16px 0 0; max-width:22ch; font-family:'Archivo Black',sans-serif; font-size:clamp(32px,4.4vw,60px); line-height:0.96; letter-spacing:-0.035em; text-transform:uppercase;">Six screens you'll<br/>use every session</h2>
+        </div>
+        <p style="margin:0; max-width:34ch; font-size:18px; line-height:1.55; color:#4A5468; text-wrap:pretty;">
+          Stays out of your way during reps. Gets sharp when you need to review them.
+        </p>
+      </div>
+
+      <div data-r="screen-grid" style="display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:56px 36px; margin-top:64px;">
+        <sc-for list="{{ screens }}" as="s" hint-placeholder-count="6">
+          <article data-r="{{ s.rr }}" style="{{ s.wrapStyle }}">
+            <div style="display:flex; align-items:baseline; gap:10px;">
+              <span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:13px; letter-spacing:0.2em; color:#3B6EF2;">{{ s.n }}</span>
+              <h3 style="margin:0; font-size:22px; font-weight:800; letter-spacing:-0.025em;">{{ s.title }}</h3>
+            </div>
+            <p style="margin:10px 0 0; font-size:15px; line-height:1.6; color:#4A5468;">{{ s.desc }}</p>
+            <img src="{{ s.src }}" alt="{{ s.alt }}" loading="lazy" style="margin-top:22px; width:100%; max-width:230px; display:block; border-radius:26px; border:1px solid rgba(0,0,0,0.10); box-shadow:0 30px 50px -26px rgba(10,16,32,0.55);"/>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="app-cta" data-r="sect" style="background:#070A14; border-top:1px solid rgba(120,150,220,0.12); padding:88px 0;">
+    <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px; display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap;">
+      <h2 style="margin:0; max-width:18ch; font-family:'Archivo Black',sans-serif; font-size:clamp(28px,3.4vw,46px); line-height:1; letter-spacing:-0.035em; text-transform:uppercase;">The app is free.<br/>The data needs the sensor.</h2>
+      <div style="display:flex; flex-wrap:wrap; gap:12px;">
+        <a href="/preorder75" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; background:#3B6EF2; color:#fff; font-size:16px; font-weight:650;" style-hover="background:#1B3A8A;">Reserve the sensor</a>
+        <a href="/sensor75" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; border:1px solid rgba(255,255,255,0.16); color:#F2F4F8; font-size:16px; font-weight:650;" style-hover="background:rgba(255,255,255,0.10);">See the sensor</a>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const raw = [
+      { src: "assets/screens/live.png", alt: "Progress screen — 30-day median chart, streak, reps this month, calendar", title: "Progress", desc: "30-day median, current streak, monthly rep volume, and an activity calendar. Watch yourself drop time, week after week." },
+      { src: "assets/screens/summary.png", alt: "New session setup — sensor pairing, reps, whistle variability, audio cues", title: "New session", desc: "Pick rep count, choose whistle variability and audio cues. A few taps and you're training." },
+      { src: "assets/screens/progress.png", alt: "Weekly goals — sessions target, median target, early-jump cap", title: "Weekly goals", desc: "Sessions per week, a target median time, and a maximum early-jump rate. Train against numbers you set yourself." },
+      { src: "assets/screens/goals.png", alt: "Session summary — 0.27s median, median splits, rep-by-rep chart", title: "Session summary", desc: "Median total, reaction/clamp/early splits, and a rep-by-rep chart for the set you just finished." },
+      { src: "assets/screens/new-session.png", alt: "Live session screen — REP 03 of 50, SET cue, pause control", title: "Live session", desc: "Rep counter, audio and visual cues. Pause anytime. Stays out of your way during reps." },
+      { src: "assets/screens/home.png", alt: "Home dashboard — last session delta, weekly sessions ring, personal best, recent sessions", title: "Home", desc: "Your dashboard. Connection status, last-session data, weekly progress ring, personal best, and recent activity." }
+    ];
+    return {
+      features: [
+        { n: "01", title: "Randomized whistle cadence", desc: "Short, normal, long, or variable. Trains true reaction — not pattern recognition." },
+        { n: "02", title: "Reaction + clamp separately", desc: "Diagnose where you're losing — the whistle response, or the rotation to 90°." },
+        { n: "03", title: "Early-jump detection", desc: "Catches false starts the eye can't — with visual and audio feedback in the moment." },
+        { n: "04", title: "Trend tracking", desc: "Watch your medians drop week over week — reaction, clamp, and total. Consistency comes next." }
+      ],
+      screens: raw.map((s, i) => ({
+        ...s,
+        n: String(i + 1).padStart(2, "0"),
+        rr: i % 3 === 1 ? "offset" : "",
+        wrapStyle: `display:flex; flex-direction:column; margin-top:${i % 3 === 1 ? 56 : 0}px;`
+      }))
+    };
+  }
+}
+
+</script>
+</body>
+</html>

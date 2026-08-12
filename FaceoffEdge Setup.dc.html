@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Archivo+Black&display=swap" rel="stylesheet"/>
+<style>
+  html, body { margin:0; padding:0; background:#05080F; color:#F2F4F8; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:#3B6EF2; text-decoration:none; }
+  a:hover { color:#7FA0FF; }
+  @media (max-width: 980px) {
+    [data-r~="setup-grid"] { grid-template-columns:1fr !important; gap:36px !important; }
+    [data-r~="stage"] { order:-1; }
+  }
+  @media (max-width: 720px) {
+    [data-r~="pad"] { padding-left:20px !important; padding-right:20px !important; }
+    [data-r~="sect"] { padding-top:56px !important; padding-bottom:64px !important; }
+  }
+</style>
+</helmet>
+
+<div style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,'Helvetica Neue',sans-serif; background:#05080F; color:#F2F4F8; overflow-x:clip;">
+
+  <dc-import name="SiteNav" active="setup" hint-size="100%,64px"></dc-import>
+
+  <section data-screen-label="setup-hero" data-r="sect" style="position:relative; overflow:hidden; padding:80px 0 40px;">
+    <div style="position:absolute; left:-200px; top:-220px; width:820px; height:820px; border-radius:50%; pointer-events:none; background:radial-gradient(circle, rgba(59,110,242,0.24) 0%, rgba(59,110,242,0) 62%); filter:blur(22px);"></div>
+    <div data-r="pad" style="position:relative; max-width:1200px; margin:0 auto; padding:0 28px; display:flex; align-items:flex-end; justify-content:space-between; gap:36px; flex-wrap:wrap;">
+      <div>
+        <div style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8E97AC;">
+          <span style="width:26px; height:1px; background:rgba(255,255,255,0.30);"></span>Setup guide · 4 steps
+        </div>
+        <h1 style="margin:20px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(44px,7.4vw,110px); line-height:0.86; letter-spacing:-0.045em; text-transform:uppercase;">Set up<br/>your <span style="color:#3B6EF2;">sensor.</span></h1>
+      </div>
+      <p style="margin:0; max-width:36ch; font-size:19px; line-height:1.6; color:#C4CBDA; text-wrap:pretty;">
+        Everything you need to mount the sensor, pair it with the app, and run your first
+        session.
+      </p>
+    </div>
+  </section>
+
+  <section data-screen-label="setup-steps" data-r="sect" style="padding:40px 0 104px;">
+    <div data-r="pad setup-grid" style="max-width:1200px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:minmax(0,0.95fr) minmax(0,1.05fr); gap:56px; align-items:start;">
+
+      <div>
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+          <div style="{{ s.rowStyle }}">
+            <button type="button" onClick="{{ s.go }}" style="width:100%; display:grid; grid-template-columns:64px minmax(0,1fr); gap:20px; align-items:baseline; background:none; border:none; padding:26px 0 0; cursor:pointer; text-align:left; font-family:inherit;">
+              <span style="{{ s.numStyle }}">{{ s.n }}</span>
+              <span style="{{ s.titleStyle }}">{{ s.t }}</span>
+            </button>
+            <sc-if value="{{ s.open }}" hint-placeholder-val="{{ true }}">
+              <div style="display:grid; grid-template-columns:64px minmax(0,1fr); gap:20px; padding:12px 0 26px;">
+                <div></div>
+                <p style="margin:0; max-width:46ch; font-size:16px; line-height:1.65; color:#8E97AC; text-wrap:pretty;">{{ s.d }}</p>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+
+        <div style="display:flex; align-items:center; gap:14px; margin-top:32px;">
+          <button type="button" onClick="{{ prev }}" disabled="{{ atStart }}" style="{{ prevStyle }}">Back</button>
+          <button type="button" onClick="{{ next }}" style="padding:13px 24px; border-radius:999px; border:none; cursor:pointer; font-family:inherit; font-size:15px; font-weight:650; background:#3B6EF2; color:#fff;">{{ nextLabel }}</button>
+          <div style="flex:1;"></div>
+          <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:13px; letter-spacing:0.16em; color:#5C657A;">{{ counter }}</div>
+        </div>
+      </div>
+
+      <div data-r="stage" style="position:relative;">
+        <div style="position:absolute; inset:-30px -20px; border-radius:48px; background:radial-gradient(circle at 50% 30%, rgba(59,110,242,0.26), transparent 70%); filter:blur(28px); pointer-events:none;"></div>
+        <sc-if value="{{ isPhoto }}" hint-placeholder-val="{{ true }}">
+          <img src="assets/setup-step-01.jpg" alt="Sensor charging and mounted on a shaft" style="position:relative; width:100%; height:600px; object-fit:cover; border-radius:28px; display:block; border:1px solid rgba(120,150,220,0.18);"/>
+        </sc-if>
+        <sc-if value="{{ isVideo }}" hint-placeholder-val="{{ false }}">
+          <div style="position:relative; width:320px; max-width:88%; margin:0 auto; padding:10px; border-radius:46px; background:#0a1020; border:1px solid rgba(255,255,255,0.14); box-shadow:0 40px 80px -30px rgba(0,0,0,0.8);">
+            <video key="{{ videoSrc }}" src="{{ videoSrc }}" poster="{{ videoPoster }}" aria-label="{{ videoLabel }}" autoplay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" controls="{{ true }}" style="width:100%; height:580px; object-fit:cover; border-radius:36px; display:block; background:#000;"></video>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="setup-cta" data-r="sect" style="background:#070A14; border-top:1px solid rgba(120,150,220,0.12); padding:88px 0;">
+    <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px; display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap;">
+      <h2 style="margin:0; max-width:18ch; font-family:'Archivo Black',sans-serif; font-size:clamp(28px,3.4vw,46px); line-height:1; letter-spacing:-0.035em; text-transform:uppercase;">Set up in minutes.<br/>Train the same day.</h2>
+      <div style="display:flex; flex-wrap:wrap; gap:12px;">
+        <a href="/preorder75" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; background:#3B6EF2; color:#fff; font-size:16px; font-weight:650;" style-hover="background:#1B3A8A;">Reserve the sensor</a>
+        <a href="/contact75" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; border:1px solid rgba(255,255,255,0.16); color:#F2F4F8; font-size:16px; font-weight:650;" style-hover="background:rgba(255,255,255,0.10);">Need help?</a>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { i: 0 };
+
+  renderVals() {
+    const data = [
+      { n: "01", t: "Make sure it's charged and mounted", d: "Plug in the FaceoffEdge Clip to charge it, then shake it to wake it up. Clip it onto the thin side of the shaft, then rotate it 90 degrees to seat it onto the thick side.", photo: true },
+      { n: "02", t: "Create your profile", d: "Open the FaceoffEdge app and create your profile.", src: "assets/setup-step-02.mp4", poster: "assets/setup-step-02-poster.png", label: "Creating your profile in the FaceoffEdge app" },
+      { n: "03", t: "Pair your sensor", d: "Allow Bluetooth access and pair (it will automatically ask you for this permission), then go to Find New Device — your sensor should appear there.", src: "assets/setup-step-03.mp4", poster: "assets/setup-step-03-poster.png", label: "Pairing the sensor in the FaceoffEdge app" },
+      { n: "04", t: "Start taking reps", d: "Go to the Home Screen and hit Start Session. Adjust your session settings, then start taking your reps.", src: "assets/setup-step-04.mp4", poster: "assets/setup-step-04-poster.jpg", label: "Starting a session in the FaceoffEdge app" }
+    ];
+    const i = this.state.i;
+    const cur = data[i];
+    const go = n => () => this.setState({ i: Math.max(0, Math.min(data.length - 1, n)) });
+    return {
+      steps: data.map((s, k) => ({
+        n: s.n,
+        t: s.t,
+        d: s.d,
+        open: k === i,
+        go: go(k),
+        rowStyle: `border-bottom:1px solid ${k === i ? "rgba(59,110,242,0.45)" : "rgba(120,150,220,0.14)"};`,
+        numStyle: `font-family:'JetBrains Mono',ui-monospace,monospace; font-size:${k === i ? 34 : 22}px; font-weight:700; letter-spacing:-0.04em; color:${k === i ? "#3B6EF2" : "#5C657A"}; transition:font-size .2s;`,
+        titleStyle: `display:block; font-size:${k === i ? "clamp(24px,2.6vw,34px)" : "20px"}; font-weight:800; letter-spacing:-0.028em; line-height:1.1; color:${k === i ? "#F2F4F8" : "#8E97AC"};`
+      })),
+      isPhoto: !!cur.photo,
+      isVideo: !cur.photo,
+      videoSrc: cur.src || "",
+      videoPoster: cur.poster || "",
+      videoLabel: cur.label || "",
+      counter: `${cur.n} / ${String(data.length).padStart(2, "0")}`,
+      atStart: i === 0,
+      nextLabel: i === data.length - 1 ? "Start over" : "Next step",
+      prev: go(i - 1),
+      next: () => this.setState({ i: i === data.length - 1 ? 0 : i + 1 }),
+      prevStyle: `padding:13px 24px; border-radius:999px; border:1px solid rgba(255,255,255,0.16); font-family:inherit; font-size:15px; font-weight:650; background:transparent; color:#F2F4F8; cursor:${i === 0 ? "default" : "pointer"}; opacity:${i === 0 ? 0.4 : 1};`
+    };
+  }
+}
+
+</script>
+</body>
+</html>

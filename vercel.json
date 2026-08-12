@@ -1,4 +1,13 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "rewrites": [
+    { "source": "/setup", "destination": "/FaceoffEdge%20Setup.dc.html" },
+    { "source": "/setup75", "destination": "/FaceoffEdge%20Setup.dc.html" },
+    { "source": "/home75", "destination": "/FaceoffEdge%20Home.dc.html" },
+    { "source": "/app75", "destination": "/FaceoffEdge%20App.dc.html" },
+    { "source": "/sensor75", "destination": "/FaceoffEdge%20Sensor.dc.html" },
+    { "source": "/preorder75", "destination": "/FaceoffEdge%20Preorder.dc.html" },
+    { "source": "/contact75", "destination": "/FaceoffEdge%20Contact.dc.html" },
+    { "source": "/(.*)", "destination": "/FaceoffEdge%20Coming%20Soon.dc.html" }
+  ]
 }

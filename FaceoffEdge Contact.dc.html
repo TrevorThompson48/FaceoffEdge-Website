@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Archivo+Black&display=swap" rel="stylesheet"/>
+<style>
+  html, body { margin:0; padding:0; background:#05080F; color:#F2F4F8; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:#3B6EF2; text-decoration:none; }
+  a:hover { color:#7FA0FF; }
+  input, textarea { width:100%; padding:14px 16px; background:rgba(255,255,255,0.03); border:1px solid rgba(120,150,220,0.16); border-radius:12px; color:#F2F4F8; font-family:inherit; font-size:15px; }
+  input::placeholder, textarea::placeholder { color:#5C657A; }
+  input:focus, textarea:focus { outline:none; border-color:#3B6EF2; background:rgba(59,110,242,0.05); }
+  textarea { resize:vertical; min-height:140px; }
+  @media (max-width: 980px) {
+    [data-r~="hero-split"] { grid-template-columns:1fr !important; gap:28px !important; }
+    [data-r~="channels"] { grid-template-columns:1fr !important; }
+    [data-r~="chan"] { border-left:none !important; padding-left:0 !important; padding-right:0 !important; border-top:1px solid rgba(120,150,220,0.16); }
+    [data-r~="chan-first"] { border-top:none !important; }
+    [data-r~="form-grid"] { grid-template-columns:1fr !important; gap:32px !important; }
+    [data-r~="sticky"] { position:static !important; }
+  }
+  @media (max-width: 720px) {
+    [data-r~="pad"] { padding-left:20px !important; padding-right:20px !important; }
+    [data-r~="sect"] { padding-top:56px !important; padding-bottom:64px !important; }
+    [data-r~="row"] { grid-template-columns:1fr !important; }
+  }
+</style>
+</helmet>
+
+<div style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,'Helvetica Neue',sans-serif; background:#05080F; color:#F2F4F8; overflow-x:clip;">
+
+  <dc-import name="SiteNav" active="contact" hint-size="100%,64px"></dc-import>
+
+  <section data-screen-label="contact-hero" data-r="sect" style="position:relative; overflow:hidden; padding:88px 0 0;">
+    <div style="position:absolute; left:-180px; top:-260px; width:900px; height:900px; border-radius:50%; pointer-events:none; background:radial-gradient(circle, rgba(59,110,242,0.24) 0%, rgba(59,110,242,0) 62%); filter:blur(22px);"></div>
+    <div data-r="pad hero-split" style="position:relative; max-width:1200px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr); gap:48px; align-items:end;">
+      <div>
+        <div style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8E97AC;">
+          <span style="width:26px; height:1px; background:rgba(255,255,255,0.30);"></span>We're a small team
+        </div>
+        <h1 style="margin:20px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(52px,9vw,140px); line-height:0.82; letter-spacing:-0.05em; text-transform:uppercase;">Talk<br/>to <span style="color:#3B6EF2;">us</span></h1>
+      </div>
+      <p style="margin:0 0 12px; max-width:42ch; font-size:19px; line-height:1.6; color:#C4CBDA; text-wrap:pretty;">
+        Reach us directly — for questions about the app, the sensor, a pilot program,
+        press inquiries, or anything else. We read every message and reply within a business day.
+      </p>
+    </div>
+
+    <div data-r="pad" style="position:relative; max-width:1200px; margin:64px auto 0; padding:0 28px;">
+      <div data-r="channels" style="display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:0; border-top:1px solid rgba(120,150,220,0.16);">
+        <div data-r="chan chan-first" style="padding:30px 28px 34px 0;">
+          <div style="color:#3B6EF2;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 style="margin:18px 0 0; font-size:20px; font-weight:800; letter-spacing:-0.02em;">Support</h3>
+          <p style="margin:10px 0 0; color:#8E97AC; font-size:15px; line-height:1.6;">The fastest way to reach us. A real person answers. Usually same day.</p>
+          <a href="mailto:support@faceoffedge.com" style="display:inline-block; margin-top:12px; color:#3B6EF2; font-weight:600; font-size:15px;">support@faceoffedge.com →</a>
+        </div>
+        <div data-r="chan" style="padding:30px 28px 34px; border-left:1px solid rgba(120,150,220,0.16);">
+          <div style="color:#3B6EF2;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2a7 7 0 017 7c0 5-7 13-7 13S5 14 5 9a7 7 0 017-7z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
+          </div>
+          <h3 style="margin:18px 0 0; font-size:20px; font-weight:800; letter-spacing:-0.02em;">Where we're based</h3>
+          <p style="margin:10px 0 0; color:#8E97AC; font-size:15px; line-height:1.6;">Built in the U.S.<br/>Mailing address available on request — just email us.</p>
+        </div>
+        <div data-r="chan" style="padding:30px 0 34px 28px; border-left:1px solid rgba(120,150,220,0.16);">
+          <div style="color:#3B6EF2;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2v6M12 16v6M2 12h6M16 12h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/></svg>
+          </div>
+          <h3 style="margin:18px 0 0; font-size:20px; font-weight:800; letter-spacing:-0.02em;">Press &amp; partnerships</h3>
+          <p style="margin:10px 0 0; color:#8E97AC; font-size:15px; line-height:1.6;">Media inquiries, brand collaborations, equipment-rules conversations.</p>
+          <a href="mailto:press@faceoffedge.com" style="display:inline-block; margin-top:12px; color:#3B6EF2; font-weight:600; font-size:15px;">press@faceoffedge.com →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="contact-form" data-r="sect" style="padding:96px 0 104px;">
+    <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px;">
+      <div style="padding:44px; border-radius:30px; background:linear-gradient(165deg, rgba(26,34,56,0.92) 0%, rgba(10,16,32,0.94) 65%); border:1px solid rgba(120,150,220,0.18); box-shadow:0 50px 90px -50px rgba(0,0,0,0.95);">
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <div data-r="form-grid" style="display:grid; grid-template-columns:minmax(0,0.75fr) minmax(0,1.25fr); gap:56px; align-items:start;">
+            <div data-r="sticky" style="position:sticky; top:96px;">
+              <h2 style="margin:0; font-family:'Archivo Black',sans-serif; font-size:clamp(28px,3.2vw,44px); line-height:0.98; letter-spacing:-0.035em; text-transform:uppercase;">Send us<br/>a message</h2>
+              <p style="margin:20px 0 0; max-width:34ch; font-size:16px; line-height:1.65; color:#8E97AC; text-wrap:pretty;">
+                We reply within one business day. Usually faster.
+              </p>
+              <div style="margin-top:28px; padding-top:22px; border-top:1px solid rgba(120,150,220,0.16); font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#5C657A;">
+                hello@faceoffedge.com
+              </div>
+            </div>
+
+            <form onSubmit="{{ submit }}">
+              <input type="checkbox" name="botcheck" tabIndex="-1" autoComplete="off" style="position:absolute; left:-9999px; opacity:0; width:auto;" aria-hidden="true"/>
+
+              <div data-r="row" style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+                <input type="text" name="first" placeholder="First name" required="{{ true }}"/>
+                <input type="text" name="last" placeholder="Last name" required="{{ true }}"/>
+              </div>
+              <input type="email" name="email" placeholder="Email" required="{{ true }}" style="margin-top:14px;"/>
+
+              <div style="margin-top:28px; font-size:12px; text-transform:uppercase; letter-spacing:0.12em; color:#8E97AC; font-weight:600;">I'm reaching out about</div>
+              <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;">
+                <sc-for list="{{ topics }}" as="t" hint-placeholder-count="5">
+                  <button type="button" onClick="{{ t.pick }}" style="{{ t.style }}">{{ t.label }}</button>
+                </sc-for>
+              </div>
+
+              <textarea name="message" rows="5" placeholder="Tell us what's on your mind…" required="{{ true }}" style="margin-top:24px;"></textarea>
+
+              <button type="submit" disabled="{{ sending }}" style="{{ submitStyle }}">{{ submitLabel }}</button>
+            </form>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align:center; padding:56px 0;">
+            <div style="width:56px; height:56px; margin:0 auto; border-radius:50%; background:rgba(79,179,138,0.14); color:#4FB38A; display:flex; align-items:center; justify-content:center; font-size:24px; border:1px solid rgba(79,179,138,0.3);">✓</div>
+            <h3 style="margin:20px 0 0; font-family:'Archivo Black',sans-serif; font-size:36px; letter-spacing:-0.035em; text-transform:uppercase;">Got it.</h3>
+            <p style="margin:14px auto 0; max-width:34ch; font-size:16px; line-height:1.6; color:#8E97AC;">
+              Thanks for reaching out — we'll be in touch shortly.
+            </p>
+            <button type="button" onClick="{{ reset }}" style="margin-top:24px; background:none; border:1px solid rgba(255,255,255,0.18); color:#F2F4F8; padding:12px 24px; border-radius:999px; font-family:inherit; font-size:15px; font-weight:650; cursor:pointer;">Send another message</button>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { status: "idle", topic: "The app — general question" };
+
+  async submit(e) {
+    e.preventDefault();
+    const f = e.target;
+    const g = n => (f.elements[n] || {}).value || "";
+    if (g("botcheck")) return;
+    const first = g("first"), last = g("last"), email = g("email");
+    const fullName = (first + " " + last).trim();
+    const topic = this.state.topic;
+    this.setState({ status: "sending" });
+    const payload = {
+      access_key: "82bc8408-3d3b-42db-9209-b4fb79504513",
+      subject: "Contact form — " + topic,
+      from_name: fullName || "FaceoffEdge Contact",
+      name: fullName,
+      email,
+      replyto: email,
+      topic,
+      message: g("message")
+    };
+    try {
+      await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload)
+      });
+    } catch (err) {}
+    this.setState({ status: "sent" });
+  }
+
+  renderVals() {
+    const s = this.state.status;
+    const labels = [
+      "The app — general question",
+      "The sensor — pre-order or specs",
+      "Team / coaching inquiry",
+      "Press or partnership",
+      "Something else"
+    ];
+    return {
+      topics: labels.map(label => ({
+        label,
+        pick: () => this.setState({ topic: label }),
+        style: `padding:11px 18px; border-radius:999px; cursor:pointer; font-family:inherit; font-size:14px; font-weight:600; transition:background .2s, border-color .2s, color .2s; background:${this.state.topic === label ? "rgba(59,110,242,0.18)" : "rgba(255,255,255,0.03)"}; border:1px solid ${this.state.topic === label ? "rgba(59,110,242,0.55)" : "rgba(120,150,220,0.16)"}; color:${this.state.topic === label ? "#F2F4F8" : "#8E97AC"};`
+      })),
+      notSent: s !== "sent",
+      sent: s === "sent",
+      sending: s === "sending",
+      submitLabel: s === "sending" ? "Sending…" : "Send message",
+      submitStyle: `width:100%; margin-top:26px; padding:17px 24px; border-radius:999px; border:none; font-family:inherit; font-size:16px; font-weight:650; background:#fff; color:#000; cursor:${s === "sending" ? "default" : "pointer"}; opacity:${s === "sending" ? 0.6 : 1};`,
+      submit: e => this.submit(e),
+      reset: () => this.setState({ status: "idle" })
+    };
+  }
+}
+
+</script>
+</body>
+</html>

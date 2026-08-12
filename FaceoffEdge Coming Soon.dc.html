@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Archivo:wght@800;900&display=swap" rel="stylesheet"/>
+<style>
+  html, body { margin:0; padding:0; background:#05080F; color:#fff; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:#3B6EF2; text-decoration:none; }
+  a:hover { color:#7FA0FF; }
+  input { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  input::placeholder { color:rgba(255,255,255,0.35); }
+  input:focus { outline:none; border-color:rgba(59,110,242,0.5); }
+  @media (max-width:520px) { [data-r~="signup"] { flex-direction:column !important; align-items:center !important; } }
+</style>
+</helmet>
+
+<div style="position:relative; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px; overflow:hidden; background:#05080F; color:#fff; font-family:'JetBrains Mono',ui-monospace,monospace;">
+  <div style="position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse at 50% 30%, rgba(59,110,242,0.14), transparent 60%);"></div>
+
+  <img src="assets/logo.png" alt="FaceoffEdge logo" style="position:relative; width:88px; height:88px; object-fit:contain; margin-bottom:32px;"/>
+  <div style="position:relative; font-family:'Archivo',sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(36px,7vw,64px); line-height:0.95; letter-spacing:-0.01em;">FACEOFF<span style="color:#3B6EF2;">EDGE</span></div>
+  <div style="position:relative; margin-top:18px; font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.5);">Faceoff training instrumented</div>
+  <p style="position:relative; margin:40px 0 0; max-width:480px; font-size:15px; line-height:1.7; color:rgba(255,255,255,0.65);">In the works. Were heads down building... check back soon.</p>
+
+  <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+    <form onSubmit="{{ submit }}" data-r="signup" style="position:relative; margin-top:36px; display:flex; gap:10px;">
+      <input type="email" name="email" placeholder="you@email.com" required="{{ true }}" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); border-radius:6px; padding:12px 14px; font-size:14px; color:#fff; width:260px;"/>
+      <button type="submit" disabled="{{ sending }}" style="{{ btnStyle }}">{{ btnLabel }}</button>
+    </form>
+  </sc-if>
+
+  <div style="position:relative; margin-top:14px; font-size:12px; color:rgba(255,255,255,0.4);">{{ note }}</div>
+  <div style="position:relative; margin-top:56px; font-size:12px; letter-spacing:0.08em; color:rgba(255,255,255,0.3);">© 2026 FaceoffEdge</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { status: "idle" };
+
+  async submit(e) {
+    e.preventDefault();
+    const email = (e.target.elements.email || {}).value || "";
+    this.setState({ status: "sending" });
+    try {
+      await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: "5d700d60-75a3-42f3-b160-d00175db77c8",
+          subject: "New coming-soon email signup",
+          from_name: "FaceoffEdge Coming Soon",
+          email,
+          message: "Email list signup: " + email
+        })
+      });
+    } catch (err) {}
+    this.setState({ status: "sent" });
+  }
+
+  renderVals() {
+    const s = this.state.status;
+    return {
+      notSent: s !== "sent",
+      sending: s === "sending",
+      btnLabel: s === "sending" ? "Joining…" : "Join email list",
+      btnStyle: `background:#3B6EF2; border:none; border-radius:6px; padding:12px 20px; font-family:'JetBrains Mono',ui-monospace,monospace; font-weight:600; font-size:14px; color:#fff; cursor:${s === "sending" ? "default" : "pointer"};`,
+      note: s === "sent" ? "You're on the list — we'll be in touch." : "Be the first to know when we launch.",
+      submit: e => this.submit(e)
+    };
+  }
+}
+
+</script>
+</body>
+</html>

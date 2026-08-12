@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Archivo+Black&display=swap" rel="stylesheet"/>
+<style>
+  html, body { margin:0; padding:0; background:#05080F; color:#F2F4F8; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:#3B6EF2; text-decoration:none; }
+  a:hover { color:#7FA0FF; }
+  @media (max-width: 980px) {
+    [data-r~="metric-row"] { grid-template-columns:1fr !important; gap:14px !important; }
+    [data-r~="spec-layout"] { grid-template-columns:1fr !important; gap:44px !important; }
+    [data-r~="method-grid"] { grid-template-columns:1fr !important; gap:32px !important; }
+    [data-r~="sticky"] { position:static !important; }
+    [data-r~="collage"] { grid-template-columns:1fr 1fr !important; }
+    [data-r~="collage"] img { margin-top:0 !important; }
+  }
+  @media (max-width: 720px) {
+    [data-r~="pad"] { padding-left:20px !important; padding-right:20px !important; }
+    [data-r~="sect"] { padding-top:64px !important; padding-bottom:64px !important; }
+  }
+</style>
+</helmet>
+
+<div style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,'Helvetica Neue',sans-serif; background:#05080F; color:#F2F4F8; overflow-x:clip;">
+
+  <dc-import name="SiteNav" active="sensor" hint-size="100%,64px"></dc-import>
+
+  <section data-screen-label="sensor-hero" style="position:relative; min-height:78vh; display:flex; align-items:flex-end; overflow:hidden;">
+    <img src="assets/sensor-hero-render.png" alt="FaceoffEdge Clip mounted on turf" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:46% 34%;"/>
+    <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(5,8,15,0.50) 0%, rgba(5,8,15,0.02) 42%, rgba(5,8,15,0.42) 78%, #05080F 100%);"></div>
+    <div style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(5,8,15,0.78) 0%, rgba(5,8,15,0.34) 46%, rgba(5,8,15,0) 100%);"></div>
+    <div style="position:absolute; left:0; right:0; bottom:0; height:22%; background:linear-gradient(180deg, rgba(5,8,15,0) 0%, rgba(5,8,15,0.05) 70%, #05080F 100%);"></div>
+    <div data-r="pad" style="position:relative; width:100%; max-width:1200px; margin:0 auto; padding:0 28px 72px;">
+      <div style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#C4CBDA;">
+        <span style="width:26px; height:1px; background:rgba(255,255,255,0.45);"></span>The hardware
+      </div>
+      <h1 style="margin:20px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(46px,8vw,120px); line-height:0.84; letter-spacing:-0.045em; text-transform:uppercase;">
+        Every<br/>millisecond,<br/><span style="color:#3B6EF2;">measured.</span>
+      </h1>
+      <p style="margin:28px 0 0; max-width:52ch; font-size:clamp(17px,1.5vw,20px); line-height:1.55; color:#C4CBDA; text-wrap:pretty;">
+        A stick-mounted, 6-axis IMU sampling at 208 Hz. Built around one job: capture
+        all the data of a faceoff and report it to your phone before you're starting the next rep.
+      </p>
+      <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:32px;">
+        <a href="/preorder75" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; background:#fff; color:#000; font-size:16px; font-weight:650;" style-hover="background:#e8e8e8;">Reserve the sensor</a>
+        <a href="#spec" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; border:1px solid rgba(255,255,255,0.22); background:rgba(5,8,15,0.35); color:#F2F4F8; font-size:16px; font-weight:650;" style-hover="background:rgba(255,255,255,0.12);">Full specs ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="sensor-metrics" data-r="sect" id="metrics" style="padding:96px 0;">
+    <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px;">
+      <div style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8E97AC;">
+        <span style="width:26px; height:1px; background:rgba(255,255,255,0.30);"></span>What we measure
+      </div>
+      <h2 style="margin:18px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(28px,4vw,54px); line-height:1; letter-spacing:-0.035em; text-transform:uppercase;">
+        Faceoffs are won in milliseconds.<br/><span style="color:#5C657A;">We measure all of them.</span>
+      </h2>
+
+      <div style="margin-top:52px; border-top:1px solid rgba(120,150,220,0.14);">
+        <sc-for list="{{ metrics }}" as="m" hint-placeholder-count="4">
+          <div data-r="metric-row" style="display:grid; grid-template-columns:220px minmax(0,1fr) minmax(0,1fr); gap:40px; align-items:center; padding:30px 0; border-bottom:1px solid rgba(120,150,220,0.14);">
+            <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-weight:700; font-size:clamp(38px,4.6vw,60px); letter-spacing:-0.05em; line-height:0.9;">{{ m.num }}<span style="font-size:20px; color:#8E97AC; letter-spacing:0;">{{ m.unit }}</span></div>
+            <div>
+              <div style="font-size:20px; font-weight:700; letter-spacing:-0.02em;">{{ m.title }}</div>
+              <div style="height:4px; border-radius:999px; background:rgba(120,150,220,0.16); margin-top:14px; overflow:hidden;">
+                <div style="{{ m.fill }}"></div>
+              </div>
+            </div>
+            <p style="margin:0; font-size:15px; line-height:1.6; color:#8E97AC; text-wrap:pretty;">{{ m.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="sensor-spec" data-r="sect" id="spec" style="background:#F4F2EE; color:#0a1020; padding:104px 0;">
+    <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px;">
+      <div data-r="spec-layout" style="display:grid; grid-template-columns:minmax(0,0.95fr) minmax(0,1.05fr); gap:64px; align-items:start;">
+        <div data-r="sticky" style="position:sticky; top:96px;">
+          <div style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#5C657A;">
+            <span style="width:26px; height:1px; background:rgba(0,0,0,0.30);"></span>Specifications
+          </div>
+          <h2 style="margin:16px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(34px,4.6vw,64px); line-height:0.94; letter-spacing:-0.04em; text-transform:uppercase;">Built for<br/>the dot</h2>
+          <p style="margin:22px 0 0; max-width:44ch; font-size:18px; line-height:1.6; color:#4A5468; text-wrap:pretty;">
+            Everything in it is there for one reason: get accurate data from your stick to your phone before you start the next rep.
+          </p>
+
+          <div data-r="collage" style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:36px;">
+            <img src="assets/sensor-render-top.jpg" alt="Sensor V1 top view" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:18px; display:block;"/>
+            <img src="assets/sensor-render-34.jpg" alt="Sensor V1 three-quarter view" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:18px; display:block; margin-top:28px;"/>
+            <img src="assets/sensor-render-mounted.jpg" alt="Sensor mounted on shaft" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:18px; display:block;"/>
+            <img src="assets/sensor-render-scale.jpg" alt="Sensor scale next to phone" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:18px; display:block; margin-top:28px;"/>
+          </div>
+        </div>
+
+        <div style="background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:24px; padding:34px 32px; margin-top:64px;">
+          <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#5C657A;">Sensor V1 · spec sheet</div>
+          <div style="margin-top:20px;">
+            <sc-for list="{{ specs }}" as="s" hint-placeholder-count="10">
+              <div style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; padding:16px 0; border-bottom:1px solid rgba(0,0,0,0.08);">
+                <span style="font-size:13px; text-transform:uppercase; letter-spacing:0.12em; color:#5C657A; font-weight:600;">{{ s.k }}</span>
+                <span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:15px; text-align:right; color:#0a1020;">{{ s.v }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="sensor-methodology" data-r="sect" id="methodology" style="padding:104px 0; position:relative; overflow:hidden;">
+    <div style="position:absolute; left:-320px; bottom:-260px; width:820px; height:820px; border-radius:50%; pointer-events:none; background:radial-gradient(circle, rgba(59,110,242,0.16) 0%, rgba(59,110,242,0) 62%); filter:blur(20px);"></div>
+    <div data-r="pad method-grid" style="position:relative; max-width:1200px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:minmax(0,0.8fr) minmax(0,1.2fr); gap:64px; align-items:start;">
+      <div data-r="sticky" style="position:sticky; top:96px;">
+        <div style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8E97AC;">
+          <span style="width:26px; height:1px; background:rgba(255,255,255,0.30);"></span>Measurement methodology
+        </div>
+        <h2 style="margin:18px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(30px,4vw,54px); line-height:0.96; letter-spacing:-0.035em; text-transform:uppercase;">How the<br/>measurement<br/>actually works.</h2>
+        <p style="margin:22px 0 0; max-width:40ch; font-size:17px; line-height:1.6; color:#8E97AC; text-wrap:pretty;">
+          FaceoffEdge&trade; exists because the eye test isn't enough. Here's exactly how we get from the
+          whistle to a coachable number in your app.
+        </p>
+      </div>
+
+      <div>
+        <sc-for list="{{ method }}" as="m" hint-placeholder-count="4">
+          <div style="position:relative; padding:30px 30px 30px 34px; border-radius:22px; margin-bottom:16px; background:linear-gradient(165deg, rgba(26,34,56,0.75) 0%, rgba(10,16,32,0.85) 70%); border:1px solid rgba(120,150,220,0.16); overflow:hidden;">
+            <div style="position:absolute; right:18px; top:2px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:82px; font-weight:700; line-height:1; color:rgba(59,110,242,0.16); letter-spacing:-0.06em;">{{ m.n }}</div>
+            <h3 style="position:relative; margin:0; max-width:22ch; font-size:23px; font-weight:800; letter-spacing:-0.025em;">{{ m.title }}</h3>
+            <p style="position:relative; margin:12px 0 0; max-width:70ch; font-size:16px; line-height:1.65; color:#8E97AC; text-wrap:pretty;">{{ m.body }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="sensor-cta" data-r="sect" style="background:#070A14; border-top:1px solid rgba(120,150,220,0.12); padding:88px 0;">
+    <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px; display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap;">
+      <h2 style="margin:0; max-width:16ch; font-family:'Archivo Black',sans-serif; font-size:clamp(28px,3.4vw,46px); line-height:1; letter-spacing:-0.035em; text-transform:uppercase;">Stop guessing.<br/>Get your edge.</h2>
+      <div style="display:flex; flex-wrap:wrap; gap:12px;">
+        <a href="/preorder75" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; background:#3B6EF2; color:#fff; font-size:16px; font-weight:650;" style-hover="background:#1B3A8A;">Reserve the sensor</a>
+        <a href="/setup" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; border:1px solid rgba(255,255,255,0.16); color:#F2F4F8; font-size:16px; font-weight:650;" style-hover="background:rgba(255,255,255,0.10);">See the setup</a>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const fill = w => `height:100%; width:${w}; border-radius:999px; background:linear-gradient(90deg,#1B3A8A,#3B6EF2);`;
+    return {
+      metrics: [
+        { num: "279", unit: "ms", fill: fill("48%"), title: "Reaction time", desc: "How late you react to the whistle. The number every faceoff guy is trying to cut." },
+        { num: "112", unit: "ms", fill: fill("34%"), title: "Clamp time", desc: "First movement to full clamp. Pure mechanical speed." },
+        { num: "6.3", unit: " mph", fill: fill("78%"), title: "Exit speed", desc: "How quickly you can get the ball from the clamp to space. Necessary for securing possessions." },
+        { num: "±35", unit: " ms", fill: fill("70%"), title: "Consistency", desc: "Standard deviation across a session. The lower the spread, the more reliable you are under pressure." }
+      ],
+      specs: [
+        { k: "Sensor", v: "6-axis IMU (accelerometer + gyroscope)" },
+        { k: "Sample rate", v: "208 Hz" },
+        { k: "Mount", v: "Clip-on, standard men's shaft" },
+        { k: "Weight", v: "33 g" },
+        { k: "Dimensions", v: "63 × 34 × 33 mm" },
+        { k: "Wireless", v: "Bluetooth LE 5.0" },
+        { k: "Range", v: "~30 m line-of-sight" },
+        { k: "Battery life", v: "—" },
+        { k: "Charging", v: "—" },
+        { k: "Sealing", v: "Sweat and rain-proof" }
+      ],
+      method: [
+        { n: "01", title: "Whistle event captured", body: "The sensor streams its full motion data continuously. When the app fires the whistle, it timestamps that exact instant and correlates it against the incoming stream — establishing a millisecond-accurate reference point without the sensor ever needing to hear anything. This also eliminates any inaccuracy from Bluetooth latency, since the phone never has to send the sensor a signal telling it the whistle blew." },
+        { n: "02", title: "First-movement threshold", body: "Reaction time ends when the sensor detects movement above a noise floor we've tuned for accuracy, detecting jumps but not flagging clean reps." },
+        { n: "03", title: "90° rotation detection", body: "Clamp time ends at the moment the stick head reaches 90° rotation from where you were lined up — measured by integrating gyroscope data." },
+        { n: "04", title: "Early-jump classification", body: "If meaningful movement is detected before the whistle, that rep is flagged \"early\" and excluded from reaction/clamp aggregates. We surface the rate separately — it's a discipline metric, not a speed metric." }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>
