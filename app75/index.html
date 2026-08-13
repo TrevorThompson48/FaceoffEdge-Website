@@ -1,283 +1,170 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8"/>
-<meta name="robots" content="noindex, nofollow"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>The App — FaceoffEdge</title>
-<meta name="description" content="The FaceoffEdge iOS app — measure every millisecond of your faceoff training. Free on the App Store."/>
-<link rel="stylesheet" href="../assets/site.css"/>
-<link rel="stylesheet" href="../assets/home.css"/>
-<link rel="stylesheet" href="../assets/product.css"/>
-<style>
-  /* Phone-screen frame for screenshot images */
-  .screen-frame {
-    width: 100%;
-    max-width: 220px;
-    aspect-ratio: 1179/2556;
-    border-radius: 22px;
-    overflow: hidden;
-    background: #000;
-    box-shadow: 0 12px 28px -12px rgba(0,0,0,0.25);
-    margin: 0 auto;
-  }
-  .screen-frame img { width: 100%; height: auto; display: block; image-rendering: auto; }
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/support.js"></script>
 </head>
 <body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Archivo+Black&display=swap" rel="stylesheet"/>
+<style>
+  html, body { margin:0; padding:0; background:#05080F; color:#F2F4F8; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:#3B6EF2; text-decoration:none; }
+  a:hover { color:#7FA0FF; }
+  @keyframes fe-marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+  @media (max-width: 980px) {
+    [data-r~="hero-grid"] { grid-template-columns:1fr !important; gap:44px !important; }
+    [data-r~="hero-phone"] { justify-content:flex-start !important; }
+    [data-r~="feat"] { grid-template-columns:1fr !important; gap:10px !important; }
+    [data-r~="screen-grid"] { grid-template-columns:repeat(2, minmax(0,1fr)) !important; }
+    [data-r~="offset"] { margin-top:0 !important; }
+  }
+  @media (max-width: 720px) {
+    [data-r~="pad"] { padding-left:20px !important; padding-right:20px !important; }
+    [data-r~="sect"] { padding-top:64px !important; padding-bottom:64px !important; }
+    [data-r~="screen-grid"] { grid-template-columns:1fr !important; }
+  }
+</style>
+</helmet>
 
-<!-- NAV -->
-<nav class="nav" data-screen-label="app-nav">
-  <div class="nav-inner">
-    <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <a href="/home75/" class="nav-logo">
-      <img class="logo-mark" src="../assets/logo.png?v=3" alt="FaceoffEdge logo" width="28" height="28"/>
-      <img class="wordmark" src="../assets/wordmark.png?v=1" alt="FaceoffEdge"/>
-    </a>
-    <div class="nav-links">
-      <a href="/home75/">Home</a>
-      <a href="/app75" class="active">App</a>
-      <a href="/sensor75">Sensor</a>
-      <a href="/setup">Setup</a>
-      <a href="/preorder75">Pre-order</a>
-      <a href="/contact75">Contact us</a>
-    </div>
-    <div class="nav-spacer"></div>
-  </div>
-</nav>
-  <div class="nav-backdrop"></div>
-  <aside class="nav-drawer" aria-label="Mobile navigation">
-      <img class="nav-drawer-logo" src="../assets/logo.png?v=3" alt="FaceoffEdge logo" width="38" height="38"/>
-      <a href="/home75/">Home</a>
-      <a href="/app75" class="active">App</a>
-      <a href="/sensor75">Sensor</a>
-      <a href="/setup">Setup</a>
-      <a href="/preorder75">Pre-order</a>
-      <a href="/contact75">Contact us</a>
-  </aside>
+<div style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,'Helvetica Neue',sans-serif; background:#05080F; color:#F2F4F8; overflow-x:clip;">
 
-<!-- ─── HERO ─── -->
-<section class="hero hero-split" data-screen-label="app-hero">
-  <div class="glow-blue" style="top: -200px; left: -200px;"></div>
-  <div class="container hero-grid">
-    <div class="hero-copy">
-      <div class="eyebrow">Coming soon · iOS</div>
-      <h1 class="h-display" style="margin-top: 18px;">
-        Instant feedback<br/>in your pocket
-      </h1>
-      <p class="lead" style="margin-top: 22px;">
-        The FaceoffEdge&trade; app turns your stick into an instrumented training rig. Run a
-        session anywhere &mdash; backyard, basement, before practice &mdash; and get
-        immediate, objective feedback on every rep.
-      </p>
-      <div class="hero-cta">
-        <a href="/home75#download" class="btn btn-primary btn-lg">Coming soon to the App Store</a>
-        <a href="#screens" class="btn btn-secondary btn-lg">Tour the screens ↓</a>
+  <dc-import name="SiteNav" active="app" hint-size="100%,64px"></dc-import>
+
+  <section data-screen-label="app-hero" data-r="sect" style="position:relative; overflow:hidden; padding:72px 0 0;">
+    <div style="position:absolute; right:-180px; top:-120px; width:900px; height:900px; border-radius:50%; pointer-events:none; background:radial-gradient(circle, rgba(59,110,242,0.30) 0%, rgba(59,110,242,0) 62%); filter:blur(24px);"></div>
+    <div data-r="pad hero-grid" style="position:relative; max-width:1200px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:minmax(0,1fr) 380px; gap:40px; align-items:end;">
+      <div style="padding-bottom:96px;">
+        <div style="display:inline-flex; align-items:center; gap:9px; padding:7px 14px; border-radius:999px; border:1px solid rgba(120,150,220,0.24); font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#8E97AC;">Coming soon · iOS</div>
+        <h1 style="margin:24px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(46px,7.6vw,116px); line-height:0.84; letter-spacing:-0.045em; text-transform:uppercase;">
+          Instant<br/>feedback<br/><span style="color:#3B6EF2;">in your pocket</span>
+        </h1>
+        <p style="margin:30px 0 0; max-width:48ch; font-size:clamp(17px,1.5vw,20px); line-height:1.55; color:#C4CBDA; text-wrap:pretty;">
+          The FaceoffEdge&trade; app turns your stick into an instrumented training rig. Run a
+          session anywhere &mdash; backyard, basement, before practice &mdash; and get
+          immediate, objective feedback on every rep.
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:34px;">
+          <a href="/home75/#download" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; background:#fff; color:#000; font-size:16px; font-weight:650;" style-hover="background:#e8e8e8;">Coming soon to the App Store</a>
+          <a href="/app75/#screens" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; border:1px solid rgba(255,255,255,0.16); color:#F2F4F8; font-size:16px; font-weight:650;" style-hover="background:rgba(255,255,255,0.10);">Tour the screens ↓</a>
+        </div>
+      </div>
+
+      <div data-r="hero-phone" style="display:flex; justify-content:flex-end; align-items:flex-end;">
+        <div style="position:relative;">
+          <div style="position:absolute; inset:-40px -30px 60px; border-radius:60px; background:radial-gradient(circle at 50% 40%, rgba(59,110,242,0.35), transparent 70%); filter:blur(30px);"></div>
+          <img src="/assets/screens/home-hero.png" alt="FaceoffEdge app home screen" style="position:relative; width:340px; max-width:82vw; display:block; border-radius:44px 44px 0 0; box-shadow:0 -20px 80px -30px rgba(59,110,242,0.6);"/>
+        </div>
       </div>
     </div>
+  </section>
 
-    <!-- Phone mockup: app home screen -->
-    <div class="hero-phone">
-      <div style="width: 300px; height: 652px; overflow: hidden; border-radius: 46px; margin: 0 auto; filter: drop-shadow(0 40px 60px rgba(0,0,0,0.6)) drop-shadow(0 0 60px rgba(59,110,242,0.2));">
-        <img src="../assets/screens/home-hero.png" alt="FaceoffEdge app home screen" style="width: 100%; height: auto; display: block;"/>
+  <div data-screen-label="app-marquee" style="border-top:1px solid rgba(120,150,220,0.12); border-bottom:1px solid rgba(120,150,220,0.12); background:#070A14; overflow:hidden; padding:16px 0;">
+    <div style="display:flex; width:max-content; animation:fe-marquee 30s linear infinite;">
+      <div style="display:flex; gap:40px; padding-right:40px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:#5C657A; white-space:nowrap;">
+        <span>Whistle training</span><span style="color:#3B6EF2;">/</span><span>Session logging</span><span style="color:#3B6EF2;">/</span><span>Trend tracking</span><span style="color:#3B6EF2;">/</span><span>Early-jump alerts</span><span style="color:#3B6EF2;">/</span>
+      </div>
+      <div style="display:flex; gap:40px; padding-right:40px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:#5C657A; white-space:nowrap;">
+        <span>Whistle training</span><span style="color:#3B6EF2;">/</span><span>Session logging</span><span style="color:#3B6EF2;">/</span><span>Trend tracking</span><span style="color:#3B6EF2;">/</span><span>Early-jump alerts</span><span style="color:#3B6EF2;">/</span>
       </div>
     </div>
   </div>
-</section>
 
-<!-- ─── FEATURES ─── -->
-<section class="section" id="features" data-screen-label="app-features">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Features</div>
-      <h2 class="h-1" style="margin-top: 14px; max-width: 18ch;">What the app does<br/>for your training</h2>
+  <section data-screen-label="app-features" data-r="sect" id="features" style="padding:104px 0;">
+    <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px;">
+      <div style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8E97AC;">
+        <span style="width:26px; height:1px; background:rgba(255,255,255,0.30);"></span>Features
+      </div>
+      <h2 style="margin:18px 0 0; max-width:18ch; font-family:'Archivo Black',sans-serif; font-size:clamp(30px,4.2vw,58px); line-height:0.98; letter-spacing:-0.035em; text-transform:uppercase;">What the app does<br/>for your training</h2>
+
+      <div style="margin-top:48px; border-top:1px solid rgba(120,150,220,0.14);">
+        <sc-for list="{{ features }}" as="f" hint-placeholder-count="4">
+          <div data-r="feat" style="display:grid; grid-template-columns:100px minmax(0,1.1fr) minmax(0,1fr); gap:32px; align-items:baseline; padding:32px 0; border-bottom:1px solid rgba(120,150,220,0.14);">
+            <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:15px; letter-spacing:0.2em; color:#3B6EF2;">{{ f.n }}</div>
+            <h3 style="margin:0; font-size:clamp(22px,2.4vw,32px); font-weight:800; letter-spacing:-0.03em;">{{ f.title }}</h3>
+            <p style="margin:0; font-size:16px; line-height:1.6; color:#8E97AC; text-wrap:pretty;">{{ f.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
     </div>
+  </section>
 
-    <ul class="feature-list" style="margin-top: 48px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px 48px;">
-      <li>
-        <div class="feature-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" stroke="#3B6EF2" stroke-width="1.8" stroke-linejoin="round"/></svg>
-        </div>
+  <section data-screen-label="app-screens" data-r="sect" id="screens" style="background:#F4F2EE; color:#0a1020; padding:104px 0 120px;">
+    <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px;">
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:32px; flex-wrap:wrap;">
         <div>
-          <div class="feature-title">Randomized whistle cadence</div>
-          <div class="feature-desc">Short, normal, long, or variable. Trains true reaction — not pattern recognition.</div>
-        </div>
-      </li>
-      <li>
-        <div class="feature-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#3B6EF2" stroke-width="1.8"/><path d="M12 7v5l3 2" stroke="#3B6EF2" stroke-width="1.8" stroke-linecap="round"/></svg>
-        </div>
-        <div>
-          <div class="feature-title">Reaction + clamp separately</div>
-          <div class="feature-desc">Diagnose where you're losing — the whistle response, or the rotation to 90°.</div>
-        </div>
-      </li>
-      <li>
-        <div class="feature-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3L2 20h20L12 3z" stroke="#3B6EF2" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 10v4M12 17.5v.1" stroke="#3B6EF2" stroke-width="2" stroke-linecap="round"/></svg>
-        </div>
-        <div>
-          <div class="feature-title">Early-jump detection</div>
-          <div class="feature-desc">Catches false starts the eye can't — with visual and audio feedback in the moment.</div>
-        </div>
-      </li>
-      <li>
-        <div class="feature-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 20h18M6 16V9M11 16V5M16 16v-7M21 16v-4" stroke="#3B6EF2" stroke-width="1.8" stroke-linecap="round"/></svg>
-        </div>
-        <div>
-          <div class="feature-title">Trend tracking</div>
-          <div class="feature-desc">Watch your medians drop week over week — reaction, clamp, and total. Consistency comes next.</div>
-        </div>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<!-- ─── SCREENS ─── -->
-<section class="section light" id="screens" data-screen-label="app-screens">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Every screen</div>
-      <h2 class="h-1" style="margin-top: 14px; max-width: 22ch;">Six screens you'll<br/>use every session</h2>
-      <p class="lead" style="margin-top: 22px; max-width: 60ch;">
-        Stays out of your way during reps. Gets sharp when you need to review them.
-      </p>
-    </div>
-
-    <div class="screen-grid">
-      <article class="screen-card">
-        <div class="screen-mock">
-          <div class="screen-frame">
-            <img src="../assets/screens/live.png?v=2" alt="Progress screen — 30-day median chart, streak, reps this month, calendar" loading="lazy"/>
+          <div style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#5C657A;">
+            <span style="width:26px; height:1px; background:rgba(0,0,0,0.30);"></span>Every screen
           </div>
+          <h2 style="margin:16px 0 0; max-width:22ch; font-family:'Archivo Black',sans-serif; font-size:clamp(32px,4.4vw,60px); line-height:0.96; letter-spacing:-0.035em; text-transform:uppercase;">Six screens you'll<br/>use every session</h2>
         </div>
-        <div class="screen-meta">
-          <h3 class="h-3">Progress</h3>
-          <p class="muted">30-day median, current streak, monthly rep volume, and an activity calendar. Watch yourself drop time, week after week.</p>
-        </div>
-      </article>
-
-      <article class="screen-card">
-        <div class="screen-mock">
-          <div class="screen-frame">
-            <img src="../assets/screens/summary.png?v=2" alt="New session setup — sensor pairing, reps, whistle variability, audio cues" loading="lazy"/>
-          </div>
-        </div>
-        <div class="screen-meta">
-          <h3 class="h-3">New session</h3>
-          <p class="muted">Pick rep count, choose whistle variability and audio cues. A few taps and you're training.</p>
-        </div>
-      </article>
-
-      <article class="screen-card">
-        <div class="screen-mock">
-          <div class="screen-frame">
-            <img src="../assets/screens/progress.png?v=2" alt="Weekly goals — sessions target, median target, early-jump cap" loading="lazy"/>
-          </div>
-        </div>
-        <div class="screen-meta">
-          <h3 class="h-3">Weekly goals</h3>
-          <p class="muted">Sessions per week, a target median time, and a maximum early-jump rate. Train against numbers you set yourself.</p>
-        </div>
-      </article>
-
-      <article class="screen-card">
-        <div class="screen-mock">
-          <div class="screen-frame">
-            <img src="../assets/screens/goals.png?v=2" alt="Session summary — 0.27s median, median splits, rep-by-rep chart" loading="lazy"/>
-          </div>
-        </div>
-        <div class="screen-meta">
-          <h3 class="h-3">Session summary</h3>
-          <p class="muted">Median total, reaction/clamp/early splits, and a rep-by-rep chart for the set you just finished.</p>
-        </div>
-      </article>
-
-      <article class="screen-card">
-        <div class="screen-mock">
-          <div class="screen-frame">
-            <img src="../assets/screens/new-session.png?v=2" alt="Live session screen — REP 03 of 50, SET cue, pause control" loading="lazy"/>
-          </div>
-        </div>
-        <div class="screen-meta">
-          <h3 class="h-3">Live session</h3>
-          <p class="muted">Rep counter, audio and visual cues. Pause anytime. Stays out of your way during reps.</p>
-        </div>
-      </article>
-
-      <article class="screen-card">
-        <div class="screen-mock">
-          <div class="screen-frame">
-            <img src="../assets/screens/home.png?v=2" alt="Home dashboard — last session delta, weekly sessions ring, personal best, recent sessions" loading="lazy"/>
-          </div>
-        </div>
-        <div class="screen-meta">
-          <h3 class="h-3">Home</h3>
-          <p class="muted">Your dashboard. Connection status, last-session data, weekly progress ring, personal best, and recent activity.</p>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <div class="nav-logo" style="margin-bottom: 16px; color: var(--text);">
-          <img class="logo-mark" src="../assets/logo.png?v=3" alt="FaceoffEdge logo" width="28" height="28"/>
-          <img class="wordmark" src="../assets/wordmark.png?v=1" alt="FaceoffEdge"/>
-        </div>
-        <p style="font-size: 14px; max-width: 32ch; line-height: 1.55; margin: 0;">
-          Finally, real numbers on your faceoff. Built by faceoff specialists, for faceoff specialists.
+        <p style="margin:0; max-width:34ch; font-size:18px; line-height:1.55; color:#4A5468; text-wrap:pretty;">
+          Stays out of your way during reps. Gets sharp when you need to review them.
         </p>
       </div>
-      <div>
-        <h4>Explore</h4>
-        <div class="footer-links">
-          <a href="/home75/">Home</a>
-          <a href="/app75">The app</a>
-          <a href="/sensor75">The sensor</a>
-        </div>
-      </div>
-      <div>
-        <h4>Get it</h4>
-        <div class="footer-links">
-          <a href="/home75#download">Download for iOS</a>
-          <a href="/preorder75">Reserve the sensor</a>
-          <a href="/home75#faq">FAQ</a>
-        </div>
-      </div>
-      <div>
-        <h4>Company</h4>
-        <div class="footer-links">
-          <a href="/contact75">Contact us</a>
-        </div>
-        <div class="footer-social">
-        <a href="https://www.instagram.com/faceoffedge" target="_blank" rel="noopener" aria-label="FaceoffEdge on Instagram">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4577-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9.423-.1649 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7714 6.1506-6.1746-.0065-3.4032-2.772-6.1559-6.1753-6.1494-3.4032.0066-6.1551 2.772-6.1483 6.1747M8 12.0048a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0048"/></svg>
-        </a>
-        <a href="https://www.youtube.com/channel/UCmw1U1eLQ_W5Q6YO7ce5nGw" target="_blank" rel="noopener" aria-label="FaceoffEdge on YouTube">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-        </a>
-        <a href="https://www.facebook.com/profile.php?id=61590442025001" target="_blank" rel="noopener" aria-label="FaceoffEdge on Facebook">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </a>
-        </div>
+
+      <div data-r="screen-grid" style="display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:56px 36px; margin-top:64px;">
+        <sc-for list="{{ screens }}" as="s" hint-placeholder-count="6">
+          <article data-r="{{ s.rr }}" style="{{ s.wrapStyle }}">
+            <div style="display:flex; align-items:baseline; gap:10px;">
+              <span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:13px; letter-spacing:0.2em; color:#3B6EF2;">{{ s.n }}</span>
+              <h3 style="margin:0; font-size:22px; font-weight:800; letter-spacing:-0.025em;">{{ s.title }}</h3>
+            </div>
+            <p style="margin:10px 0 0; font-size:15px; line-height:1.6; color:#4A5468;">{{ s.desc }}</p>
+            <img src="{{ s.src }}" alt="{{ s.alt }}" loading="lazy" style="margin-top:22px; width:100%; max-width:230px; display:block; border-radius:26px; border:1px solid rgba(0,0,0,0.10); box-shadow:0 30px 50px -26px rgba(10,16,32,0.55);"/>
+          </article>
+        </sc-for>
       </div>
     </div>
-    <div class="footer-bottom" style="flex-direction: column; align-items: flex-start; gap: 6px; margin-top: 32px;">
-      <p style="margin:0;">© 2026 T &amp; R Technologies, LLC. All rights reserved.</p>
-      <p style="margin:0;">FaceoffEdge, FaceoffEdge Clip, Faceoff Training Instrumented, Get Your EDGE, and the FaceoffEdge logo are trademarks of T &amp; R Technologies, LLC.</p>
+  </section>
+
+  <section data-screen-label="app-cta" data-r="sect" style="background:#070A14; border-top:1px solid rgba(120,150,220,0.12); padding:88px 0;">
+    <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px; display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap;">
+      <h2 style="margin:0; max-width:18ch; font-family:'Archivo Black',sans-serif; font-size:clamp(28px,3.4vw,46px); line-height:1; letter-spacing:-0.035em; text-transform:uppercase;">The app is free.<br/>The data needs the sensor.</h2>
+      <div style="display:flex; flex-wrap:wrap; gap:12px;">
+        <a href="/preorder75/" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; background:#3B6EF2; color:#fff; font-size:16px; font-weight:650;" style-hover="background:#1B3A8A;">Reserve the sensor</a>
+        <a href="/sensor75/" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; border:1px solid rgba(255,255,255,0.16); color:#F2F4F8; font-size:16px; font-weight:650;" style-hover="background:rgba(255,255,255,0.10);">See the sensor</a>
+      </div>
     </div>
-  </div>
-</footer>
+  </section>
 
-<script src="../assets/site.js"></script>
+  <dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
 
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const raw = [
+      { src: "assets/screens/live.png", alt: "Progress screen — 30-day median chart, streak, reps this month, calendar", title: "Progress", desc: "30-day median, current streak, monthly rep volume, and an activity calendar. Watch yourself drop time, week after week." },
+      { src: "assets/screens/summary.png", alt: "New session setup — sensor pairing, reps, whistle variability, audio cues", title: "New session", desc: "Pick rep count, choose whistle variability and audio cues. A few taps and you're training." },
+      { src: "assets/screens/progress.png", alt: "Weekly goals — sessions target, median target, early-jump cap", title: "Weekly goals", desc: "Sessions per week, a target median time, and a maximum early-jump rate. Train against numbers you set yourself." },
+      { src: "assets/screens/goals.png", alt: "Session summary — 0.27s median, median splits, rep-by-rep chart", title: "Session summary", desc: "Median total, reaction/clamp/early splits, and a rep-by-rep chart for the set you just finished." },
+      { src: "assets/screens/new-session.png", alt: "Live session screen — REP 03 of 50, SET cue, pause control", title: "Live session", desc: "Rep counter, audio and visual cues. Pause anytime. Stays out of your way during reps." },
+      { src: "assets/screens/home.png", alt: "Home dashboard — last session delta, weekly sessions ring, personal best, recent sessions", title: "Home", desc: "Your dashboard. Connection status, last-session data, weekly progress ring, personal best, and recent activity." }
+    ];
+    return {
+      features: [
+        { n: "01", title: "Randomized whistle cadence", desc: "Short, normal, long, or variable. Trains true reaction — not pattern recognition." },
+        { n: "02", title: "Reaction + clamp separately", desc: "Diagnose where you're losing — the whistle response, or the rotation to 90°." },
+        { n: "03", title: "Early-jump detection", desc: "Catches false starts the eye can't — with visual and audio feedback in the moment." },
+        { n: "04", title: "Trend tracking", desc: "Watch your medians drop week over week — reaction, clamp, and total. Consistency comes next." }
+      ],
+      screens: raw.map((s, i) => ({
+        ...s,
+        n: String(i + 1).padStart(2, "0"),
+        rr: i % 3 === 1 ? "offset" : "",
+        wrapStyle: `display:flex; flex-direction:column; margin-top:${i % 3 === 1 ? 56 : 0}px;`
+      }))
+    };
+  }
+}
+
+</script>
 </body>
 </html>

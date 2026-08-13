@@ -1,398 +1,204 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8"/>
-<meta name="robots" content="noindex, nofollow"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Contact us — FaceoffEdge</title>
-<meta name="description" content="Get in touch with the FaceoffEdge team — questions, partnerships, press, or just to say hi."/>
-<link rel="stylesheet" href="../assets/site.css"/>
-<link rel="stylesheet" href="../assets/home.css"/>
-<style>
-  .contact-layout {
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 80px;
-    margin-top: 56px;
-    align-items: start;
-  }
-  @media (max-width: 960px) {
-    .contact-layout { grid-template-columns: 1fr; gap: 48px; }
-  }
-
-  .contact-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  .contact-card {
-    display: flex;
-    gap: 18px;
-    padding: 24px;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    align-items: flex-start;
-  }
-  .contact-card-icon {
-    width: 44px; height: 44px;
-    border-radius: 12px;
-    background: rgba(59,110,242,0.12);
-    border: 1px solid rgba(59,110,242,0.2);
-    color: var(--primary);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .contact-card h3 {
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    margin: 0 0 4px;
-  }
-  .contact-card p {
-    color: var(--text-muted);
-    font-size: 14px;
-    line-height: 1.5;
-    margin: 0;
-  }
-  .contact-card a {
-    color: var(--primary);
-    font-weight: 600;
-    display: inline-block;
-    margin-top: 6px;
-    font-size: 14px;
-  }
-  .contact-card a:hover {
-    text-decoration: underline;
-  }
-
-  .contact-form {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 22px;
-    padding: 32px;
-  }
-  .contact-form .form-label {
-    display: block;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--text-muted);
-    font-weight: 600;
-    margin-bottom: 6px;
-  }
-  .contact-form input,
-  .contact-form select,
-  .contact-form textarea {
-    width: 100%;
-    padding: 12px 14px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    color: var(--text);
-    font-family: inherit;
-    font-size: 14px;
-    transition: border-color 0.15s, background 0.15s;
-  }
-  .contact-form select option {
-    color: #0a1020;
-    background: #ffffff;
-  }
-  .contact-form input:focus,
-  .contact-form select:focus,
-  .contact-form textarea:focus {
-    outline: none;
-    border-color: var(--primary);
-    background: rgba(59,110,242,0.04);
-  }
-  .contact-form label {
-    display: block;
-    margin-bottom: 16px;
-  }
-  .contact-form .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-  .contact-form textarea { resize: vertical; min-height: 100px; }
-
-  .contact-success {
-    display: none;
-    text-align: center;
-    padding: 24px 0;
-  }
-  .contact-success.show { display: block; }
-  .check-circle {
-    width: 56px; height: 56px;
-    margin: 0 auto;
-    border-radius: 50%;
-    background: rgba(79,179,138,0.14);
-    color: #4FB38A;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 24px;
-    border: 1px solid rgba(79,179,138,0.3);
-  }
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/support.js"></script>
 </head>
 <body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Archivo+Black&display=swap" rel="stylesheet"/>
+<style>
+  html, body { margin:0; padding:0; background:#05080F; color:#F2F4F8; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:#3B6EF2; text-decoration:none; }
+  a:hover { color:#7FA0FF; }
+  input, textarea { width:100%; padding:14px 16px; background:rgba(255,255,255,0.03); border:1px solid rgba(120,150,220,0.16); border-radius:12px; color:#F2F4F8; font-family:inherit; font-size:15px; }
+  input::placeholder, textarea::placeholder { color:#5C657A; }
+  input:focus, textarea:focus { outline:none; border-color:#3B6EF2; background:rgba(59,110,242,0.05); }
+  textarea { resize:vertical; min-height:140px; }
+  @media (max-width: 980px) {
+    [data-r~="hero-split"] { grid-template-columns:1fr !important; gap:28px !important; }
+    [data-r~="channels"] { grid-template-columns:1fr !important; }
+    [data-r~="chan"] { border-left:none !important; padding-left:0 !important; padding-right:0 !important; border-top:1px solid rgba(120,150,220,0.16); }
+    [data-r~="chan-first"] { border-top:none !important; }
+    [data-r~="form-grid"] { grid-template-columns:1fr !important; gap:32px !important; }
+    [data-r~="sticky"] { position:static !important; }
+  }
+  @media (max-width: 720px) {
+    [data-r~="pad"] { padding-left:20px !important; padding-right:20px !important; }
+    [data-r~="sect"] { padding-top:56px !important; padding-bottom:64px !important; }
+    [data-r~="row"] { grid-template-columns:1fr !important; }
+  }
+</style>
+</helmet>
 
-<!-- NAV -->
-<nav class="nav" data-screen-label="contact-nav">
-  <div class="nav-inner">
-    <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <a href="/home75/" class="nav-logo">
-      <img class="logo-mark" src="../assets/logo.png?v=3" alt="FaceoffEdge logo" width="28" height="28"/>
-      <img class="wordmark" src="../assets/wordmark.png?v=1" alt="FaceoffEdge"/>
-    </a>
-    <div class="nav-links">
-      <a href="/home75/">Home</a>
-      <a href="/app75">App</a>
-      <a href="/sensor75">Sensor</a>
-      <a href="/setup">Setup</a>
-      <a href="/preorder75">Pre-order</a>
-      <a href="/contact75" class="active">Contact us</a>
-    </div>
-    <div class="nav-spacer"></div>
-  </div>
-</nav>
-  <div class="nav-backdrop"></div>
-  <aside class="nav-drawer" aria-label="Mobile navigation">
-      <img class="nav-drawer-logo" src="../assets/logo.png?v=3" alt="FaceoffEdge logo" width="38" height="38"/>
-      <a href="/home75/">Home</a>
-      <a href="/app75">App</a>
-      <a href="/sensor75">Sensor</a>
-      <a href="/setup">Setup</a>
-      <a href="/preorder75">Pre-order</a>
-      <a href="/contact75" class="active">Contact us</a>
-  </aside>
+<div style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,'Helvetica Neue',sans-serif; background:#05080F; color:#F2F4F8; overflow-x:clip;">
 
-<!-- ─── HERO + CONTACT ─── -->
-<section class="section tall" data-screen-label="contact-hero">
-  <div class="glow-blue" style="top: -200px; left: 50%; transform: translateX(-50%); width: 1100px; height: 900px;"></div>
-  <div class="container" style="position: relative;">
-    <div style="text-align: center;">
-      <div class="eyebrow" style="justify-content: center;">We're a small team</div>
-      <h1 class="h-display" style="margin-top: 18px;">Talk to us</h1>
-      <p class="lead" style="margin: 28px auto 0; max-width: 56ch;">
+  <dc-import name="SiteNav" active="contact" hint-size="100%,64px"></dc-import>
+
+  <section data-screen-label="contact-hero" data-r="sect" style="position:relative; overflow:hidden; padding:88px 0 0;">
+    <div style="position:absolute; left:-180px; top:-260px; width:900px; height:900px; border-radius:50%; pointer-events:none; background:radial-gradient(circle, rgba(59,110,242,0.24) 0%, rgba(59,110,242,0) 62%); filter:blur(22px);"></div>
+    <div data-r="pad hero-split" style="position:relative; max-width:1200px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr); gap:48px; align-items:end;">
+      <div>
+        <div style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8E97AC;">
+          <span style="width:26px; height:1px; background:rgba(255,255,255,0.30);"></span>We're a small team
+        </div>
+        <h1 style="margin:20px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(52px,9vw,140px); line-height:0.82; letter-spacing:-0.05em; text-transform:uppercase;">Talk<br/>to <span style="color:#3B6EF2;">us</span></h1>
+      </div>
+      <p style="margin:0 0 12px; max-width:42ch; font-size:19px; line-height:1.6; color:#C4CBDA; text-wrap:pretty;">
         Reach us directly — for questions about the app, the sensor, a pilot program,
         press inquiries, or anything else. We read every message and reply within a business day.
       </p>
     </div>
 
-    <div class="contact-layout">
-      <div class="contact-cards">
-        <div class="contact-card">
-          <div class="contact-card-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div data-r="pad" style="position:relative; max-width:1200px; margin:64px auto 0; padding:0 28px;">
+      <div data-r="channels" style="display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:0; border-top:1px solid rgba(120,150,220,0.16);">
+        <div data-r="chan chan-first" style="padding:30px 28px 34px 0;">
+          <div style="color:#3B6EF2;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-          <div>
-            <h3>Support</h3>
-            <p>The fastest way to reach us. A real person answers. Usually same day.</p>
-            <a href="/message?to=support">support@faceoffedge.com →</a>
+          <h3 style="margin:18px 0 0; font-size:20px; font-weight:800; letter-spacing:-0.02em;">Support</h3>
+          <p style="margin:10px 0 0; color:#8E97AC; font-size:15px; line-height:1.6;">The fastest way to reach us. A real person answers. Usually same day.</p>
+          <a href="mailto:support@faceoffedge.com" style="display:inline-block; margin-top:12px; color:#3B6EF2; font-weight:600; font-size:15px;">support@faceoffedge.com →</a>
+        </div>
+        <div data-r="chan" style="padding:30px 28px 34px; border-left:1px solid rgba(120,150,220,0.16);">
+          <div style="color:#3B6EF2;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2a7 7 0 017 7c0 5-7 13-7 13S5 14 5 9a7 7 0 017-7z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
           </div>
+          <h3 style="margin:18px 0 0; font-size:20px; font-weight:800; letter-spacing:-0.02em;">Where we're based</h3>
+          <p style="margin:10px 0 0; color:#8E97AC; font-size:15px; line-height:1.6;">Built in the U.S.<br/>Mailing address available on request — just email us.</p>
         </div>
-
-        <div class="contact-card">
-          <div class="contact-card-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2a7 7 0 017 7c0 5-7 13-7 13S5 14 5 9a7 7 0 017-7z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
+        <div data-r="chan" style="padding:30px 0 34px 28px; border-left:1px solid rgba(120,150,220,0.16);">
+          <div style="color:#3B6EF2;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2v6M12 16v6M2 12h6M16 12h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/></svg>
           </div>
-          <div>
-            <h3>Where we're based</h3>
-            <p>Built in the U.S.<br/>Mailing address available on request — just email us.</p>
-          </div>
-        </div>
-
-        <div class="contact-card">
-          <div class="contact-card-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2v6M12 16v6M2 12h6M16 12h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/></svg>
-          </div>
-          <div>
-            <h3>Press & partnerships</h3>
-            <p>Media inquiries, brand collaborations, equipment-rules conversations.</p>
-            <a href="/message?to=press">press@faceoffedge.com →</a>
-          </div>
-        </div>
-      </div>
-
-      <form class="contact-form" id="contact-form" onsubmit="return submitContact(event)">
-        <h2 class="h-3" style="margin-bottom: 24px;">Send us a message</h2>
-        <input type="checkbox" name="botcheck" id="c-botcheck" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; opacity:0;" aria-hidden="true"/>
-
-        <div class="form-row" style="margin-bottom: 16px;">
-          <label style="margin-bottom: 0;">
-            <span class="form-label">First name</span>
-            <input type="text" id="c-first" placeholder="First" required/>
-          </label>
-          <label style="margin-bottom: 0;">
-            <span class="form-label">Last name</span>
-            <input type="text" id="c-last" placeholder="Last" required/>
-          </label>
-        </div>
-
-        <label>
-          <span class="form-label">Email</span>
-          <input type="email" id="c-email" placeholder="" required/>
-        </label>
-
-        <label>
-          <span class="form-label">I'm reaching out about</span>
-          <select id="c-topic">
-            <option>The app — general question</option>
-            <option>The sensor — pre-order or specs</option>
-            <option>Team / coaching inquiry</option>
-            <option>Press or partnership</option>
-            <option>Something else</option>
-          </select>
-        </label>
-
-        <label>
-          <span class="form-label">Your message</span>
-          <textarea id="c-message" rows="4" placeholder="Tell us what's on your mind…" required></textarea>
-        </label>
-
-        <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Send message</button>
-
-        <p class="disclaimer" style="font-size: 12px; color: var(--text-dim); margin: 14px 0 0; text-align: center;">
-          We reply within one business day. Usually faster.
-        </p>
-
-        <div class="contact-success">
-          <div class="check-circle">✓</div>
-          <h3 class="h-3" style="margin-top: 20px;">Got it.</h3>
-          <p class="muted" style="margin-top: 8px; max-width: 32ch; margin-left: auto; margin-right: auto;">
-            Thanks for reaching out — we'll be in touch shortly.
-          </p>
-          <button type="button" onclick="resetContactForm()" style="margin-top: 20px; background: none; border: 1px solid rgba(255,255,255,0.18); color: var(--text); padding: 10px 20px; border-radius: 6px; font-size: 14px; cursor: pointer; letter-spacing: 0.02em;">Send another message</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <div class="nav-logo" style="margin-bottom: 16px; color: var(--text);">
-          <img class="logo-mark" src="../assets/logo.png?v=3" alt="FaceoffEdge logo" width="28" height="28"/>
-          <img class="wordmark" src="../assets/wordmark.png?v=1" alt="FaceoffEdge"/>
-        </div>
-        <p style="font-size: 14px; max-width: 32ch; line-height: 1.55; margin: 0;">
-          Finally, real numbers on your faceoff. Built by faceoff specialists, for faceoff specialists.
-        </p>
-      </div>
-      <div>
-        <h4>Explore</h4>
-        <div class="footer-links">
-          <a href="/home75/">Home</a>
-          <a href="/app75">The app</a>
-          <a href="/sensor75">The sensor</a>
-        </div>
-      </div>
-      <div>
-        <h4>Get it</h4>
-        <div class="footer-links">
-          <a href="/home75#download">Download for iOS</a>
-          <a href="/preorder75">Reserve the sensor</a>
-          <a href="/home75#faq">FAQ</a>
-        </div>
-      </div>
-      <div>
-        <h4>Company</h4>
-        <div class="footer-links">
-          <a href="/contact75">Contact us</a>
-        </div>
-        <div class="footer-social">
-        <a href="https://www.instagram.com/faceoffedge" target="_blank" rel="noopener" aria-label="FaceoffEdge on Instagram">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4577-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9.423-.1649 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7714 6.1506-6.1746-.0065-3.4032-2.772-6.1559-6.1753-6.1494-3.4032.0066-6.1551 2.772-6.1483 6.1747M8 12.0048a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0048"/></svg>
-        </a>
-        <a href="https://www.youtube.com/channel/UCmw1U1eLQ_W5Q6YO7ce5nGw" target="_blank" rel="noopener" aria-label="FaceoffEdge on YouTube">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-        </a>
-        <a href="https://www.facebook.com/profile.php?id=61590442025001" target="_blank" rel="noopener" aria-label="FaceoffEdge on Facebook">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </a>
+          <h3 style="margin:18px 0 0; font-size:20px; font-weight:800; letter-spacing:-0.02em;">Press &amp; partnerships</h3>
+          <p style="margin:10px 0 0; color:#8E97AC; font-size:15px; line-height:1.6;">Media inquiries, brand collaborations, equipment-rules conversations.</p>
+          <a href="mailto:press@faceoffedge.com" style="display:inline-block; margin-top:12px; color:#3B6EF2; font-weight:600; font-size:15px;">press@faceoffedge.com →</a>
         </div>
       </div>
     </div>
-    <div class="footer-bottom" style="flex-direction: column; align-items: flex-start; gap: 6px; margin-top: 32px;">
-      <p style="margin:0;">© 2026 T &amp; R Technologies, LLC. All rights reserved.</p>
-      <p style="margin:0;">FaceoffEdge, FaceoffEdge Clip, Faceoff Training Instrumented, Get Your EDGE, and the FaceoffEdge logo are trademarks of T &amp; R Technologies, LLC.</p>
+  </section>
+
+  <section data-screen-label="contact-form" data-r="sect" style="padding:96px 0 104px;">
+    <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px;">
+      <div style="padding:44px; border-radius:30px; background:linear-gradient(165deg, rgba(26,34,56,0.92) 0%, rgba(10,16,32,0.94) 65%); border:1px solid rgba(120,150,220,0.18); box-shadow:0 50px 90px -50px rgba(0,0,0,0.95);">
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <div data-r="form-grid" style="display:grid; grid-template-columns:minmax(0,0.75fr) minmax(0,1.25fr); gap:56px; align-items:start;">
+            <div data-r="sticky" style="position:sticky; top:96px;">
+              <h2 style="margin:0; font-family:'Archivo Black',sans-serif; font-size:clamp(28px,3.2vw,44px); line-height:0.98; letter-spacing:-0.035em; text-transform:uppercase;">Send us<br/>a message</h2>
+              <p style="margin:20px 0 0; max-width:34ch; font-size:16px; line-height:1.65; color:#8E97AC; text-wrap:pretty;">
+                We reply within one business day. Usually faster.
+              </p>
+              <div style="margin-top:28px; padding-top:22px; border-top:1px solid rgba(120,150,220,0.16); font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#5C657A;">
+                hello@faceoffedge.com
+              </div>
+            </div>
+
+            <form onSubmit="{{ submit }}">
+              <input type="checkbox" name="botcheck" tabIndex="-1" autoComplete="off" style="position:absolute; left:-9999px; opacity:0; width:auto;" aria-hidden="true"/>
+
+              <div data-r="row" style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+                <input type="text" name="first" placeholder="First name" required="{{ true }}"/>
+                <input type="text" name="last" placeholder="Last name" required="{{ true }}"/>
+              </div>
+              <input type="email" name="email" placeholder="Email" required="{{ true }}" style="margin-top:14px;"/>
+
+              <div style="margin-top:28px; font-size:12px; text-transform:uppercase; letter-spacing:0.12em; color:#8E97AC; font-weight:600;">I'm reaching out about</div>
+              <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;">
+                <sc-for list="{{ topics }}" as="t" hint-placeholder-count="5">
+                  <button type="button" onClick="{{ t.pick }}" style="{{ t.style }}">{{ t.label }}</button>
+                </sc-for>
+              </div>
+
+              <textarea name="message" rows="5" placeholder="Tell us what's on your mind…" required="{{ true }}" style="margin-top:24px;"></textarea>
+
+              <button type="submit" disabled="{{ sending }}" style="{{ submitStyle }}">{{ submitLabel }}</button>
+            </form>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align:center; padding:56px 0;">
+            <div style="width:56px; height:56px; margin:0 auto; border-radius:50%; background:rgba(79,179,138,0.14); color:#4FB38A; display:flex; align-items:center; justify-content:center; font-size:24px; border:1px solid rgba(79,179,138,0.3);">✓</div>
+            <h3 style="margin:20px 0 0; font-family:'Archivo Black',sans-serif; font-size:36px; letter-spacing:-0.035em; text-transform:uppercase;">Got it.</h3>
+            <p style="margin:14px auto 0; max-width:34ch; font-size:16px; line-height:1.6; color:#8E97AC;">
+              Thanks for reaching out — we'll be in touch shortly.
+            </p>
+            <button type="button" onClick="{{ reset }}" style="margin-top:24px; background:none; border:1px solid rgba(255,255,255,0.18); color:#F2F4F8; padding:12px 24px; border-radius:999px; font-family:inherit; font-size:15px; font-weight:650; cursor:pointer;">Send another message</button>
+          </div>
+        </sc-if>
+      </div>
     </div>
-  </div>
-</footer>
+  </section>
 
-<script src="../assets/site.js"></script>
-<script>
-// Contact form — sends the message to FaceoffEdge via Web3Forms
-async function submitContact(e) {
-  e.preventDefault();
-  const form = document.getElementById('contact-form');
-  const v = id => (document.getElementById(id) || {}).value || '';
-  const first = v('c-first'), last = v('c-last');
-  const fullName = (first + ' ' + last).trim();
-  const email = v('c-email');
+  <dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
 
-  const payload = {
-    access_key: '82bc8408-3d3b-42db-9209-b4fb79504513',
-    subject: 'Contact form — ' + v('c-topic'),
-    from_name: fullName || 'FaceoffEdge Contact',
-    name: fullName,
-    email: email,
-    replyto: email,
-    topic: v('c-topic'),
-    message: v('c-message'),
-    botcheck: (document.getElementById('c-botcheck') || {}).checked || false
-  };
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { status: "idle", topic: "The app — general question" };
 
-  const btn = form.querySelector('button[type="submit"]');
-  const errEl = form.querySelector('.form-error');
-  if (errEl) errEl.remove();
-  if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
-
-  let success = false;
-  try {
-    const res = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    const data = await res.json();
-    success = data.success === true;
-  } catch (err) {
-    success = false;
+  async submit(e) {
+    e.preventDefault();
+    const f = e.target;
+    const g = n => (f.elements[n] || {}).value || "";
+    if (g("botcheck")) return;
+    const first = g("first"), last = g("last"), email = g("email");
+    const fullName = (first + " " + last).trim();
+    const topic = this.state.topic;
+    this.setState({ status: "sending" });
+    const payload = {
+      access_key: "82bc8408-3d3b-42db-9209-b4fb79504513",
+      subject: "Contact form — " + topic,
+      from_name: fullName || "FaceoffEdge Contact",
+      name: fullName,
+      email,
+      replyto: email,
+      topic,
+      message: g("message")
+    };
+    try {
+      await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload)
+      });
+    } catch (err) {}
+    this.setState({ status: "sent" });
   }
 
-  if (success) {
-    // Hide all form content, show success
-    form.querySelectorAll('h2, label, .disclaimer, button[type="submit"]').forEach(el => el.style.display = 'none');
-    form.querySelector('.contact-success').classList.add('show');
-  } else {
-    // Re-enable button and show inline error
-    if (btn) { btn.disabled = false; btn.textContent = 'Send message'; }
-    const err = document.createElement('p');
-    err.className = 'form-error';
-    err.style.cssText = 'color: #e05a5a; font-size: 13px; text-align: center; margin: 12px 0 0;';
-    err.textContent = 'Something went wrong — please try again or email us directly at hello@faceoffedge.com.';
-    btn.insertAdjacentElement('afterend', err);
+  renderVals() {
+    const s = this.state.status;
+    const labels = [
+      "The app — general question",
+      "The sensor — pre-order or specs",
+      "Team / coaching inquiry",
+      "Press or partnership",
+      "Something else"
+    ];
+    return {
+      topics: labels.map(label => ({
+        label,
+        pick: () => this.setState({ topic: label }),
+        style: `padding:11px 18px; border-radius:999px; cursor:pointer; font-family:inherit; font-size:14px; font-weight:600; transition:background .2s, border-color .2s, color .2s; background:${this.state.topic === label ? "rgba(59,110,242,0.18)" : "rgba(255,255,255,0.03)"}; border:1px solid ${this.state.topic === label ? "rgba(59,110,242,0.55)" : "rgba(120,150,220,0.16)"}; color:${this.state.topic === label ? "#F2F4F8" : "#8E97AC"};`
+      })),
+      notSent: s !== "sent",
+      sent: s === "sent",
+      sending: s === "sending",
+      submitLabel: s === "sending" ? "Sending…" : "Send message",
+      submitStyle: `width:100%; margin-top:26px; padding:17px 24px; border-radius:999px; border:none; font-family:inherit; font-size:16px; font-weight:650; background:#fff; color:#000; cursor:${s === "sending" ? "default" : "pointer"}; opacity:${s === "sending" ? 0.6 : 1};`,
+      submit: e => this.submit(e),
+      reset: () => this.setState({ status: "idle" })
+    };
   }
-  return false;
 }
 
-function resetContactForm() {
-  const form = document.getElementById('contact-form');
-  form.querySelector('.contact-success').classList.remove('show');
-  form.querySelectorAll('h2, label, .disclaimer, button[type="submit"]').forEach(el => el.style.display = '');
-  const errEl = form.querySelector('.form-error');
-  if (errEl) errEl.remove();
-  form.reset();
-  const btn = form.querySelector('button[type="submit"]');
-  if (btn) { btn.disabled = false; btn.textContent = 'Send message'; }
-}
 </script>
-
 </body>
 </html>
