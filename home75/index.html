@@ -22,7 +22,9 @@
   @media (max-width: 980px) {
     [data-r~="nav-links"] { display:none !important; }
     [data-r~="burger"] { display:flex !important; }
-    [data-r~="hero-grid"] { grid-template-columns:1fr !important; padding-bottom:56px !important; }
+    [data-r~="hero-sect"] { min-height:0 !important; height:132vw !important; max-height:620px !important; }
+    [data-r~="hero-sect"] > img { object-position:center 38% !important; }
+    [data-r~="hero-grid"] { grid-template-columns:1fr !important; padding:0 24px 40px !important; }
     [data-r~="hero-card"] { justify-content:flex-start !important; }
     [data-r~="step"] { grid-template-columns:1fr !important; gap:22px !important; padding:44px 0 !important; }
     [data-r~="step"] img { height:240px !important; order:3; }
@@ -74,7 +76,7 @@
     <a href="/contact75/" onClick="{{ closeMenu }}" style="padding:13px 16px; border-radius:10px; font-size:16px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.05);">Contact us</a>
   </aside>
 
-  <section data-screen-label="hero" style="position:relative; min-height:calc(100vh - 64px); display:flex; align-items:flex-end; overflow:hidden; background:#05080F;">
+  <section data-screen-label="hero" data-r="hero-sect" style="position:relative; min-height:calc(100vh - 64px); display:flex; align-items:flex-end; overflow:hidden; background:#05080F;">
     <img src="/assets/hero-sensor-web.png" alt="FaceoffEdge sensor clipped to a shaft on the field" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 58%;"/>
     <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(5,8,15,0.50) 0%, rgba(5,8,15,0.02) 42%, rgba(5,8,15,0.42) 78%, #05080F 100%);"></div>
     <div style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(5,8,15,0.50) 0%, rgba(5,8,15,0.02) 54%, rgba(5,8,15,0) 100%);"></div>

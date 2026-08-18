@@ -47,7 +47,7 @@
         </sc-for>
       </div>
       <div style="flex:1;"></div>
-      <a href="FaceoffEdge%20Preorder.dc.html" style="padding:9px 18px; border-radius:999px; background:#3B6EF2; color:#fff; font-size:14px; font-weight:650;" style-hover="background:#1B3A8A;">Reserve</a>
+      <a href="FaceoffEdge%20Buy.dc.html" style="padding:9px 18px; border-radius:999px; background:#3B6EF2; color:#fff; font-size:14px; font-weight:650;" style-hover="background:#1B3A8A;">Buy now</a>
     </div>
   </nav>
 
@@ -61,7 +61,7 @@
 </div>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;app&quot;,&quot;sensor&quot;,&quot;setup&quot;,&quot;preorder&quot;,&quot;contact&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;app&quot;,&quot;sensor&quot;,&quot;setup&quot;,&quot;preorder&quot;,&quot;buy&quot;,&quot;contact&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { menu: false };
 
@@ -78,6 +78,7 @@ class Component extends DCLogic {
       ["sensor", "Sensor", "FaceoffEdge%20Sensor.dc.html"],
       ["setup", "Setup", "FaceoffEdge%20Setup.dc.html"],
       ["preorder", "Pre-order", "FaceoffEdge%20Preorder.dc.html"],
+      ["buy", "Buy now", "FaceoffEdge%20Buy.dc.html"],
       ["contact", "Contact us", "FaceoffEdge%20Contact.dc.html"]
     ];
     return {
