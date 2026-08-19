@@ -16,6 +16,7 @@
   * { box-sizing:border-box; }
   a { color:#3B6EF2; text-decoration:none; }
   a:hover { color:#7FA0FF; }
+  @keyframes fe-pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.35; transform:scale(.8); } }
   @keyframes fe-marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
   @media (max-width: 980px) {
     [data-r~="hero-grid"] { grid-template-columns:1fr !important; gap:44px !important; }
@@ -40,7 +41,7 @@
     <div style="position:absolute; right:-180px; top:-120px; width:900px; height:900px; border-radius:50%; pointer-events:none; background:radial-gradient(circle, rgba(59,110,242,0.30) 0%, rgba(59,110,242,0) 62%); filter:blur(24px);"></div>
     <div data-r="pad hero-grid" style="position:relative; max-width:1200px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:minmax(0,1fr) 380px; gap:40px; align-items:end;">
       <div style="padding-bottom:96px;">
-        <div style="display:inline-flex; align-items:center; gap:9px; padding:7px 14px; border-radius:999px; border:1px solid rgba(120,150,220,0.24); font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#8E97AC;">Coming soon · iOS</div>
+        <div style="display:inline-flex; align-items:center; gap:9px; padding:7px 14px; border-radius:999px; border:1px solid rgba(120,150,220,0.24); font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#8E97AC;"><span style="width:7px; height:7px; border-radius:50%; background:#3B6EF2; box-shadow:0 0 12px #3B6EF2; animation:fe-pulse 2.4s ease-in-out infinite;"></span>Coming soon · iOS</div>
         <h1 style="margin:24px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(46px,7.6vw,116px); line-height:0.84; letter-spacing:-0.045em; text-transform:uppercase;">
           Instant<br/>feedback<br/><span style="color:#3B6EF2;">in your pocket</span>
         </h1>
