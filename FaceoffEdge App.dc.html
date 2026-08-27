@@ -20,7 +20,7 @@
   @keyframes fe-marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
   @media (max-width: 980px) {
     [data-r~="hero-grid"] { grid-template-columns:1fr !important; gap:44px !important; }
-    [data-r~="hero-phone"] { justify-content:flex-start !important; }
+    [data-r~="hero-phone"] { justify-content:center !important; }
     [data-r~="feat"] { grid-template-columns:1fr !important; gap:10px !important; }
     [data-r~="screen-grid"] { grid-template-columns:repeat(2, minmax(0,1fr)) !important; }
     [data-r~="offset"] { margin-top:0 !important; }
@@ -117,7 +117,15 @@
               <h3 style="margin:0; font-size:22px; font-weight:800; letter-spacing:-0.025em;">{{ s.title }}</h3>
             </div>
             <p style="margin:10px 0 0; font-size:15px; line-height:1.6; color:#4A5468;">{{ s.desc }}</p>
-            <img src="{{ s.src }}" alt="{{ s.alt }}" loading="lazy" style="margin-top:22px; width:100%; max-width:230px; display:block; border-radius:26px; border:1px solid rgba(0,0,0,0.10); box-shadow:0 30px 50px -26px rgba(10,16,32,0.55);"/>
+            <sc-if value="{{ s.collapsible }}" hint-placeholder-val="{{ false }}">
+              <button type="button" onClick="{{ s.toggle }}" style="display:flex; align-items:center; justify-content:space-between; gap:14px; width:100%; margin-top:16px; padding:14px 16px; border-radius:12px; border:1px solid rgba(0,0,0,0.14); background:rgba(0,0,0,0.03); font-family:inherit; font-size:15px; font-weight:650; color:#0a1020; cursor:pointer; min-height:48px;">
+                <span>{{ s.toggleLabel }}</span>
+                <span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:17px; color:#3B6EF2;">{{ s.toggleIcon }}</span>
+              </button>
+            </sc-if>
+            <sc-if value="{{ s.showImg }}" hint-placeholder-val="{{ true }}">
+              <img src="{{ s.src }}" alt="{{ s.alt }}" loading="lazy" style="margin-top:22px; width:100%; max-width:230px; display:block; border-radius:26px; border:1px solid rgba(0,0,0,0.10); box-shadow:0 30px 50px -26px rgba(10,16,32,0.55);"/>
+            </sc-if>
           </article>
         </sc-for>
       </div>
@@ -140,6 +148,19 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
+  state = { isMobile: false, openScreens: {} };
+
+  componentDidMount() {
+    this.mq = window.matchMedia("(max-width: 720px)");
+    this.sync = () => this.setState({ isMobile: this.mq.matches });
+    this.sync();
+    this.mq.addEventListener("change", this.sync);
+  }
+
+  componentWillUnmount() {
+    if (this.mq) this.mq.removeEventListener("change", this.sync);
+  }
+
   renderVals() {
     const raw = [
       { src: "assets/screens/live.png", alt: "Progress screen — 30-day median chart, streak, reps this month, calendar", title: "Progress", desc: "30-day median, current streak, monthly rep volume, and an activity calendar. Watch yourself drop time, week after week." },
@@ -156,12 +177,21 @@ class Component extends DCLogic {
         { n: "03", title: "Early-jump detection", desc: "Catches false starts the eye can't — with visual and audio feedback in the moment." },
         { n: "04", title: "Trend tracking", desc: "Watch your medians drop week over week — reaction, clamp, and total. Consistency comes next." }
       ],
-      screens: raw.map((s, i) => ({
-        ...s,
-        n: String(i + 1).padStart(2, "0"),
-        rr: i % 3 === 1 ? "offset" : "",
-        wrapStyle: `display:flex; flex-direction:column; margin-top:${i % 3 === 1 ? 56 : 0}px;`
-      }))
+      screens: raw.map((s, i) => {
+        const isMobile = !!this.state.isMobile;
+        const open = !!(this.state.openScreens || {})[i];
+        return {
+          ...s,
+          n: String(i + 1).padStart(2, "0"),
+          rr: i % 3 === 1 ? "offset" : "",
+          wrapStyle: `display:flex; flex-direction:column; margin-top:${isMobile ? 0 : (i % 3 === 1 ? 56 : 0)}px;`,
+          collapsible: isMobile,
+          showImg: !isMobile || open,
+          toggleLabel: open ? "Hide screen" : "View screen",
+          toggleIcon: open ? "–" : "+",
+          toggle: () => this.setState(st => ({ openScreens: { ...(st.openScreens || {}), [i]: !(st.openScreens || {})[i] } }))
+        };
+      })
     };
   }
 }

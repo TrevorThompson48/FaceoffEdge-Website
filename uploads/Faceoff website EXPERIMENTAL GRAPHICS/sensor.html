@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>The Sensor — FaceoffEdge</title>
+<meta name="description" content="The FaceoffEdge sensor — every spec, every measurement, the full methodology. 6-axis IMU, 208 Hz, sweat- and rain-proof, clip-on."/>
+<link rel="stylesheet" href="assets/site.css"/>
+<link rel="stylesheet" href="assets/home.css"/>
+<link rel="stylesheet" href="assets/product.css"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" data-screen-label="sensor-nav">
+  <div class="nav-inner">
+    <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="nav-logo">
+      <img class="logo-mark" src="assets/logo.png?v=2" alt="FaceoffEdge logo" width="28" height="28"/>
+      <span>Faceoff<span style="color: var(--primary);">Edge</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="app.html">App</a>
+      <a href="sensor.html" class="active">Sensor</a>
+      <a href="preorder.html">Pre-order</a>
+      <a href="contact.html">Contact us</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <div class="nav-cta">
+      <a href="index.html#download" class="btn btn-primary" style="padding: 9px 16px; font-size: 14px;">Get the app</a>
+    </div>
+  </div>
+</nav>
+  <div class="nav-backdrop"></div>
+  <aside class="nav-drawer" aria-label="Mobile navigation">
+      <img class="nav-drawer-logo" src="assets/logo.png?v=2" alt="FaceoffEdge logo" width="38" height="38"/>
+      <a href="index.html">Home</a>
+      <a href="app.html">App</a>
+      <a href="sensor.html" class="active">Sensor</a>
+      <a href="preorder.html">Pre-order</a>
+      <a href="contact.html">Contact us</a>
+  </aside>
+
+<!-- ─── HERO ─── -->
+<section class="product-hero" data-screen-label="sensor-hero">
+  <div class="glow-blue" style="top: -200px; left: 50%; transform: translateX(-50%); width: 1200px; height: 1000px;"></div>
+  <div class="container" style="position: relative;">
+    <div style="text-align: center;">
+      <div class="eyebrow" style="justify-content: center;">The hardware</div>
+      <h1 class="h-display" style="margin-top: 18px;">Every millisecond,<br/>measured.</h1>
+      <p class="lead" style="margin: 28px auto 0; max-width: 56ch;">
+        A stick-mounted, 6-axis IMU sampling at 208 Hz. Built around one job: capture the
+        truth of a faceoff and report it to your phone before you're starting the next rep.
+      </p>
+      <div class="hero-cta" style="justify-content: center; margin-top: 36px;">
+        <a href="preorder.html" class="btn btn-primary btn-lg">Reserve the sensor</a>
+        <a href="#spec" class="btn btn-secondary btn-lg">Full specs ↓</a>
+      </div>
+    </div>
+
+    <!-- Hero render -->
+    <div style="margin-top: 80px; max-width: 880px; margin-left: auto; margin-right: auto;">
+      <div class="product-placeholder" style="aspect-ratio: 16/10;">
+        <div class="label">
+          [ PRODUCT RENDER ]<br/>
+          FaceoffEdge Sensor V1<br/>
+          ─<br/>
+          Hero · 3/4 angle
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHAT WE MEASURE ─── -->
+<section class="section" id="metrics" data-screen-label="sensor-metrics">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow">What we measure</div>
+      <h2 class="h-1" style="margin-top: 14px;">Faceoffs are won in milliseconds.<br/><span class="muted">We measure all of them.</span></h2>
+    </div>
+
+    <div class="metric-grid">
+      <div class="metric-card reveal">
+        <div class="metric-num mono">248<span style="font-size: 24px; color: var(--text-muted);">ms</span></div>
+        <div class="metric-bar"><div class="metric-fill" style="width: 48%;"></div></div>
+        <div class="metric-title">Reaction time</div>
+        <p class="metric-desc">How late you react to the whistle. The number every faceoff guy is trying to cut.</p>
+      </div>
+
+      <div class="metric-card reveal">
+        <div class="metric-num mono">89<span style="font-size: 24px; color: var(--text-muted);">ms</span></div>
+        <div class="metric-bar"><div class="metric-fill" style="width: 34%;"></div></div>
+        <div class="metric-title">Clamp time</div>
+        <p class="metric-desc">First movement to full clamp. Pure mechanical speed.</p>
+      </div>
+
+      <div class="metric-card reveal">
+        <div class="metric-num mono">2<span style="font-size: 24px; color: var(--text-muted);">%</span></div>
+        <div class="metric-bar"><div class="metric-fill warn" style="width: 4%;"></div></div>
+        <div class="metric-title">Early-jump rate</div>
+        <p class="metric-desc">How often you move before the whistle. The single discipline metric refs and coaches care about most.</p>
+        <div class="metric-range">
+          <span class="muted">Target</span><span class="mono">&lt; 5%</span>
+        </div>
+      </div>
+
+      <div class="metric-card reveal">
+        <div class="metric-num mono" style="color: var(--text-muted);">—</div>
+        <div class="metric-bar"><div class="metric-fill" style="width: 0%;"></div></div>
+        <div class="metric-title">Consistency</div>
+        <p class="metric-desc">Standard deviation across a session. The lower the spread, the more reliable you are under pressure.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SENSOR SPECS ─── -->
+<section class="section light" id="spec" data-screen-label="sensor-spec">
+  <div class="container">
+    <div class="sensor-spec-layout">
+      <div>
+        <div class="eyebrow">Specifications</div>
+        <h2 class="h-1" style="margin-top: 14px;">Built for the dot</h2>
+        <p class="lead" style="margin-top: 22px;">
+          Everything in it is there for one reason: get accurate data from your stick to your phone in the time between reps.
+        </p>
+
+        <table class="spec-table">
+          <tbody>
+            <tr><td class="spec-key">Sensor</td><td class="spec-val">6-axis IMU (accelerometer + gyroscope)</td></tr>
+            <tr><td class="spec-key">Sample rate</td><td class="spec-val mono">208 Hz</td></tr>
+            <tr><td class="spec-key">Mount</td><td class="spec-val">Clip-on, standard men's shaft</td></tr>
+            <tr><td class="spec-key">Weight</td><td class="spec-val mono">—</td></tr>
+            <tr><td class="spec-key">Dimensions</td><td class="spec-val mono">63 × 34 × 33 mm</td></tr>
+            <tr><td class="spec-key">Wireless</td><td class="spec-val">Bluetooth LE 5.0</td></tr>
+            <tr><td class="spec-key">Range</td><td class="spec-val mono">~30 m line-of-sight</td></tr>
+            <tr><td class="spec-key">Battery life</td><td class="spec-val mono">—</td></tr>
+            <tr><td class="spec-key">Charging</td><td class="spec-val">—</td></tr>
+            <tr><td class="spec-key">Sealing</td><td class="spec-val">Sweat- and rain-proof</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sensor-renders">
+        <div class="product-placeholder light" style="aspect-ratio: 1/1; min-height: 320px;">
+          <div class="label">[ PRODUCT RENDER ]<br/>Sensor V1 · top</div>
+        </div>
+        <div class="product-placeholder light" style="aspect-ratio: 1/1; min-height: 320px;">
+          <div class="label">[ PRODUCT RENDER ]<br/>Sensor V1 · 3/4</div>
+        </div>
+        <div class="product-placeholder light" style="aspect-ratio: 1/1; min-height: 320px;">
+          <div class="label">[ PRODUCT RENDER ]<br/>Mounted on shaft</div>
+        </div>
+        <div class="product-placeholder light" style="aspect-ratio: 1/1; min-height: 320px;">
+          <div class="label">[ PRODUCT RENDER ]<br/>Scale w/ phone</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── METHODOLOGY ─── -->
+<section class="section" id="methodology" data-screen-label="sensor-methodology">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Measurement methodology</div>
+      <h2 class="h-1" style="margin-top: 14px; max-width: 24ch;">The numbers match<br/>the film.</h2>
+      <p class="lead" style="margin-top: 22px; max-width: 60ch;">
+        FaceoffEdge exists because the eye test isn't enough. Here's exactly how we get from a
+        sound wave hitting a clip-on sensor to a coachable number in your app.
+      </p>
+    </div>
+
+    <ol class="method-list" style="border-color: var(--line);">
+      <li style="border-color: var(--line);">
+        <div class="method-num mono">01</div>
+        <div>
+          <h3 class="h-3">Whistle event captured</h3>
+          <p style="color: var(--text-muted);">The iOS app emits a calibrated whistle waveform with a precisely-timestamped onset.
+          The sensor doesn't <em style="color: var(--text);">hear</em> the whistle — it knows when the phone fired it, down to the millisecond.</p>
+        </div>
+      </li>
+      <li style="border-color: var(--line);">
+        <div class="method-num mono">02</div>
+        <div>
+          <h3 class="h-3">First-movement threshold</h3>
+          <p style="color: var(--text-muted);">Reaction time ends when the sensor detects movement above a per-player calibrated noise floor,
+          combining linear acceleration and angular velocity to ignore tremor, breathing, and bracing.</p>
+        </div>
+      </li>
+      <li style="border-color: var(--line);">
+        <div class="method-num mono">03</div>
+        <div>
+          <h3 class="h-3">90° rotation detection</h3>
+          <p style="color: var(--text-muted);">Clamp time ends at the moment the stick head reaches 90° rotation from face-off attitude —
+          measured by integrating gyroscope data.</p>
+        </div>
+      </li>
+      <li style="border-color: var(--line);">
+        <div class="method-num mono">04</div>
+        <div>
+          <h3 class="h-3">Early-jump classification</h3>
+          <p style="color: var(--text-muted);">If meaningful movement is detected before the whistle, that rep is flagged "early" and
+          excluded from reaction/clamp aggregates. We surface the rate separately — it's a discipline
+          metric, not a speed metric.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="nav-logo" style="margin-bottom: 16px; color: var(--text);">
+          <img class="logo-mark" src="assets/logo.png?v=2" alt="FaceoffEdge logo" width="28" height="28"/>
+          <span>Faceoff<span style="color: var(--primary);">Edge</span></span>
+        </div>
+        <p style="font-size: 14px; max-width: 32ch; line-height: 1.55; margin: 0;">
+          Finally, real numbers on your faceoff. Built by faceoff specialists, for faceoff specialists.
+        </p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="app.html">The app</a>
+          <a href="sensor.html">The sensor</a>
+        </div>
+      </div>
+      <div>
+        <h4>Get it</h4>
+        <div class="footer-links">
+          <a href="index.html#download">Download for iOS</a>
+          <a href="preorder.html">Reserve the sensor</a>
+          <a href="index.html#faq">FAQ</a>
+        </div>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <div class="footer-links">
+          <a href="contact.html">Contact us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Archivo+Black&display=swap" rel="stylesheet"/>
+<style>
+  html, body { margin:0; padding:0; background:#05080F; color:#F2F4F8; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:#3B6EF2; text-decoration:none; }
+  a:hover { color:#7FA0FF; }
+  @media (max-width: 980px) {
+    [data-r~="hero-split"] { grid-template-columns:1fr !important; gap:28px !important; }
+    [data-r~="faq-grid"] { grid-template-columns:1fr !important; gap:36px !important; }
+    [data-r~="sticky"] { position:static !important; }
+    [data-r~="cta-split"] { grid-template-columns:1fr !important; gap:28px !important; }
+  }
+  @media (max-width: 720px) {
+    [data-r~="pad"] { padding-left:20px !important; padding-right:20px !important; }
+    [data-r~="sect"] { padding-top:56px !important; padding-bottom:64px !important; }
+    [data-r~="row"] { grid-template-columns:1fr !important; }
+  }
+</style>
+</helmet>
+
+<div style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,'Helvetica Neue',sans-serif; background:#05080F; color:#F2F4F8; overflow-x:clip;">
+
+  <dc-import name="SiteNav" active="faq" hint-size="100%,64px"></dc-import>
+
+  <section data-screen-label="faq-hero" data-r="sect" style="position:relative; overflow:hidden; padding:88px 0 76px;">
+    <div style="position:absolute; left:-180px; top:-280px; width:900px; height:900px; border-radius:50%; pointer-events:none; background:radial-gradient(circle, rgba(59,110,242,0.24) 0%, rgba(59,110,242,0) 62%); filter:blur(22px);"></div>
+    <div data-r="pad hero-split" style="position:relative; max-width:1200px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,0.6fr); gap:56px; align-items:end;">
+      <div>
+        <div style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8E97AC;">
+          <span style="width:26px; height:1px; background:rgba(255,255,255,0.30);"></span>Everything, answered
+        </div>
+        <h1 style="margin:20px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(44px,6vw,88px); line-height:0.86; letter-spacing:-0.045em; text-transform:uppercase; overflow-wrap:break-word;">Frequent<br/><span style="color:#3B6EF2;">questions</span></h1>
+      </div>
+      <p style="margin:0; max-width:40ch; font-size:17px; line-height:1.6; color:#8E97AC;">
+        The sensor, the app, orders, and setup — grouped so you can find your answer fast. Still stuck? <a href="FaceoffEdge%20Contact.dc.html" style="font-weight:600;">Contact us →</a>
+      </p>
+    </div>
+  </section>
+
+  <section data-screen-label="faq-body" data-r="sect" style="background:#F4F2EE; color:#0a1020; padding:96px 0 104px;">
+    <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px;">
+      <div data-r="faq-grid" style="display:grid; grid-template-columns:minmax(0,0.72fr) minmax(0,1.28fr); gap:64px; align-items:start;">
+
+        <div data-r="sticky" style="position:sticky; top:96px;">
+          <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#5C657A;">Browse</div>
+          <div style="display:flex; flex-direction:column; gap:2px; margin-top:16px;">
+            <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
+              <button type="button" onClick="{{ t.pick }}" style="{{ t.style }}">{{ t.label }}</button>
+            </sc-for>
+          </div>
+          <div style="margin-top:32px; padding-top:26px; border-top:1px solid rgba(0,0,0,0.12);">
+            <div style="font-size:15px; font-weight:650; letter-spacing:-0.01em;">Not answered here?</div>
+            <p style="margin:8px 0 0; max-width:30ch; font-size:15px; line-height:1.6; color:#4A5468;">
+              Email us and a real person replies.<br/>
+              <a href="mailto:hello@faceoffedge.com" style="color:#3B6EF2; font-weight:600;">hello@faceoffedge.com →</a>
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <sc-for list="{{ groups }}" as="g" hint-placeholder-count="2">
+            <div style="{{ g.wrap }}">
+              <div style="display:flex; align-items:baseline; gap:14px; padding-bottom:6px;">
+                <h2 style="margin:0; font-family:'Archivo Black',sans-serif; font-size:clamp(24px,3vw,34px); line-height:1; letter-spacing:-0.03em; text-transform:uppercase;">{{ g.title }}</h2>
+                <span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; color:#8E97AC;">{{ g.count }}</span>
+              </div>
+              <sc-for list="{{ g.items }}" as="item" hint-placeholder-count="3">
+                <div style="border-bottom:1px solid rgba(0,0,0,0.10);">
+                  <button type="button" onClick="{{ item.toggle }}" style="width:100%; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:24px 0; background:none; border:none; cursor:pointer; text-align:left; font-family:inherit; font-size:19px; font-weight:600; letter-spacing:-0.015em; color:#0a1020;">
+                    <span>{{ item.q }}</span>
+                    <span style="flex-shrink:0; width:30px; height:30px; border-radius:50%; border:1px solid rgba(0,0,0,0.18); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:18px; color:#3B6EF2;">{{ item.icon }}</span>
+                  </button>
+                  <sc-if value="{{ item.open }}" hint-placeholder-val="{{ false }}">
+                    <div style="padding:0 0 26px; max-width:64ch;">
+                      <p style="margin:0; font-size:16px; line-height:1.65; color:#4A5468;">{{ item.a }}</p>
+                      <sc-if value="{{ item.hasBullets }}" hint-placeholder-val="{{ false }}">
+                        <ul style="display:flex; flex-direction:column; gap:9px; margin:16px 0 0; padding:0 0 0 20px; font-size:16px; line-height:1.6; color:#4A5468;">
+                          <sc-for list="{{ item.bullets }}" as="b" hint-placeholder-count="3">
+                            <li>{{ b }}</li>
+                          </sc-for>
+                        </ul>
+                      </sc-if>
+                    </div>
+                  </sc-if>
+                </div>
+              </sc-for>
+            </div>
+          </sc-for>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="faq-cta" data-r="sect" style="padding:92px 0;">
+    <div data-r="pad cta-split" style="max-width:1200px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:minmax(0,1fr) auto; gap:40px; align-items:center;">
+      <div>
+        <h2 style="margin:0; font-family:'Archivo Black',sans-serif; font-size:clamp(30px,4vw,52px); line-height:0.98; letter-spacing:-0.035em; text-transform:uppercase;">Ready when<br/>you are</h2>
+        <p style="margin:16px 0 0; max-width:44ch; font-size:16px; line-height:1.6; color:#8E97AC;">Reserve your sensor now — $0 today, and you can cancel any time before we ship.</p>
+      </div>
+      <a href="FaceoffEdge%20Preorder.dc.html" style="justify-self:start; padding:17px 34px; border-radius:999px; background:#fff; color:#000; font-size:16px; font-weight:650; white-space:nowrap;" style-hover="background:#DCE4FA;">Reserve yours ↗</a>
+    </div>
+  </section>
+
+  <dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { tab: "sensor", open: "" };
+
+  renderVals() {
+    const { tab, open } = this.state;
+
+    // Placeholder content — replace q/a strings with your real copy.
+    const data = [
+      { id: "sensor", title: "Sensor", items: [
+        { q: "Is the sensor legal for game use?", a: "No — the FaceoffEdge sensor is built for clamp and faceoff work only, and shouldn't be used during games. It's a practice tool designed to live on your training shaft, not your gamer." },
+        { q: "How precise is the measurement?", a: "Calibrated against 240fps video. Full numbers and methodology are on the product page →" },
+        { q: "Does it work on any lacrosse stick?", a: "Yes — it fits any standard men's lacrosse shaft. No tools, no tape, no permanent modification — just clip it on." }
+      ]},
+      { id: "app", title: "App & data", items: [
+        { q: "Does the app work without the sensor?", a: "Yes — partially. The app includes whistle training on its own, so you can drill your reaction to a randomized whistle anytime. Trend tracking, measurements, and rep-by-rep analysis all require the sensor." },
+        { q: "What about Android?", a: "We're starting on iOS first, but we're looking at Android for the future — sign up for the waitlist and you'll be the first to know." }
+      ]},
+      { id: "orders", title: "Orders & shipping", items: [
+        { q: "Am I being charged anything today?", a: "No. Reservations are $0 today, and you can cancel any time before we ship — no questions asked. We'll email you well before any charge with a final price and a shipping confirmation request." },
+        { q: "When will the sensor actually ship?", a: "Pilot units are targeted for Q3 2026, with general availability scheduled for Q4 2026. We'll update reserved customers monthly. If timelines slip, we'll be honest about it long before the date — that's the whole point of reserving instead of pre-paying." },
+        { q: "What will the sensor cost at launch?", a: "Final pricing isn't locked yet — we're still finalizing component costs. Reserving today guarantees you the founders' price (below retail) once we publish it, and you'll see the number before you ever commit to buy." }
+      ]},
+      { id: "setup", title: "Setup & troubleshooting", items: [
+        { q: "Why isn't my sensor connecting?",
+          a: "A few things are usually behind it. Work through these in order:",
+          bullets: [
+            "Charge the sensor — a low battery stops it from broadcasting.",
+            "Wake it up by shaking it firmly for a couple of seconds.",
+            "Allow Bluetooth for FaceoffEdge in your phone's settings.",
+            "In the app, tap Find new device to re-scan and pair."
+          ] },
+        { q: "Where should the sensor go on my shaft?",
+          a: "Anywhere on the shaft will work, but for the most accurate exit speed readings mount it between your hands. Keep it in the same spot every session so your numbers stay consistent." }
+      ]}
+    ];
+
+    const tBase = "text-align:left; padding:11px 14px; border-radius:10px; border:none; background:none; font-family:inherit; font-size:15px; font-weight:500; color:#4A5468; cursor:pointer;";
+    const tOn = "text-align:left; padding:11px 14px; border-radius:10px; border:none; background:rgba(0,0,0,0.06); font-family:inherit; font-size:15px; font-weight:650; color:#0a1020; cursor:pointer;";
+    const tabDefs = data.map(g => [g.id, g.title]);
+
+    const shown = data.filter(g => g.id === tab);
+
+    return {
+      tabs: tabDefs.map(([id, label]) => ({
+        label,
+        style: id === tab ? tOn : tBase,
+        pick: () => this.setState({ tab: id })
+      })),
+      groups: shown.map((g, gi) => ({
+        title: g.title,
+        count: String(g.items.length).padStart(2, "0"),
+        wrap: gi === 0 ? "margin:0;" : "margin:56px 0 0;",
+        items: g.items.map((f, i) => {
+          const key = g.id + ":" + i;
+          return {
+            q: f.q, a: f.a,
+            bullets: f.bullets || [],
+            hasBullets: !!(f.bullets && f.bullets.length),
+            open: open === key,
+            icon: open === key ? "–" : "+",
+            toggle: () => this.setState(s => ({ open: s.open === key ? "" : key }))
+          };
+        })
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

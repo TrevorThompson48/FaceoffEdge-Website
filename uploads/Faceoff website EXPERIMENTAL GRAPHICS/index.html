@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>FaceoffEdge — Faceoff training, instrumented.</title>
+<meta name="description" content="The first stick-mounted system that measures every millisecond of your faceoff. Train against the data, not the eye test."/>
+<link rel="stylesheet" href="assets/site.css"/>
+<link rel="stylesheet" href="assets/home.css"/>
+<template id="__bundler_thumbnail" data-bg-color="#05080F">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#05080F"/>
+    <g transform="translate(600 400)">
+      <circle r="180" fill="none" stroke="#ffffff" stroke-width="8"/>
+      <path d="M-90 90 L90 -90" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
+      <path d="M-90 -90 L90 90" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
+      <circle r="22" fill="#3B6EF2"/>
+    </g>
+  </svg>
+</template>
+</head>
+<body>
+
+<!-- ──────────── NAV ──────────── -->
+<nav class="nav" data-screen-label="home-nav">
+  <div class="nav-inner">
+    <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="nav-logo">
+      <img class="logo-mark" src="assets/logo.png?v=2" alt="FaceoffEdge logo" width="28" height="28"/>
+      <span>Faceoff<span style="color: var(--primary);">Edge</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="app.html">App</a>
+      <a href="sensor.html">Sensor</a>
+      <a href="preorder.html">Pre-order</a>
+      <a href="contact.html">Contact us</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <div class="nav-cta">
+      <a href="#download" class="btn btn-primary" style="padding: 9px 16px; font-size: 14px;">Get the app</a>
+    </div>
+  </div>
+</nav>
+  <div class="nav-backdrop"></div>
+  <aside class="nav-drawer" aria-label="Mobile navigation">
+      <img class="nav-drawer-logo" src="assets/logo.png?v=2" alt="FaceoffEdge logo" width="38" height="38"/>
+      <a href="index.html" class="active">Home</a>
+      <a href="app.html">App</a>
+      <a href="sensor.html">Sensor</a>
+      <a href="preorder.html">Pre-order</a>
+      <a href="contact.html">Contact us</a>
+  </aside>
+
+<!-- ──────────── HERO ──────────── -->
+<style id="hero-banner-style">
+  /* Home hero banner — scoped to the home hero only via :has() */
+  .hero-grid:has(.hero-banner-img) { grid-template-columns: 1.35fr 1fr; }
+  .hero-copy:has(.hero-banner-img) { max-width: 760px; }
+  .hero-banner-img { width: 100%; max-width: 760px; height: auto; display: block; }
+  @media (max-width: 920px) {
+    .hero-copy:has(.hero-banner-img) { max-width: 600px; }
+    .hero-banner-img { margin-left: auto; margin-right: auto; }
+  }
+</style>
+<section class="hero hero-split" data-screen-label="hero">
+  <div class="glow-blue" style="top: -200px; left: -200px;"></div>
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow">For lacrosse faceoff specialists</div>
+      <!-- HERO BANNER (replaces "Beat the whistle / Win the draw" headline) -->
+      <img src="assets/faceoffedge-banner-trans.png" alt="FaceoffEdge — faceoff training instrumented" class="hero-banner-img" style="margin-top: 18px;"/>
+      <p class="lead" style="margin-top: 22px;">
+        FaceoffEdge is a stick-mounted system that measures every millisecond
+        between the whistle and the clamp. Stop guessing. Your data is right there.
+      </p>
+      <div class="hero-cta">
+        <a href="#download" class="btn btn-primary btn-lg">Get the app</a>
+        <a href="preorder.html" class="btn btn-secondary btn-lg">Reserve the sensor</a>
+      </div>
+    </div>
+
+    <!-- Sensor image placeholder — drop final render here -->
+    <div class="hero-phone">
+      <div class="product-placeholder" style="width: 100%; max-width: 460px; aspect-ratio: 4/5;">
+        <div class="label">
+          [ SENSOR PHOTO ]<br/>
+          Drop final render here
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────── HOW IT WORKS ──────────── -->
+<section class="section light alt" id="how" data-screen-label="how-it-works">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">How it works</div>
+    </div>
+
+    <div class="how-grid">
+      <div class="how-step reveal">
+        <div class="how-num mono">01</div>
+        <div class="how-art product-placeholder light" style="height: 180px;">
+          <div class="label">SENSOR · CLIP-ON<br/>STICK-MOUNTED</div>
+        </div>
+        <h3 class="h-3" style="margin-top: 20px;">Clip the sensor</h3>
+        <p class="muted" style="margin-top: 8px; font-size: 15px; line-height: 1.55;">
+          The FaceoffEdge sensor clips anywhere on your shaft — no tools, no tape,
+          no adjustments. Snap it on and start training.
+        </p>
+      </div>
+
+      <div class="how-step reveal">
+        <div class="how-num mono">02</div>
+        <div class="how-art" style="height: 180px; background: #fff; border: 1px solid var(--light-line); border-radius: 24px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+          <!-- Whistle waveform -->
+          <svg viewBox="0 0 280 100" width="80%" height="60%">
+            <defs>
+              <linearGradient id="wave-grad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#3B6EF2" stop-opacity="0.2"/>
+                <stop offset="0.5" stop-color="#3B6EF2"/>
+                <stop offset="1" stop-color="#3B6EF2" stop-opacity="0.2"/>
+              </linearGradient>
+            </defs>
+            <g stroke="url(#wave-grad)" stroke-width="2" stroke-linecap="round">
+              <line x1="20" y1="50" x2="20" y2="50"/>
+              <line x1="40" y1="40" x2="40" y2="60"/>
+              <line x1="60" y1="30" x2="60" y2="70"/>
+              <line x1="80" y1="20" x2="80" y2="80"/>
+              <line x1="100" y1="10" x2="100" y2="90"/>
+              <line x1="120" y1="5" x2="120" y2="95"/>
+              <line x1="140" y1="2" x2="140" y2="98"/>
+              <line x1="160" y1="5" x2="160" y2="95"/>
+              <line x1="180" y1="10" x2="180" y2="90"/>
+              <line x1="200" y1="20" x2="200" y2="80"/>
+              <line x1="220" y1="30" x2="220" y2="70"/>
+              <line x1="240" y1="40" x2="240" y2="60"/>
+              <line x1="260" y1="50" x2="260" y2="50"/>
+            </g>
+          </svg>
+        </div>
+        <h3 class="h-3" style="margin-top: 20px;">Wait for the whistle</h3>
+        <p class="muted" style="margin-top: 8px; font-size: 15px; line-height: 1.55;">
+          The app fires randomized whistle cadences just like a real ref — so you can't
+          memorize the timing. Every rep is a true reaction test.
+        </p>
+      </div>
+
+      <div class="how-step reveal">
+        <div class="how-num mono">03</div>
+        <div class="how-art" style="height: 180px; background: #fff; border: 1px solid var(--light-line); border-radius: 24px; padding: 28px; display: flex; flex-direction: column; justify-content: center;">
+          <div class="mono" style="font-size: 44px; font-weight: 600; letter-spacing: -0.04em; color: var(--light-text);">412<span style="font-size: 18px; color: var(--light-text-muted); margin-left: 2px;">ms</span></div>
+          <div style="display: flex; gap: 16px; margin-top: 4px; font-size: 11px; color: var(--light-text-muted); letter-spacing: 0.08em; text-transform: uppercase;">
+            <span>Reaction <span class="mono" style="color: var(--light-text);">198</span></span>
+            <span>Clamp <span class="mono" style="color: var(--light-text);">214</span></span>
+          </div>
+        </div>
+        <h3 class="h-3" style="margin-top: 20px;">See every millisecond</h3>
+        <p class="muted" style="margin-top: 8px; font-size: 15px; line-height: 1.55;">
+          Reaction time, clamp time, jumps, consistency — broken down rep by rep,
+          session by session, week by week.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────── FAQ ──────────── -->
+<section class="section light" id="faq" data-screen-label="faq">
+  <div class="container">
+    <div class="faq-layout">
+      <div>
+        <div class="eyebrow">Frequently asked</div>
+        <h2 class="h-1" style="margin-top: 14px;">Answers,<br/>quickly.</h2>
+        <p class="muted" style="margin-top: 18px; max-width: 32ch; font-size: 15px;">
+          Reservation-specific questions live on the <a href="preorder.html" style="color: var(--primary); font-weight: 600;">pre-order page →</a>
+        </p>
+        <p class="muted" style="margin-top: 12px; max-width: 32ch; font-size: 15px;">
+          Don't see your question?<br/>
+          <a href="mailto:ryan.thompson237@gmail.com" style="color: var(--primary); font-weight: 600;">ryan.thompson237@gmail.com →</a>
+        </p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q">Does the app work without the sensor?<span class="faq-icon"></span></button>
+          <div class="faq-a">
+            <p>Yes — partially. The app includes whistle training on its own, so you can drill your reaction to a randomized whistle anytime. Trend tracking, measurements, and rep-by-rep analysis all require the sensor.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Is the sensor legal for game use?<span class="faq-icon"></span></button>
+          <div class="faq-a">
+            <p>No — the FaceoffEdge sensor is built for <strong>clamp and faceoff work only</strong>, and shouldn't be used during games. It's a practice tool designed to live on your training shaft, not your gamer.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">How precise is the measurement?<span class="faq-icon"></span></button>
+          <div class="faq-a">
+            <p>End-to-end calibrated against 240fps video. Full numbers and methodology are on the <a href="sensor.html#methodology" style="color: var(--primary); font-weight: 600;">product page →</a></p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Does it work on any lacrosse stick?<span class="faq-icon"></span></button>
+          <div class="faq-a">
+            <p>Yes — it fits any standard men's lacrosse shaft. No tools, no tape, no permanent modification — just clip it on.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What about Android?<span class="faq-icon"></span></button>
+          <div class="faq-a">
+            <p>iOS first. The audio timing pipeline we rely on is dramatically tighter on iOS today, but Android is on the roadmap — sign up for the waitlist and you'll be the first to know.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────── FOOTER ──────────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="nav-logo" style="margin-bottom: 16px; color: var(--text);">
+          <img class="logo-mark" src="assets/logo.png?v=2" alt="FaceoffEdge logo" width="28" height="28"/>
+          <span>Faceoff<span style="color: var(--primary);">Edge</span></span>
+        </div>
+        <p style="font-size: 14px; max-width: 32ch; line-height: 1.55; margin: 0;">
+          Finally, real numbers on your faceoff. Built by faceoff specialists, for faceoff specialists.
+        </p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="app.html">The app</a>
+          <a href="sensor.html">The sensor</a>
+        </div>
+      </div>
+      <div>
+        <h4>Get it</h4>
+        <div class="footer-links">
+          <a href="#download">Download for iOS</a>
+          <a href="preorder.html">Reserve the sensor</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <div class="footer-links">
+          <a href="contact.html">Contact us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+
+</body>
+</html>
