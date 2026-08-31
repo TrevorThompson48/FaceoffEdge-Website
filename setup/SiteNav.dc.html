@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="/support.js"></script>
+<script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
@@ -37,9 +37,9 @@
         <span style="display:block; width:22px; height:2px; border-radius:2px; background:#F2F4F8;"></span>
         <span style="display:block; width:22px; height:2px; border-radius:2px; background:#F2F4F8;"></span>
       </button>
-      <a href="/home75/" style="display:flex; align-items:center; gap:9px;">
-        <img src="/assets/logo.png" alt="FaceoffEdge logo" width="28" height="28" style="width:28px; height:28px; border-radius:6px; display:block;"/>
-        <img src="/assets/wordmark.png" alt="FaceoffEdge" style="height:17px; width:auto; display:block;"/>
+      <a href="../FaceoffEdge%20Home.dc.html" style="display:flex; align-items:center; gap:9px;">
+        <img src="../assets/logo.png" alt="FaceoffEdge logo" width="28" height="28" style="width:28px; height:28px; border-radius:6px; display:block;"/>
+        <img src="../assets/wordmark.png" alt="FaceoffEdge" style="height:17px; width:auto; display:block;"/>
       </a>
       <div data-r="nav-links" style="display:flex; gap:4px; margin-left:12px;">
         <sc-for list="{{ links }}" as="l" hint-placeholder-count="6">
@@ -47,13 +47,13 @@
         </sc-for>
       </div>
       <div style="flex:1;"></div>
-      <a href="/preorder75/" style="padding:9px 18px; border-radius:999px; background:#3B6EF2; color:#fff; font-size:14px; font-weight:650;" style-hover="background:#1B3A8A;">Reserve</a>
+      <a href="../FaceoffEdge%20Preorder.dc.html" style="padding:9px 18px; border-radius:999px; background:#3B6EF2; color:#fff; font-size:14px; font-weight:650;" style-hover="background:#1B3A8A;">Reserve</a>
     </div>
   </nav>
 
   <div onClick="{{ closeMenu }}" style="{{ backdropStyle }}"></div>
   <aside aria-label="Mobile navigation" style="{{ drawerStyle }}">
-    <img src="/assets/logo.png" alt="FaceoffEdge logo" width="44" height="44" style="width:44px; height:44px; border-radius:8px; margin:0 0 22px 12px; display:block;"/>
+    <img src="../assets/logo.png" alt="FaceoffEdge logo" width="44" height="44" style="width:44px; height:44px; border-radius:8px; margin:0 0 22px 12px; display:block;"/>
     <sc-for list="{{ links }}" as="l" hint-placeholder-count="6">
       <a href="{{ l.href }}" onClick="{{ closeMenu }}" style="{{ l.drawerStyle }}">{{ l.label }}</a>
     </sc-for>
@@ -61,7 +61,7 @@
 </div>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;app&quot;,&quot;sensor&quot;,&quot;setup&quot;,&quot;preorder&quot;,&quot;contact&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;app&quot;,&quot;sensor&quot;,&quot;setup&quot;,&quot;preorder&quot;,&quot;buy&quot;,&quot;faq&quot;,&quot;contact&quot;,&quot;info&quot;,&quot;patents&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { menu: false };
 
@@ -73,12 +73,13 @@ class Component extends DCLogic {
     const dBase = "padding:13px 16px; border-radius:10px; font-size:16px; font-weight:500; color:#8E97AC;";
     const dOn = "padding:13px 16px; border-radius:10px; font-size:16px; font-weight:600; color:#F2F4F8; background:rgba(255,255,255,0.07);";
     const items = [
-      ["home", "Home", "/home75/"],
-      ["app", "App", "/app75/"],
-      ["sensor", "Sensor", "/sensor75/"],
-      ["setup", "Setup", "/setup/"],
-      ["preorder", "Pre-order", "/preorder75/"],
-      ["contact", "Contact us", "/contact75/"]
+      ["home", "Home", "../FaceoffEdge%20Home.dc.html"],
+      ["app", "App", "../FaceoffEdge%20App.dc.html"],
+      ["sensor", "Sensor", "../FaceoffEdge%20Sensor.dc.html"],
+      ["setup", "Setup", "../FaceoffEdge%20Setup.dc.html"],
+      ["preorder", "Pre-order", "../FaceoffEdge%20Preorder.dc.html"],
+      ["contact", "Contact us", "../FaceoffEdge%20Contact.dc.html"],
+      ["faq", "FAQ", "../FaceoffEdge%20FAQ.dc.html"]
     ];
     return {
       links: items.map(([id, label, href]) => ({

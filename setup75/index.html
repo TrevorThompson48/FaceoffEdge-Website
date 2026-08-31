@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="/support.js"></script>
+<script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
@@ -31,7 +31,7 @@
 
   <dc-import name="SiteNav" active="setup" hint-size="100%,64px"></dc-import>
 
-  <a href="/assets/FaceoffEdge-Manual.pdf" target="_blank" rel="noopener" style="display:flex; align-items:center; justify-content:center; gap:10px; padding:12px 20px; background:#3B6EF2; color:#fff; font-size:14px; font-weight:650; text-align:center;">
+  <a href="../assets/FaceoffEdge-Manual.pdf" target="_blank" rel="noopener" style="display:flex; align-items:center; justify-content:center; gap:10px; padding:12px 20px; background:#3B6EF2; color:#fff; font-size:14px; font-weight:650; text-align:center;">
     Full setup manual (PDF) — open or download <span aria-hidden="true">↗</span>
   </a>
 
@@ -81,11 +81,11 @@
       <div data-r="stage" style="position:relative;">
         <div style="position:absolute; inset:-30px -20px; border-radius:48px; background:radial-gradient(circle at 50% 30%, rgba(59,110,242,0.26), transparent 70%); filter:blur(28px); pointer-events:none;"></div>
         <sc-if value="{{ isPhoto }}" hint-placeholder-val="{{ true }}">
-          <img src="/assets/setup-step-01.jpg" alt="Sensor charging and mounted on a shaft" style="position:relative; width:100%; height:600px; object-fit:cover; border-radius:28px; display:block; border:1px solid rgba(120,150,220,0.18);"/>
+          <img src="../assets/setup-step-01.jpg" alt="Sensor charging and mounted on a shaft" style="position:relative; width:100%; height:600px; object-fit:cover; border-radius:28px; display:block; border:1px solid rgba(120,150,220,0.18);"/>
         </sc-if>
         <sc-if value="{{ isVideo }}" hint-placeholder-val="{{ false }}">
           <div style="position:relative; width:320px; max-width:88%; margin:0 auto; padding:10px; border-radius:46px; background:#0a1020; border:1px solid rgba(255,255,255,0.14); box-shadow:0 40px 80px -30px rgba(0,0,0,0.8);">
-            <video key="{{ videoSrc }}" src="{{ videoSrc }}" poster="{{ videoPoster }}" aria-label="{{ videoLabel }}" autoplay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" controls="{{ true }}" style="width:100%; height:580px; object-fit:cover; border-radius:36px; display:block; background:#000;"></video>
+            <video ref="{{ videoRef }}" key="{{ videoSrc }}" src="{{ videoSrc }}" poster="{{ videoPoster }}" aria-label="{{ videoLabel }}" autoplay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" controls="{{ true }}" preload="auto" style="width:100%; height:580px; object-fit:cover; border-radius:36px; display:block; background:#000;"></video>
           </div>
         </sc-if>
       </div>
@@ -96,8 +96,8 @@
     <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px; display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap;">
       <h2 style="margin:0; max-width:18ch; font-family:'Archivo Black',sans-serif; font-size:clamp(28px,3.4vw,46px); line-height:1; letter-spacing:-0.035em; text-transform:uppercase;">Set up in minutes.<br/>Train the same day.</h2>
       <div style="display:flex; flex-wrap:wrap; gap:12px;">
-        <a href="/preorder75/" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; background:#3B6EF2; color:#fff; font-size:16px; font-weight:650;" style-hover="background:#1B3A8A;">Reserve the sensor</a>
-        <a href="/contact75/" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; border:1px solid rgba(255,255,255,0.16); color:#F2F4F8; font-size:16px; font-weight:650;" style-hover="background:rgba(255,255,255,0.10);">Need help?</a>
+        <a href="../FaceoffEdge%20Preorder.dc.html" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; background:#3B6EF2; color:#fff; font-size:16px; font-weight:650;" style-hover="background:#1B3A8A;">Reserve the sensor</a>
+        <a href="../FaceoffEdge%20Contact.dc.html" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; border:1px solid rgba(255,255,255,0.16); color:#F2F4F8; font-size:16px; font-weight:650;" style-hover="background:rgba(255,255,255,0.10);">Need help?</a>
       </div>
     </div>
   </section>
@@ -110,12 +110,27 @@
 class Component extends DCLogic {
   state = { i: 0 };
 
+  kick(el) {
+    el.muted = true;
+    el.defaultMuted = true;
+    el.playsInline = true;
+    el.loop = true;
+    const go = () => { const p = el.play(); if (p && p.catch) p.catch(() => {}); };
+    go();
+    el.addEventListener("loadeddata", go, { once: true });
+    el.addEventListener("canplay", go, { once: true });
+  }
+
+  componentDidUpdate() {
+    if (this._vid) this.kick(this._vid);
+  }
+
   renderVals() {
     const data = [
       { n: "01", t: "Make sure it's charged and mounted", d: "Plug in the FaceoffEdge Clip to charge it, then shake it to wake it up. Clip it onto the thin side of the shaft, then rotate it 90 degrees to seat it onto the thick side.", photo: true },
-      { n: "02", t: "Create your profile", d: "Open the FaceoffEdge app and create your profile.", src: "/assets/setup-step-02.mp4", poster: "/assets/setup-step-02-poster.png", label: "Creating your profile in the FaceoffEdge app" },
-      { n: "03", t: "Pair your sensor", d: "Allow Bluetooth access and pair (it will automatically ask you for this permission), then go to Find New Device — your sensor should appear there.", src: "/assets/setup-step-03.mp4", poster: "/assets/setup-step-03-poster.png", label: "Pairing the sensor in the FaceoffEdge app" },
-      { n: "04", t: "Start taking reps", d: "Go to the Home Screen and hit Start Session. Adjust your session settings, then start taking your reps.", src: "/assets/setup-step-04.mp4", poster: "/assets/setup-step-04-poster.jpg", label: "Starting a session in the FaceoffEdge app" }
+      { n: "02", t: "Create your profile", d: "Open the FaceoffEdge app and create your profile.", src: "../assets/setup-step-02.mp4", poster: "../assets/setup-step-02-poster.png", label: "Creating your profile in the FaceoffEdge app" },
+      { n: "03", t: "Pair your sensor", d: "Allow Bluetooth access and pair (it will automatically ask you for this permission), then go to Find New Device — your sensor should appear there.", src: "../assets/setup-step-03.mp4", poster: "../assets/setup-step-03-poster.png", label: "Pairing the sensor in the FaceoffEdge app" },
+      { n: "04", t: "Start taking reps", d: "Go to the Home Screen and hit Start Session. Adjust your session settings, then start taking your reps.", src: "../assets/setup-step-04.mp4", poster: "../assets/setup-step-04-poster.jpg", label: "Starting a session in the FaceoffEdge app" }
     ];
     const i = this.state.i;
     const cur = data[i];
@@ -131,6 +146,10 @@ class Component extends DCLogic {
         numStyle: `font-family:'JetBrains Mono',ui-monospace,monospace; font-size:${k === i ? 34 : 22}px; font-weight:700; letter-spacing:-0.04em; color:${k === i ? "#3B6EF2" : "#5C657A"}; transition:font-size .2s;`,
         titleStyle: `display:block; font-size:${k === i ? "clamp(24px,2.6vw,34px)" : "20px"}; font-weight:800; letter-spacing:-0.028em; line-height:1.1; color:${k === i ? "#F2F4F8" : "#8E97AC"};`
       })),
+      videoRef: el => {
+        this._vid = el;
+        if (el) this.kick(el);
+      },
       isPhoto: !!cur.photo,
       isVideo: !cur.photo,
       videoSrc: cur.src || "",
