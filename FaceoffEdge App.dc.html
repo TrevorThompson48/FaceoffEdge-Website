@@ -56,10 +56,10 @@
         </div>
       </div>
 
-      <div data-r="hero-phone" style="display:flex; justify-content:center; align-items:center; padding-bottom:40px;">
+      <div data-r="hero-phone" style="display:flex; justify-content:flex-end; align-items:flex-end;">
         <div style="position:relative;">
-          <div style="position:absolute; inset:-40px -30px; border-radius:60px; background:radial-gradient(circle at 50% 40%, rgba(59,110,242,0.35), transparent 70%); filter:blur(30px);"></div>
-          <img src="assets/screens/home-hero-v2.png" alt="FaceoffEdge app home screen" style="position:relative; width:340px; max-width:82vw; display:block; border-radius:44px; box-shadow:0 30px 80px -30px rgba(59,110,242,0.6);"/>
+          <div style="position:absolute; inset:-40px -30px 60px; border-radius:60px; background:radial-gradient(circle at 50% 40%, rgba(59,110,242,0.35), transparent 70%); filter:blur(30px);"></div>
+          <img src="assets/screens/home-hero.png" alt="FaceoffEdge app home screen" style="position:relative; width:340px; max-width:82vw; display:block; border-radius:44px 44px 0 0; box-shadow:0 -20px 80px -30px rgba(59,110,242,0.6);"/>
         </div>
       </div>
     </div>
@@ -163,12 +163,12 @@ class Component extends DCLogic {
 
   renderVals() {
     const raw = [
-      { src: "assets/screens/v2-progress.png", alt: "Progress screen — median total chart, streak, reps this month, calendar", title: "Progress", desc: "30-day median, current streak, monthly rep volume, and an activity calendar. Watch yourself drop time, week after week." },
-      { src: "assets/screens/v2-new-session.png", alt: "New session setup — sensor pairing, reps, whistle variability, audio cues", title: "New session", desc: "Pick rep count, choose whistle variability and audio cues. A few taps and you're training." },
-      { src: "assets/screens/v2-weekly-goals.png", alt: "Weekly goals — sessions target, median target, early-jump cap", title: "Weekly goals", desc: "Sessions per week, a target median time, and a maximum early-jump rate. Train against numbers you set yourself." },
-      { src: "assets/screens/v2-session-summary.png", alt: "Session summary — median total time, median splits, rep-by-rep charts", title: "Session summary", desc: "Median total, reaction/clamp/speed/early splits, and a rep-by-rep chart for the set you just finished." },
-      { src: "assets/screens/v2-live-session.png", alt: "Live session screen — REP 05 of 50, GO cue, split readouts, pause control", title: "Live session", desc: "Rep counter, audio and visual cues, live reaction and clamp splits. Pause anytime." },
-      { src: "assets/screens/v2-home.png", alt: "Home dashboard — last session delta, weekly sessions ring, personal best, recent sessions", title: "Home", desc: "Your dashboard. Connection status, last-session data, weekly progress ring, personal best, and recent activity." }
+      { src: "assets/screens/live.png", alt: "Progress screen — 30-day median chart, streak, reps this month, calendar", title: "Progress", desc: "30-day median, current streak, monthly rep volume, and an activity calendar. Watch yourself drop time, week after week." },
+      { src: "assets/screens/summary.png", alt: "New session setup — sensor pairing, reps, whistle variability, audio cues", title: "New session", desc: "Pick rep count, choose whistle variability and audio cues. A few taps and you're training." },
+      { src: "assets/screens/progress.png", alt: "Weekly goals — sessions target, median target, early-jump cap", title: "Weekly goals", desc: "Sessions per week, a target median time, and a maximum early-jump rate. Train against numbers you set yourself." },
+      { src: "assets/screens/goals.png", alt: "Session summary — 0.27s median, median splits, rep-by-rep chart", title: "Session summary", desc: "Median total, reaction/clamp/early splits, and a rep-by-rep chart for the set you just finished." },
+      { src: "assets/screens/new-session.png", alt: "Live session screen — REP 03 of 50, SET cue, pause control", title: "Live session", desc: "Rep counter, audio and visual cues. Pause anytime. Stays out of your way during reps." },
+      { src: "assets/screens/home.png", alt: "Home dashboard — last session delta, weekly sessions ring, personal best, recent sessions", title: "Home", desc: "Your dashboard. Connection status, last-session data, weekly progress ring, personal best, and recent activity." }
     ];
     return {
       features: [
