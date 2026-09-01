@@ -56,7 +56,7 @@
         </div>
       </div>
 
-      <div data-r="hero-phone" style="display:flex; justify-content:center; align-items:center; padding-bottom:40px;">
+      <div data-r="hero-phone" style="{{ heroPhoneStyle }}">
         <div style="position:relative;">
           <div style="position:absolute; inset:-40px -30px; border-radius:60px; background:radial-gradient(circle at 50% 40%, rgba(59,110,242,0.35), transparent 70%); filter:blur(30px);"></div>
           <img src="assets/screens/home-hero-v2.png" alt="FaceoffEdge app home screen" style="position:relative; width:340px; max-width:82vw; display:block; border-radius:44px; box-shadow:0 30px 80px -30px rgba(59,110,242,0.6);"/>
@@ -177,6 +177,9 @@ class Component extends DCLogic {
         { n: "03", title: "Early-jump detection", desc: "Catches false starts the eye can't — with visual and audio feedback in the moment." },
         { n: "04", title: "Trend tracking", desc: "Watch your medians drop week over week — reaction, clamp, and total. Consistency comes next." }
       ],
+      heroPhoneStyle: this.state.isMobile
+        ? "display:none;"
+        : "display:flex; justify-content:center; align-items:center; padding-bottom:40px;",
       screens: raw.map((s, i) => {
         const isMobile = !!this.state.isMobile;
         const open = !!(this.state.openScreens || {})[i];
@@ -185,8 +188,8 @@ class Component extends DCLogic {
           n: String(i + 1).padStart(2, "0"),
           rr: i % 3 === 1 ? "offset" : "",
           wrapStyle: `display:flex; flex-direction:column; margin-top:${isMobile ? 0 : (i % 3 === 1 ? 56 : 0)}px;`,
-          collapsible: isMobile,
-          showImg: !isMobile || open,
+          collapsible: false,
+          showImg: true,
           toggleLabel: open ? "Hide screen" : "View screen",
           toggleIcon: open ? "–" : "+",
           toggle: () => this.setState(st => ({ openScreens: { ...(st.openScreens || {}), [i]: !(st.openScreens || {})[i] } }))

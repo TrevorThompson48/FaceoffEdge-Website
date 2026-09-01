@@ -52,7 +52,7 @@
   </section>
 
   <section data-screen-label="setup-steps" data-r="sect" style="padding:40px 0 104px;">
-    <div data-r="pad setup-grid" style="max-width:1200px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:minmax(0,0.95fr) minmax(0,1.05fr); gap:56px; align-items:start;">
+    <div data-r="pad setup-grid" style="max-width:1200px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:minmax(0,0.95fr) minmax(0,1.05fr); gap:56px; align-items:center;">
 
       <div>
         <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
@@ -78,14 +78,23 @@
         </div>
       </div>
 
-      <div data-r="stage" style="position:relative;">
+      <div data-r="stage" style="position:relative; display:flex; flex-direction:column; justify-content:center; align-self:center;">
         <div style="position:absolute; inset:-30px -20px; border-radius:48px; background:radial-gradient(circle at 50% 30%, rgba(59,110,242,0.26), transparent 70%); filter:blur(28px); pointer-events:none;"></div>
         <sc-if value="{{ isPhoto }}" hint-placeholder-val="{{ true }}">
           <img src="assets/setup-step-01.jpg" alt="Sensor charging and mounted on a shaft" style="position:relative; width:100%; height:600px; object-fit:cover; border-radius:28px; display:block; border:1px solid rgba(120,150,220,0.18);"/>
         </sc-if>
         <sc-if value="{{ isVideo }}" hint-placeholder-val="{{ false }}">
           <div style="position:relative; width:320px; max-width:88%; margin:0 auto; padding:10px; border-radius:46px; background:#0a1020; border:1px solid rgba(255,255,255,0.14); box-shadow:0 40px 80px -30px rgba(0,0,0,0.8);">
-            <video ref="{{ videoRef }}" key="{{ videoSrc }}" src="{{ videoSrc }}" poster="{{ videoPoster }}" aria-label="{{ videoLabel }}" autoplay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" controls="{{ true }}" preload="auto" style="width:100%; height:580px; object-fit:cover; border-radius:36px; display:block; background:#000;"></video>
+            <video ref="{{ videoRef }}" key="{{ videoSrc }}" src="{{ videoSrc }}" poster="{{ videoPoster }}" aria-label="{{ videoLabel }}" autoplay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" style="width:100%; height:580px; object-fit:cover; border-radius:36px; display:block; background:#000;"></video>
+          </div>
+          <div style="width:320px; max-width:88%; margin:18px auto 0; display:flex; align-items:center; gap:16px;">
+            <button type="button" onClick="{{ togglePlay }}" aria-label="{{ playLabel }}" style="flex:none; width:44px; height:44px; border-radius:50%; border:1px solid rgba(120,150,220,0.30); background:rgba(59,110,242,0.14); color:#F2F4F8; cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0;" style-hover="background:rgba(59,110,242,0.28); border-color:rgba(59,110,242,0.6);">
+              <span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:13px; line-height:1; letter-spacing:0.06em;">{{ playGlyph }}</span>
+            </button>
+            <div onPointerDown="{{ seek }}" ref="{{ barRef }}" style="flex:1; height:4px; border-radius:99px; background:rgba(120,150,220,0.20); cursor:pointer; position:relative; touch-action:none;">
+              <div style="{{ fillStyle }}"></div>
+            </div>
+            <span ref="{{ labelRef }}" style="flex:none; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:11px; letter-spacing:0.1em; color:#8E97AC; min-width:78px; text-align:right;">{{ timeLabel }}</span>
           </div>
         </sc-if>
       </div>
@@ -108,21 +117,84 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { i: 0 };
+  state = { i: 0, playing: true, cur: 0, dur: 0 };
+
+  fmt(s) {
+    if (!isFinite(s) || s < 0) s = 0;
+    const m = Math.floor(s / 60);
+    const r = Math.floor(s % 60);
+    return m + ":" + String(r).padStart(2, "0");
+  }
 
   kick(el) {
+    if (el !== this._bound) {
+      this._bound = el;
+      el.addEventListener("timeupdate", () => {
+        if (this._scrubbing) return;
+        this.setState({ cur: el.currentTime, dur: el.duration || 0 });
+      });
+      el.addEventListener("loadedmetadata", () => this.setState({ dur: el.duration || 0 }));
+      el.addEventListener("play", () => this.setState({ playing: true }));
+      el.addEventListener("pause", () => this.setState({ playing: false }));
+    }
     el.muted = true;
     el.defaultMuted = true;
     el.playsInline = true;
     el.loop = true;
+    if (el.dataset.autokicked === "1") return;
+    el.dataset.autokicked = "1";
     const go = () => { const p = el.play(); if (p && p.catch) p.catch(() => {}); };
     go();
     el.addEventListener("loadeddata", go, { once: true });
     el.addEventListener("canplay", go, { once: true });
   }
 
-  componentDidUpdate() {
-    if (this._vid) this.kick(this._vid);
+  scrubTo(clientX) {
+    const v = this._vid, b = this._bar;
+    if (!v || !b) return;
+    const d = v.duration;
+    if (!d || !isFinite(d)) return;
+    const r = b.getBoundingClientRect();
+    const t = Math.max(0, Math.min(1, (clientX - r.left) / r.width)) * d;
+    this._pending = t;
+    // UI follows the pointer instantly, independent of decoder seek latency
+    if (this._bar) {
+      const fill = this._bar.firstElementChild;
+      if (fill) fill.style.width = ((t / d) * 100) + "%";
+    }
+    if (this._tLabel) this._tLabel.textContent = this.fmt(t) + " / " + this.fmt(d);
+    if (!this._raf) {
+      this._raf = requestAnimationFrame(() => {
+        this._raf = null;
+        if (this._pending != null && !v.seeking) v.currentTime = this._pending;
+      });
+    }
+  }
+
+  startScrub(e) {
+    const v = this._vid;
+    if (!v) return;
+    this._wasPlaying = !v.paused;
+    this._scrubbing = true;
+    v.pause();
+    if (e.target && e.target.setPointerCapture && e.pointerId != null) {
+      try { e.target.setPointerCapture(e.pointerId); } catch (err) {}
+    }
+    this.scrubTo(e.clientX);
+    const move = ev => { ev.preventDefault(); this.scrubTo(ev.clientX); };
+    const up = () => {
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointerup", up);
+      window.removeEventListener("pointercancel", up);
+      if (this._raf) { cancelAnimationFrame(this._raf); this._raf = null; }
+      if (this._pending != null) { v.currentTime = this._pending; this._pending = null; }
+      this._scrubbing = false;
+      this.setState({ cur: v.currentTime });
+      if (this._wasPlaying) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+    };
+    window.addEventListener("pointermove", move, { passive: false });
+    window.addEventListener("pointerup", up);
+    window.addEventListener("pointercancel", up);
   }
 
   renderVals() {
@@ -155,6 +227,18 @@ class Component extends DCLogic {
       videoSrc: cur.src || "",
       videoPoster: cur.poster || "",
       videoLabel: cur.label || "",
+      playGlyph: this.state.playing ? "❙❙" : "▶",
+      playLabel: this.state.playing ? "Pause" : "Play",
+      togglePlay: () => {
+        const v = this._vid;
+        if (!v) return;
+        if (v.paused) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } else { v.pause(); }
+      },
+      barRef: el => { this._bar = el; },
+      labelRef: el => { this._tLabel = el; },
+      seek: e => this.startScrub(e),
+      fillStyle: `position:absolute; left:0; top:0; bottom:0; border-radius:99px; background:#3B6EF2; width:${this.state.dur ? Math.min(100, (this.state.cur / this.state.dur) * 100) : 0}%;`,
+      timeLabel: this.fmt(this.state.cur) + " / " + this.fmt(this.state.dur),
       counter: `${cur.n} / ${String(data.length).padStart(2, "0")}`,
       atStart: i === 0,
       nextLabel: i === data.length - 1 ? "Start over" : "Next step",
