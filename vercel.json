@@ -1,15 +1,33 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/setup", "destination": "/FaceoffEdge%20Setup.dc.html" },
-    { "source": "/setup75", "destination": "/FaceoffEdge%20Setup.dc.html" },
-    { "source": "/home75", "destination": "/FaceoffEdge%20Home.dc.html" },
-    { "source": "/app75", "destination": "/FaceoffEdge%20App.dc.html" },
-    { "source": "/sensor75", "destination": "/FaceoffEdge%20Sensor.dc.html" },
-    { "source": "/preorder75", "destination": "/FaceoffEdge%20Preorder.dc.html" },
-    { "source": "/contact75", "destination": "/FaceoffEdge%20Contact.dc.html" },
-    { "source": "/info", "destination": "/FaceoffEdge%20Info.dc.html" },
-    { "source": "/patents", "destination": "/FaceoffEdge%20Patents.dc.html" },
-    { "source": "/(.*)", "destination": "/FaceoffEdge%20Coming%20Soon.dc.html" }
+    {
+      "source": "/app",
+      "destination": "/FaceoffEdge%20App.dc.html"
+    },
+    {
+      "source": "/sensor",
+      "destination": "/FaceoffEdge%20Sensor.dc.html"
+    },
+    {
+      "source": "/setup",
+      "destination": "/FaceoffEdge%20Setup.dc.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/FaceoffEdge%20Contact.dc.html"
+    },
+    {
+      "source": "/faq",
+      "destination": "/FaceoffEdge%20FAQ.dc.html"
+    },
+    {
+      "source": "/info",
+      "destination": "/FaceoffEdge%20Info.dc.html"
+    },
+    {
+      "source": "/patents",
+      "destination": "/FaceoffEdge%20Patents.dc.html"
+    }
   ]
 }

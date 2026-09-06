@@ -1,10 +1,7 @@
-/setup          /FaceoffEdge%20Setup.dc.html           200
-/setup75        /FaceoffEdge%20Setup.dc.html           200
-/home75         /FaceoffEdge%20Home.dc.html            200
-/app75          /FaceoffEdge%20App.dc.html             200
-/sensor75       /FaceoffEdge%20Sensor.dc.html          200
-/preorder75     /FaceoffEdge%20Preorder.dc.html        200
-/contact75      /FaceoffEdge%20Contact.dc.html         200
-/info           /FaceoffEdge%20Info.dc.html            200
-/patents        /FaceoffEdge%20Patents.dc.html         200
-/*              /FaceoffEdge%20Coming%20Soon.dc.html   200
+/app        /FaceoffEdge%20App.dc.html        200
+/sensor     /FaceoffEdge%20Sensor.dc.html     200
+/setup      /FaceoffEdge%20Setup.dc.html      200
+/contact    /FaceoffEdge%20Contact.dc.html    200
+/faq        /FaceoffEdge%20FAQ.dc.html        200
+/info       /FaceoffEdge%20Info.dc.html       200
+/patents    /FaceoffEdge%20Patents.dc.html    200

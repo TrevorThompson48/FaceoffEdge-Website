@@ -53,7 +53,6 @@
         all the data of a faceoff and report it to your phone before you're starting the next rep.
       </p>
       <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:32px;">
-        <a href="FaceoffEdge%20Preorder.dc.html" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; background:#fff; color:#000; font-size:16px; font-weight:650;" style-hover="background:#e8e8e8;">Reserve the sensor</a>
         <a href="#spec" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; border:1px solid rgba(255,255,255,0.22); background:rgba(5,8,15,0.35); color:#F2F4F8; font-size:16px; font-weight:650;" style-hover="background:rgba(255,255,255,0.12);">Full specs ↓</a>
       </div>
     </div>
@@ -150,7 +149,7 @@
     <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px; display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap;">
       <h2 style="margin:0; max-width:16ch; font-family:'Archivo Black',sans-serif; font-size:clamp(28px,3.4vw,46px); line-height:1; letter-spacing:-0.035em; text-transform:uppercase;">Stop guessing.<br/>Get your edge.</h2>
       <div style="display:flex; flex-wrap:wrap; gap:12px;">
-        <a href="FaceoffEdge%20Preorder.dc.html" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; background:#3B6EF2; color:#fff; font-size:16px; font-weight:650;" style-hover="background:#1B3A8A;">Reserve the sensor</a>
+        <a href="FaceoffEdge%20Contact.dc.html" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; background:#3B6EF2; color:#fff; font-size:16px; font-weight:650;" style-hover="background:#1B3A8A;">Get in touch</a>
         <a href="FaceoffEdge%20Setup.dc.html" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; border:1px solid rgba(255,255,255,0.16); color:#F2F4F8; font-size:16px; font-weight:650;" style-hover="background:rgba(255,255,255,0.10);">See the setup</a>
       </div>
     </div>
@@ -166,7 +165,7 @@ class Component extends DCLogic {
     const fill = w => `height:100%; width:${w}; border-radius:999px; background:linear-gradient(90deg,#1B3A8A,#3B6EF2);`;
     return {
       metrics: [
-        { num: "279", unit: "ms", fill: fill("48%"), title: "Reaction time", desc: "How late you react to the whistle. The number every faceoff guy is trying to cut." },
+        { num: "279", unit: "ms", fill: fill("48%"), title: "Reaction time", desc: "How fast you react to the whistle. The number every faceoff guy is trying to cut." },
         { num: "112", unit: "ms", fill: fill("34%"), title: "Clamp time", desc: "First movement to full clamp. Pure mechanical speed." },
         { num: "6.3", unit: " mph", fill: fill("78%"), title: "Exit speed", desc: "How quickly you can get the ball from the clamp to space. Necessary for securing possessions." },
         { num: "±35", unit: " ms", fill: fill("70%"), title: "Consistency", desc: "Standard deviation across a session. The lower the spread, the more reliable you are under pressure." }
@@ -185,7 +184,7 @@ class Component extends DCLogic {
       ],
       method: [
         { n: "01", title: "Whistle event captured", body: "The sensor streams its full motion data continuously. When the app fires the whistle, it timestamps that exact instant and correlates it against the incoming stream — establishing a millisecond-accurate reference point without the sensor ever needing to hear anything. This also eliminates any inaccuracy from Bluetooth latency, since the phone never has to send the sensor a signal telling it the whistle blew." },
-        { n: "02", title: "First-movement threshold", body: "Reaction time ends when the sensor detects movement above a noise floor we've tuned for accuracy, detecting jumps but not flagging clean reps." },
+        { n: "02", title: "First movement threshold", body: "Reaction time ends when the sensor detects movement above a noise floor we've tuned for accuracy, detecting jumps but not flagging clean reps." },
         { n: "03", title: "90° rotation detection", body: "Clamp time ends at the moment the stick head reaches 90° rotation from where you were lined up — measured by integrating gyroscope data." },
         { n: "04", title: "Early-jump classification", body: "If meaningful movement is detected before the whistle, that rep is flagged \"early\" and excluded from reaction/clamp aggregates. We surface the rate separately — it's a discipline metric, not a speed metric." }
       ]
