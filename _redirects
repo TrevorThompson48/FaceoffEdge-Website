@@ -1,7 +1,9 @@
 /app        /FaceoffEdge%20App.dc.html        200
 /sensor     /FaceoffEdge%20Sensor.dc.html     200
 /setup      /FaceoffEdge%20Setup.dc.html      200
+/buy        /FaceoffEdge%20Buy.dc.html        200
 /contact    /FaceoffEdge%20Contact.dc.html    200
 /faq        /FaceoffEdge%20FAQ.dc.html        200
 /info       /FaceoffEdge%20Info.dc.html       200
 /patents    /FaceoffEdge%20Patents.dc.html    200
+/*          /index.html                       200

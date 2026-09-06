@@ -1,33 +1,14 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    {
-      "source": "/app",
-      "destination": "/FaceoffEdge%20App.dc.html"
-    },
-    {
-      "source": "/sensor",
-      "destination": "/FaceoffEdge%20Sensor.dc.html"
-    },
-    {
-      "source": "/setup",
-      "destination": "/FaceoffEdge%20Setup.dc.html"
-    },
-    {
-      "source": "/contact",
-      "destination": "/FaceoffEdge%20Contact.dc.html"
-    },
-    {
-      "source": "/faq",
-      "destination": "/FaceoffEdge%20FAQ.dc.html"
-    },
-    {
-      "source": "/info",
-      "destination": "/FaceoffEdge%20Info.dc.html"
-    },
-    {
-      "source": "/patents",
-      "destination": "/FaceoffEdge%20Patents.dc.html"
-    }
+    { "source": "/app", "destination": "/FaceoffEdge%20App.dc.html" },
+    { "source": "/sensor", "destination": "/FaceoffEdge%20Sensor.dc.html" },
+    { "source": "/setup", "destination": "/FaceoffEdge%20Setup.dc.html" },
+    { "source": "/buy", "destination": "/FaceoffEdge%20Buy.dc.html" },
+    { "source": "/contact", "destination": "/FaceoffEdge%20Contact.dc.html" },
+    { "source": "/faq", "destination": "/FaceoffEdge%20FAQ.dc.html" },
+    { "source": "/info", "destination": "/FaceoffEdge%20Info.dc.html" },
+    { "source": "/patents", "destination": "/FaceoffEdge%20Patents.dc.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
