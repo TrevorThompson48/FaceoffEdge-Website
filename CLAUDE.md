@@ -1,22 +1,29 @@
-# Faceoff website — project notes
+# FaceoffEdge site — project notes
 
-## Dropped images must always be baked in
-Whenever the user drops or uploads an image into an `<image-slot>`, immediately bake it into
-the HTML as a permanent file — never leave it as a temporary slot.
+## Pre-launch checklist (current deploy is a TEST launch)
 
-Procedure:
-1. In the user's view, render each filled slot's visible crop to a canvas at 3x
-   (use the frame and img `getBoundingClientRect()` deltas), export as JPEG ~0.9.
-2. Write the data URL to a temp `.<id>.state.json` via `window.omelette.writeFile`.
-3. In `run_script`, decode base64 → Blob → save to `assets/<name>.jpg`.
-4. Replace the `<image-slot>` with a plain `<img>` at the same box size
-   (`object-fit: cover`, matching border-radius), remove the now-unused
-   `image-slot.js` script tag if no slots remain on the page.
-5. Delete the temp `.state.json` files.
-6. Apply the same change to BOTH the root page and its clean-URL copy
-   (e.g. `sensor.html` and `sensor/index.html`).
+Do these before the real public launch:
 
-## Site structure
-Every page exists twice: at the root as `<name>.html` (links use `.html` so the preview
-works) and as `<name>/index.html` for clean URLs on the live domain (assets referenced
-with `../assets/`). Any content edit must be applied to both copies.
+1. **Remove stray folders from the deploy** — `uploads/`, `backups/`, `screenshots/` are
+   publicly reachable once pushed. `uploads/FaceoffEdge website/` contains full copies of the
+   previous site. Delete or exclude them.
+2. **Unlinked-but-live pages** — `FaceoffEdge Waitlist -saved - not live-.dc.html`,
+   `FaceoffEdge Preorder -saved - not live-.dc.html`, and
+   `FaceoffEdge Buy (link button backup).dc.html` still deploy as guessable URLs. Decide
+   whether to keep or remove.
+3. **App Store buttons** currently point at Home's `#download` anchor, not a real listing.
+   Swap in the App Store URL when the app is published.
+4. **Poster frame for setup step 3** — `assets/setup-step-03-poster.png` is still the old
+   video's first frame.
+
+## Things to know
+
+- Nav/footer links use pretty routes (`/`, `/app`, `/sensor`, `/setup`, `/buy`, `/contact`,
+  `/faq`, `/info`, `/patents`). These resolve via `vercel.json` + `_redirects` on the live
+  site only — they do NOT navigate in the preview pane. Test nav on the deployed site.
+- `index.html` is a verbatim copy of `FaceoffEdge Home.dc.html`. Any Home edit must be
+  copied to `index.html` too.
+- Unknown paths fall through to Home via the catch-all rewrite. There is no 404 page.
+- Setup-page videos won't play in the preview (the preview server ignores byte-range
+  requests). They work on Vercel.
+- Stripe links on the Buy page are LIVE, not test.

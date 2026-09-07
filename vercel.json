@@ -1,6 +1,7 @@
 {
   "cleanUrls": true,
   "rewrites": [
+    { "source": "/home", "destination": "/index.html" },
     { "source": "/app", "destination": "/FaceoffEdge%20App.dc.html" },
     { "source": "/sensor", "destination": "/FaceoffEdge%20Sensor.dc.html" },
     { "source": "/setup", "destination": "/FaceoffEdge%20Setup.dc.html" },

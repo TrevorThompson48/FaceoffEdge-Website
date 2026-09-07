@@ -18,6 +18,27 @@
   a:hover { color:#7FA0FF; }
   @keyframes fe-pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.35; transform:scale(.8); } }
   @keyframes fe-marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+  @keyframes fe-rx-ring { 0%,6% { opacity:0; transform:translate(-50%,-50%) scale(.4); } 9% { opacity:.85; transform:translate(-50%,-50%) scale(.55); } 28% { opacity:0; transform:translate(-50%,-50%) scale(3.2); } 100% { opacity:0; transform:translate(-50%,-50%) scale(3.2); } }
+  @keyframes fe-rx-ring-b { 0%,9% { opacity:0; transform:translate(-50%,-50%) scale(.4); } 12% { opacity:.5; transform:translate(-50%,-50%) scale(.6); } 32% { opacity:0; transform:translate(-50%,-50%) scale(3.6); } 100% { opacity:0; transform:translate(-50%,-50%) scale(3.6); } }
+  @keyframes fe-rx-whistle { 0%,7% { transform:translate(-50%,-50%) scale(1); } 9.5% { transform:translate(-50%,-50%) scale(1.5); } 17% { transform:translate(-50%,-50%) scale(1); } 100% { transform:translate(-50%,-50%) scale(1); } }
+  @keyframes fe-rx-fill { 0%,8% { transform:scaleX(0); } 26% { transform:scaleX(.6975); } 92% { transform:scaleX(.6975); } 96%,100% { transform:scaleX(0); } }
+  @keyframes fe-rx-fill2 { 0%,28% { transform:scaleX(0); } 44% { transform:scaleX(1); } 92% { transform:scaleX(1); } 96%,100% { transform:scaleX(0); } }
+  @keyframes fe-rx-sweep { 0%,8% { left:0; opacity:0; } 9.5% { opacity:1; } 26% { left:69.75%; opacity:1; } 28% { left:69.75%; opacity:1; } 44% { left:94%; opacity:1; } 49% { left:94%; opacity:0; } 100% { left:94%; opacity:0; } }
+  @keyframes fe-rx-node { 0%,24% { opacity:.22; transform:translate(-50%,-50%) scale(.75); } 28% { opacity:1; transform:translate(-50%,-50%) scale(1.6); } 37% { opacity:1; transform:translate(-50%,-50%) scale(1); } 92% { opacity:1; transform:translate(-50%,-50%) scale(1); } 96%,100% { opacity:.22; transform:translate(-50%,-50%) scale(.75); } }
+  @keyframes fe-rx-node2 { 0%,42% { opacity:.22; transform:translate(-50%,-50%) scale(.75); } 46% { opacity:1; transform:translate(-50%,-50%) scale(1.6); } 55% { opacity:1; transform:translate(-50%,-50%) scale(1); } 92% { opacity:1; transform:translate(-50%,-50%) scale(1); } 96%,100% { opacity:.22; transform:translate(-50%,-50%) scale(.75); } }
+  @keyframes fe-rx-stat1 { 0%,24% { opacity:0; transform:translateY(12px); } 32% { opacity:1; transform:translateY(0); } 92% { opacity:1; transform:translateY(0); } 96%,100% { opacity:0; transform:translateY(12px); } }
+  @keyframes fe-rx-stat2 { 0%,42% { opacity:0; transform:translateY(12px); } 50% { opacity:1; transform:translateY(0); } 92% { opacity:1; transform:translateY(0); } 96%,100% { opacity:0; transform:translateY(12px); } }
+  @keyframes fe-rx-num { 0%,48% { opacity:0; transform:translateY(16px); filter:blur(8px); } 58% { opacity:1; transform:translateY(0); filter:blur(0); } 92% { opacity:1; transform:translateY(0); filter:blur(0); } 96%,100% { opacity:0; transform:translateY(16px); filter:blur(8px); } }
+  @keyframes fe-rx-late { 0%,56% { opacity:0; } 64% { opacity:1; } 92% { opacity:1; } 96%,100% { opacity:0; } }
+  @keyframes fe-rx-glow { 0%,7% { opacity:.18; transform:scale(.9); } 11% { opacity:.85; transform:scale(1.05); } 34% { opacity:.32; transform:scale(1); } 100% { opacity:.18; transform:scale(.9); } }
+  @media (prefers-reduced-motion: reduce) {
+    [data-r~="rx"] * { animation:none !important; }
+    [data-r~="rx-fill"] { transform:scaleX(.6975) !important; }
+    [data-r~="rx-fill2"] { transform:scaleX(1) !important; }
+    [data-r~="rx-ring"], [data-r~="rx-sweep"] { display:none !important; }
+    [data-r~="rx-stat"] { opacity:1 !important; transform:none !important; filter:none !important; }
+  }
+  [data-r~="burger"] { display:none; }
   @media (max-width: 980px) {
     [data-r~="hero-grid"] { grid-template-columns:1fr !important; gap:44px !important; }
     [data-r~="hero-phone"] { justify-content:center !important; }
@@ -37,10 +58,10 @@
 
   <dc-import name="SiteNav" active="app" hint-size="100%,64px"></dc-import>
 
-  <section data-screen-label="app-hero" data-r="sect" style="position:relative; overflow:hidden; padding:72px 0 0;">
-    <div style="position:absolute; right:-180px; top:-120px; width:900px; height:900px; border-radius:50%; pointer-events:none; background:radial-gradient(circle, rgba(59,110,242,0.30) 0%, rgba(59,110,242,0) 62%); filter:blur(24px);"></div>
+  <section data-screen-label="app-hero" data-r="sect" style="position:relative; overflow-x:clip; overflow-y:visible; padding:72px 0 0;">
+    <div style="position:absolute; right:-180px; top:-120px; width:900px; height:900px; border-radius:50%; pointer-events:none; mask-image:radial-gradient(circle, #000 40%, transparent 72%); -webkit-mask-image:radial-gradient(circle, #000 40%, transparent 72%); background:radial-gradient(circle, rgba(59,110,242,0.30) 0%, rgba(59,110,242,0) 62%); filter:blur(24px);"></div>
     <div data-r="pad hero-grid" style="position:relative; max-width:1200px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:minmax(0,1fr) 380px; gap:40px; align-items:end;">
-      <div style="padding-bottom:96px;">
+      <div style="padding-bottom:56px;">
         <div style="display:inline-flex; align-items:center; gap:9px; padding:7px 14px; border-radius:999px; border:1px solid rgba(120,150,220,0.24); font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#8E97AC;"><span style="width:7px; height:7px; border-radius:50%; background:#3B6EF2; box-shadow:0 0 12px #3B6EF2; animation:fe-pulse 2.4s ease-in-out infinite;"></span>Coming soon · iOS</div>
         <h1 style="margin:24px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(46px,7.6vw,116px); line-height:0.84; letter-spacing:-0.045em; text-transform:uppercase;">
           Instant<br/>feedback<br/><span style="color:#3B6EF2;">in your pocket</span>
@@ -51,29 +72,76 @@
           immediate, objective feedback on every rep.
         </p>
         <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:34px;">
-          <a href="FaceoffEdge%20Home.dc.html#download" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; background:#fff; color:#000; font-size:16px; font-weight:650;" style-hover="background:#e8e8e8;">Coming soon to the App Store</a>
+          <a href="/#download" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; background:#fff; color:#000; font-size:16px; font-weight:650;" style-hover="background:#e8e8e8;">Coming soon to the App Store</a>
           <a href="#screens" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; border:1px solid rgba(255,255,255,0.16); color:#F2F4F8; font-size:16px; font-weight:650;" style-hover="background:rgba(255,255,255,0.10);">Tour the screens ↓</a>
         </div>
       </div>
 
       <div data-r="hero-phone" style="{{ heroPhoneStyle }}">
         <div style="position:relative;">
-          <div style="position:absolute; inset:-40px -30px; border-radius:60px; background:radial-gradient(circle at 50% 40%, rgba(59,110,242,0.35), transparent 70%); filter:blur(30px);"></div>
+          <div style="position:absolute; top:-40px; left:-30px; right:-30px; bottom:-170px; border-radius:60px; pointer-events:none; background:radial-gradient(ellipse at 50% 38%, rgba(59,110,242,0.35) 0%, rgba(59,110,242,0.10) 55%, transparent 78%); filter:blur(30px);"></div>
           <img src="assets/screens/home-hero-v2.png" alt="FaceoffEdge app home screen" style="position:relative; width:340px; max-width:82vw; display:block; border-radius:44px; box-shadow:0 30px 80px -30px rgba(59,110,242,0.6);"/>
         </div>
       </div>
     </div>
   </section>
 
-  <div data-screen-label="app-marquee" style="border-top:1px solid rgba(120,150,220,0.12); border-bottom:1px solid rgba(120,150,220,0.12); background:#070A14; overflow:hidden; padding:16px 0;">
-    <div style="display:flex; width:max-content; animation:fe-marquee 30s linear infinite;">
-      <div style="display:flex; gap:40px; padding-right:40px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:#5C657A; white-space:nowrap;">
-        <span>Whistle training</span><span style="color:#3B6EF2;">/</span><span>Session logging</span><span style="color:#3B6EF2;">/</span><span>Trend tracking</span><span style="color:#3B6EF2;">/</span><span>Early-jump alerts</span><span style="color:#3B6EF2;">/</span>
+  <section data-screen-label="reaction-clock" data-r="rx" style="position:relative; overflow-x:clip; overflow-y:visible; padding:8px 0 70px;">
+    <div style="position:absolute; left:50%; top:50%; width:820px; height:420px; margin-left:-410px; margin-top:-210px; border-radius:50%; pointer-events:none; background:radial-gradient(ellipse at center, rgba(59,110,242,0.24) 0%, rgba(59,110,242,0.06) 45%, transparent 72%); animation:fe-rx-glow 6.5s linear infinite;"></div>
+
+    <div data-r="pad" style="position:relative; max-width:1200px; margin:0 auto; padding:0 28px;">
+      <div style="position:relative; height:clamp(100px,12.5vw,142px);">
+        <div data-r="rx-stat" style="position:absolute; left:0; bottom:0; animation:fe-rx-num 6.5s linear infinite;">
+          <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#8E97AC; margin-bottom:8px;">Total</div>
+          <div style="display:flex; align-items:flex-end; gap:7px;">
+            <span style="font-family:'Archivo Black',sans-serif; font-size:clamp(44px,6.4vw,84px); line-height:0.78; letter-spacing:-0.05em; color:#F2F4F8;">376</span>
+            <span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:clamp(12px,1.3vw,16px); font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#3B6EF2; padding-bottom:clamp(4px,0.8vw,10px);">ms</span>
+          </div>
+        </div>
+
+        <div style="position:absolute; left:69.75%; bottom:0; transform:translateX(-50%);">
+          <div data-r="rx-stat" style="text-align:center; animation:fe-rx-stat1 6.5s linear infinite;">
+            <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#7FA0FF; margin-bottom:7px;">Reaction</div>
+            <div style="display:flex; align-items:flex-end; justify-content:center; gap:5px;">
+              <span style="font-family:'Archivo Black',sans-serif; font-size:clamp(24px,2.9vw,38px); line-height:0.8; letter-spacing:-0.04em; color:#7FA0FF;">279</span>
+              <span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:10px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5C657A;">ms</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="position:absolute; left:94%; bottom:0; transform:translateX(-50%);">
+          <div data-r="rx-stat" style="text-align:center; animation:fe-rx-stat2 6.5s linear infinite;">
+            <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#C4B5FD; margin-bottom:7px;">Clamp</div>
+            <div style="display:flex; align-items:flex-end; justify-content:center; gap:5px;">
+              <span style="font-family:'Archivo Black',sans-serif; font-size:clamp(24px,2.9vw,38px); line-height:0.8; letter-spacing:-0.04em; color:#C4B5FD;">97</span>
+              <span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:10px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5C657A;">ms</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div style="display:flex; gap:40px; padding-right:40px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:#5C657A; white-space:nowrap;">
-        <span>Whistle training</span><span style="color:#3B6EF2;">/</span><span>Session logging</span><span style="color:#3B6EF2;">/</span><span>Trend tracking</span><span style="color:#3B6EF2;">/</span><span>Early-jump alerts</span><span style="color:#3B6EF2;">/</span>
+
+      <div style="position:relative; margin-top:16px; height:8px; border-radius:99px; background:rgba(120,150,220,0.16);">
+        <div data-r="rx-fill" style="position:absolute; left:0; top:0; bottom:0; right:0; border-radius:99px; transform-origin:left center; background:linear-gradient(90deg, #3B6EF2 0%, #7FA0FF 100%); box-shadow:0 0 34px rgba(59,110,242,0.6); animation:fe-rx-fill 6.5s cubic-bezier(.2,.7,.25,1) infinite;"></div>
+        <div data-r="rx-fill2" style="position:absolute; left:69.75%; top:0; bottom:0; right:6%; border-radius:99px; transform-origin:left center; background:linear-gradient(90deg, #8B5CF6 0%, #C4B5FD 100%); box-shadow:0 0 34px rgba(139,92,246,0.6); animation:fe-rx-fill2 6.5s cubic-bezier(.2,.7,.25,1) infinite;"></div>
+        <div data-r="rx-sweep" style="position:absolute; top:-22px; bottom:-22px; width:2px; margin-left:-1px; background:linear-gradient(180deg, transparent, #E9E4FF 45%, #E9E4FF 55%, transparent); animation:fe-rx-sweep 6.5s cubic-bezier(.2,.7,.25,1) infinite;"></div>
+
+        <div data-r="rx-ring" style="position:absolute; left:0; top:50%; width:170px; height:170px; border-radius:50%; border:1px solid rgba(59,110,242,0.55); pointer-events:none;  transform:translate(-50%,-50%); animation:fe-rx-ring 6.5s linear infinite;"></div>
+        <div data-r="rx-ring" style="position:absolute; left:0; top:50%; width:170px; height:170px; border-radius:50%; border:1px solid rgba(127,160,255,0.4); pointer-events:none;  transform:translate(-50%,-50%); animation:fe-rx-ring-b 6.5s linear infinite;"></div>
+        <div style="position:absolute; left:0; top:50%; width:18px; height:18px; border-radius:50%; background:#F2F4F8; box-shadow:0 0 26px rgba(242,244,248,0.75); animation:fe-rx-whistle 6.5s linear infinite;"></div>
+        <div style="position:absolute; left:69.75%; top:50%; width:20px; height:20px; border-radius:50%; background:#3B6EF2; box-shadow:0 0 32px rgba(59,110,242,0.9); animation:fe-rx-node 6.5s linear infinite;"></div>
+        <div style="position:absolute; left:94%; top:50%; width:20px; height:20px; border-radius:50%; background:#8B5CF6; box-shadow:0 0 32px rgba(139,92,246,0.9); animation:fe-rx-node2 6.5s linear infinite;"></div>
+      </div>
+
+      <div style="position:relative; height:22px; margin-top:12px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:11px; letter-spacing:0.16em; color:#5C657A;">
+        <span style="position:absolute; left:0; top:0; color:#F2F4F8; letter-spacing:0.16em; text-transform:uppercase;">Whistle</span>
+        <span style="position:absolute; left:25%; top:0;">100</span>
+        <span style="position:absolute; left:50%; top:0;">200</span>
+        <span style="position:absolute; left:75%; top:0;">300</span>
+        <span style="position:absolute; right:0; top:0;">400</span>
       </div>
     </div>
+  </section>
+
   </div>
 
   <section data-screen-label="app-features" data-r="sect" id="features" style="padding:104px 0;">
@@ -94,6 +162,17 @@
       </div>
     </div>
   </section>
+
+  <div data-screen-label="app-marquee" style="border-top:1px solid rgba(120,150,220,0.12); border-bottom:1px solid rgba(120,150,220,0.12); background:#070A14; overflow:hidden; padding:16px 0;">
+    <div style="display:flex; width:max-content; animation:fe-marquee 30s linear infinite;">
+      <div style="display:flex; gap:40px; padding-right:40px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:#5C657A; white-space:nowrap;">
+        <span>Whistle training</span><span style="color:#3B6EF2;">/</span><span>Session logging</span><span style="color:#3B6EF2;">/</span><span>Trend tracking</span><span style="color:#3B6EF2;">/</span><span>Early-jump alerts</span><span style="color:#3B6EF2;">/</span>
+      </div>
+      <div style="display:flex; gap:40px; padding-right:40px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:#5C657A; white-space:nowrap;">
+        <span>Whistle training</span><span style="color:#3B6EF2;">/</span><span>Session logging</span><span style="color:#3B6EF2;">/</span><span>Trend tracking</span><span style="color:#3B6EF2;">/</span><span>Early-jump alerts</span><span style="color:#3B6EF2;">/</span>
+      </div>
+    </div>
+  </div>
 
   <section data-screen-label="app-screens" data-r="sect" id="screens" style="background:#F4F2EE; color:#0a1020; padding:104px 0 120px;">
     <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px;">
@@ -136,8 +215,8 @@
     <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px; display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap;">
       <h2 style="margin:0; max-width:18ch; font-family:'Archivo Black',sans-serif; font-size:clamp(28px,3.4vw,46px); line-height:1; letter-spacing:-0.035em; text-transform:uppercase;">The app is free.<br/>The data needs the sensor.</h2>
       <div style="display:flex; flex-wrap:wrap; gap:12px;">
-        <a href="FaceoffEdge%20Contact.dc.html" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; background:#3B6EF2; color:#fff; font-size:16px; font-weight:650;" style-hover="background:#1B3A8A;">Get in touch</a>
-        <a href="FaceoffEdge%20Sensor.dc.html" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; border:1px solid rgba(255,255,255,0.16); color:#F2F4F8; font-size:16px; font-weight:650;" style-hover="background:rgba(255,255,255,0.10);">See the sensor</a>
+        <a href="/contact" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; background:#3B6EF2; color:#fff; font-size:16px; font-weight:650;" style-hover="background:#1B3A8A;">Get in touch</a>
+        <a href="/sensor" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; border:1px solid rgba(255,255,255,0.16); color:#F2F4F8; font-size:16px; font-weight:650;" style-hover="background:rgba(255,255,255,0.10);">See the sensor</a>
       </div>
     </div>
   </section>
@@ -163,12 +242,12 @@ class Component extends DCLogic {
 
   renderVals() {
     const raw = [
-      { src: "/assets/screens/v2-progress.png", alt: "Progress screen — median total chart, streak, reps this month, calendar", title: "Progress", desc: "30-day median, current streak, monthly rep volume, and an activity calendar. Watch yourself drop time, week after week." },
-      { src: "/assets/screens/v2-new-session.png", alt: "New session setup — sensor pairing, reps, whistle variability, audio cues", title: "New session", desc: "Pick rep count, choose whistle variability and audio cues. A few taps and you're training." },
-      { src: "/assets/screens/v2-weekly-goals.png", alt: "Weekly goals — sessions target, median target, early-jump cap", title: "Weekly goals", desc: "Sessions per week, a target median time, and a maximum early-jump rate. Train against numbers you set yourself." },
-      { src: "/assets/screens/v2-session-summary.png", alt: "Session summary — median total time, median splits, rep-by-rep charts", title: "Session summary", desc: "Median total, reaction/clamp/speed/early splits, and a rep-by-rep chart for the set you just finished." },
-      { src: "/assets/screens/v2-live-session.png", alt: "Live session screen — REP 05 of 50, GO cue, split readouts, pause control", title: "Live session", desc: "Rep counter, audio and visual cues, live reaction and clamp splits. Pause anytime." },
-      { src: "/assets/screens/v2-home.png", alt: "Home dashboard — last session delta, weekly sessions ring, personal best, recent sessions", title: "Home", desc: "Your dashboard. Connection status, last-session data, weekly progress ring, personal best, and recent activity." }
+      { src: "assets/screens/v2-progress.png", alt: "Progress screen — median total chart, streak, reps this month, calendar", title: "Progress", desc: "30-day median, current streak, monthly rep volume, and an activity calendar. Watch yourself drop time, week after week." },
+      { src: "assets/screens/v2-new-session.png", alt: "New session setup — sensor pairing, reps, whistle variability, audio cues", title: "New session", desc: "Pick rep count, choose whistle variability and audio cues. A few taps and you're training." },
+      { src: "assets/screens/v2-weekly-goals.png", alt: "Weekly goals — sessions target, median target, early-jump cap", title: "Weekly goals", desc: "Sessions per week, a target median time, and a maximum early-jump rate. Train against numbers you set yourself." },
+      { src: "assets/screens/v2-session-summary.png", alt: "Session summary — median total time, median splits, rep-by-rep charts", title: "Session summary", desc: "Median total, reaction/clamp/speed/early splits, and a rep-by-rep chart for the set you just finished." },
+      { src: "assets/screens/v2-live-session.png", alt: "Live session screen — REP 05 of 50, GO cue, split readouts, pause control", title: "Live session", desc: "Rep counter, audio and visual cues, live reaction and clamp splits. Pause anytime." },
+      { src: "assets/screens/v2-home.png", alt: "Home dashboard — last session delta, weekly sessions ring, personal best, recent sessions", title: "Home", desc: "Your dashboard. Connection status, last-session data, weekly progress ring, personal best, and recent activity." }
     ];
     return {
       features: [

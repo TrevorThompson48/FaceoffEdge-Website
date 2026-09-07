@@ -27,6 +27,42 @@
     [data-r~="footer-grid"] { grid-template-columns:1fr 1fr !important; gap:32px !important; }
   }
 </style>
+<script>
+// In the editor/preview, pretty routes (/app, /sensor…) don't resolve — there is no
+// rewrite server. Map them to the actual .dc.html files so every page is reachable.
+(function () {
+  if (window.__feRouteShim) return;
+  window.__feRouteShim = true;
+  var here = decodeURIComponent(location.pathname);
+  if (!/\.dc\.html$/.test(here)) return; // live site: leave pretty routes alone
+  var dir = here.slice(0, here.lastIndexOf("/") + 1);
+  var map = {
+    "/": "FaceoffEdge Home.dc.html",
+    "/home": "FaceoffEdge Home.dc.html",
+    "/app": "FaceoffEdge App.dc.html",
+    "/sensor": "FaceoffEdge Sensor.dc.html",
+    "/setup": "FaceoffEdge Setup.dc.html",
+    "/buy": "FaceoffEdge Buy.dc.html",
+    "/contact": "FaceoffEdge Contact.dc.html",
+    "/faq": "FaceoffEdge FAQ.dc.html",
+    "/info": "FaceoffEdge Info.dc.html",
+    "/patents": "FaceoffEdge Patents.dc.html"
+  };
+  document.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a || a.target === "_blank") return;
+    var href = a.getAttribute("href");
+    if (!href || href.charAt(0) !== "/") return;
+    var hash = "";
+    var h = href.indexOf("#");
+    if (h > -1) { hash = href.slice(h); href = href.slice(0, h) || "/"; }
+    var file = map[href.replace(/\/$/, "") || "/"];
+    if (!file) return;
+    e.preventDefault();
+    location.href = dir + encodeURIComponent(file) + hash;
+  }, true);
+})();
+</script>
 </helmet>
 
 <div style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;">
@@ -37,7 +73,7 @@
         <span style="display:block; width:22px; height:2px; border-radius:2px; background:#F2F4F8;"></span>
         <span style="display:block; width:22px; height:2px; border-radius:2px; background:#F2F4F8;"></span>
       </button>
-      <a href="FaceoffEdge%20Home.dc.html" style="display:flex; align-items:center; gap:9px;">
+      <a href="/" style="display:flex; align-items:center; gap:9px;">
         <img src="assets/logo.png" alt="FaceoffEdge logo" width="28" height="28" style="width:28px; height:28px; border-radius:6px; display:block;"/>
         <img src="assets/wordmark.png" alt="FaceoffEdge" style="height:17px; width:auto; display:block;"/>
       </a>
@@ -72,13 +108,13 @@ class Component extends DCLogic {
     const dBase = "padding:13px 16px; border-radius:10px; font-size:16px; font-weight:500; color:#8E97AC;";
     const dOn = "padding:13px 16px; border-radius:10px; font-size:16px; font-weight:600; color:#F2F4F8; background:rgba(255,255,255,0.07);";
     const items = [
-      ["home", "Home", "FaceoffEdge%20Home.dc.html"],
-      ["app", "App", "FaceoffEdge%20App.dc.html"],
-      ["sensor", "Sensor", "FaceoffEdge%20Sensor.dc.html"],
-      ["setup", "Setup", "FaceoffEdge%20Setup.dc.html"],
-      ["buy", "Buy now", "FaceoffEdge%20Buy.dc.html"],
-      ["contact", "Contact us", "FaceoffEdge%20Contact.dc.html"],
-      ["faq", "FAQ", "FaceoffEdge%20FAQ.dc.html"]
+      ["home", "Home", "/"],
+      ["app", "App", "/app"],
+      ["sensor", "Sensor", "/sensor"],
+      ["setup", "Setup", "/setup"],
+      ["buy", "Buy now", "/buy"],
+      ["contact", "Contact us", "/contact"],
+      ["faq", "FAQ", "/faq"]
     ];
     return {
       links: items.map(([id, label, href]) => ({
