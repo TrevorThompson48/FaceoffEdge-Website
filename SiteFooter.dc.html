@@ -7,6 +7,44 @@
 </head>
 <body>
 <x-dc>
+<helmet>
+<script>
+// In the editor/preview, pretty routes (/app, /sensor…) don't resolve — there is no
+// rewrite server. Map them to the actual .dc.html files so every page is reachable.
+(function () {
+  if (window.__feRouteShim) return;
+  window.__feRouteShim = true;
+  var here = decodeURIComponent(location.pathname);
+  if (!/\.dc\.html$/.test(here)) return; // live site: leave pretty routes alone
+  var dir = here.slice(0, here.lastIndexOf("/") + 1);
+  var map = {
+    "/": "FaceoffEdge Home.dc.html",
+    "/home": "FaceoffEdge Home.dc.html",
+    "/app": "FaceoffEdge App.dc.html",
+    "/sensor": "FaceoffEdge Sensor.dc.html",
+    "/setup": "FaceoffEdge Setup.dc.html",
+    "/buy": "FaceoffEdge Buy.dc.html",
+    "/contact": "FaceoffEdge Contact.dc.html",
+    "/faq": "FaceoffEdge FAQ.dc.html",
+    "/info": "FaceoffEdge Info.dc.html",
+    "/patents": "FaceoffEdge Patents.dc.html"
+  };
+  document.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a || a.target === "_blank") return;
+    var href = a.getAttribute("href");
+    if (!href || href.charAt(0) !== "/") return;
+    var hash = "";
+    var h = href.indexOf("#");
+    if (h > -1) { hash = href.slice(h); href = href.slice(0, h) || "/"; }
+    var file = map[href.replace(/\/$/, "") || "/"];
+    if (!file) return;
+    e.preventDefault();
+    location.href = dir + encodeURIComponent(file) + hash;
+  }, true);
+})();
+</script>
+</helmet>
 <footer data-screen-label="footer" style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif; background:#070A14; border-top:1px solid rgba(120,150,220,0.08); padding:64px 0 32px; color:#8E97AC;">
   <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px;">
     <div data-r="footer-grid" style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:48px; margin-bottom:56px;">
