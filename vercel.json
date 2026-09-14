@@ -10,6 +10,8 @@
     { "source": "/faq", "destination": "/FaceoffEdge%20FAQ.dc.html" },
     { "source": "/info", "destination": "/FaceoffEdge%20Info.dc.html" },
     { "source": "/patents", "destination": "/FaceoffEdge%20Patents.dc.html" },
+    { "source": "/home75", "destination": "/index.html" },
+    { "source": "/home75/(.*)", "destination": "/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

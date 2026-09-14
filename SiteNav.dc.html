@@ -34,7 +34,7 @@
   if (window.__feRouteShim) return;
   window.__feRouteShim = true;
   var here = decodeURIComponent(location.pathname);
-  if (!/\.dc\.html$/.test(here)) return; // live site: leave pretty routes alone
+  if (!/\.html$/.test(here)) return; // live site (clean URLs): leave pretty routes alone
   var dir = here.slice(0, here.lastIndexOf("/") + 1);
   var map = {
     "/": "FaceoffEdge Home.dc.html",

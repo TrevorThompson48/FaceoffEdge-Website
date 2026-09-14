@@ -7,4 +7,6 @@
 /faq        /FaceoffEdge%20FAQ.dc.html        200
 /info       /FaceoffEdge%20Info.dc.html       200
 /patents    /FaceoffEdge%20Patents.dc.html    200
+/home75     /index.html                       200
+/home75/*   /index.html                       200
 /*          /index.html                       200
