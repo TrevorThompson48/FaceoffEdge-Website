@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
+<script src="support.js"></script>
 </head>
 <body>
 <x-dc>
@@ -18,6 +18,7 @@
   a:hover { color:#7FA0FF; }
   @keyframes fe-marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
   @keyframes fe-pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.35; transform:scale(.8); } }
+  [data-r~="burger"] { display:none; }
   @media (max-width: 980px) {
     [data-r~="nav-links"] { display:none !important; }
     [data-r~="burger"] { display:flex !important; }
@@ -40,42 +41,7 @@
     [data-r~="step"] img { height:200px !important; }
   }
 </style>
-<script>
-// In the editor/preview, pretty routes (/app, /sensor…) don't resolve — there is no
-// rewrite server. Map them to the actual .dc.html files so every page is reachable.
-(function () {
-  if (window.__feRouteShim) return;
-  window.__feRouteShim = true;
-  var here = decodeURIComponent(location.pathname);
-  if (!/\.html$/.test(here)) return; // live site (clean URLs): leave pretty routes alone
-  var dir = here.slice(0, here.lastIndexOf("/") + 1);
-  var map = {
-    "/": "FaceoffEdge Home.dc.html",
-    "/home": "FaceoffEdge Home.dc.html",
-    "/app": "FaceoffEdge App.dc.html",
-    "/sensor": "FaceoffEdge Sensor.dc.html",
-    "/setup": "FaceoffEdge Setup.dc.html",
-    "/buy": "FaceoffEdge Buy.dc.html",
-    "/contact": "FaceoffEdge Contact.dc.html",
-    "/faq": "FaceoffEdge FAQ.dc.html",
-    "/info": "FaceoffEdge Info.dc.html",
-    "/patents": "FaceoffEdge Patents.dc.html"
-  };
-  document.addEventListener("click", function (e) {
-    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
-    if (!a || a.target === "_blank") return;
-    var href = a.getAttribute("href");
-    if (!href || href.charAt(0) !== "/") return;
-    var hash = "";
-    var h = href.indexOf("#");
-    if (h > -1) { hash = href.slice(h); href = href.slice(0, h) || "/"; }
-    var file = map[href.replace(/\/$/, "") || "/"];
-    if (!file) return;
-    e.preventDefault();
-    location.href = dir + encodeURIComponent(file) + hash;
-  }, true);
-})();
-</script>
+
 </helmet>
 
 <div style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,'Helvetica Neue',sans-serif; background:#05080F; color:#F2F4F8; overflow-x:clip;">
@@ -87,18 +53,18 @@
         <span style="display:block; width:22px; height:2px; border-radius:2px; background:#F2F4F8;"></span>
         <span style="display:block; width:22px; height:2px; border-radius:2px; background:#F2F4F8;"></span>
       </button>
-      <a href="/" style="display:flex; align-items:center; gap:9px;">
+      <a href="./" style="display:flex; align-items:center; gap:9px;">
         <img src="assets/logo.png" alt="FaceoffEdge logo" width="28" height="28" style="width:28px; height:28px; border-radius:6px; display:block;"/>
         <img src="assets/wordmark.png" alt="FaceoffEdge" style="height:17px; width:auto; display:block;"/>
       </a>
       <div data-r="nav-links" style="display:flex; gap:4px; margin-left:12px;">
-        <a href="/" style="padding:8px 12px; border-radius:999px; font-size:14px; font-weight:600; color:#F2F4F8; background:rgba(255,255,255,0.06);">Home</a>
-        <a href="/app" style="padding:8px 12px; border-radius:999px; font-size:14px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.04);">App</a>
-        <a href="/sensor" style="padding:8px 12px; border-radius:999px; font-size:14px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.04);">Sensor</a>
-        <a href="/setup" style="padding:8px 12px; border-radius:999px; font-size:14px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.04);">Setup</a>
-        <a href="/buy" style="padding:8px 12px; border-radius:999px; font-size:14px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.04);">Buy now</a>
-        <a href="/contact" style="padding:8px 12px; border-radius:999px; font-size:14px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.04);">Contact us</a>
-        <a href="/faq" style="padding:8px 12px; border-radius:999px; font-size:14px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.04);">FAQ</a>
+        <a href="./" style="padding:8px 12px; border-radius:999px; font-size:14px; font-weight:600; color:#F2F4F8; background:rgba(255,255,255,0.06);">Home</a>
+        <a href="app/" style="padding:8px 12px; border-radius:999px; font-size:14px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.04);">App</a>
+        <a href="sensor/" style="padding:8px 12px; border-radius:999px; font-size:14px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.04);">Sensor</a>
+        <a href="setup/" style="padding:8px 12px; border-radius:999px; font-size:14px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.04);">Setup</a>
+        <a href="buy/" style="padding:8px 12px; border-radius:999px; font-size:14px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.04);">Buy now</a>
+        <a href="contact/" style="padding:8px 12px; border-radius:999px; font-size:14px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.04);">Contact us</a>
+        <a href="faq/" style="padding:8px 12px; border-radius:999px; font-size:14px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.04);">FAQ</a>
       </div>
       <div style="flex:1;"></div>
     </div>
@@ -107,13 +73,13 @@
   <div onClick="{{ closeMenu }}" style="{{ backdropStyle }}"></div>
   <aside aria-label="Mobile navigation" style="{{ drawerStyle }}">
     <img src="assets/logo.png" alt="FaceoffEdge logo" width="44" height="44" style="width:44px; height:44px; border-radius:8px; margin:0 0 22px 12px; display:block;"/>
-    <a href="/" onClick="{{ closeMenu }}" style="padding:13px 16px; border-radius:10px; font-size:16px; font-weight:600; color:#F2F4F8; background:rgba(255,255,255,0.07);">Home</a>
-    <a href="/app" onClick="{{ closeMenu }}" style="padding:13px 16px; border-radius:10px; font-size:16px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.05);">App</a>
-    <a href="/sensor" onClick="{{ closeMenu }}" style="padding:13px 16px; border-radius:10px; font-size:16px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.05);">Sensor</a>
-    <a href="/setup" onClick="{{ closeMenu }}" style="padding:13px 16px; border-radius:10px; font-size:16px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.05);">Setup</a>
-    <a href="/buy" onClick="{{ closeMenu }}" style="padding:13px 16px; border-radius:10px; font-size:16px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.05);">Buy now</a>
-    <a href="/contact" onClick="{{ closeMenu }}" style="padding:13px 16px; border-radius:10px; font-size:16px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.05);">Contact us</a>
-    <a href="/faq" onClick="{{ closeMenu }}" style="padding:13px 16px; border-radius:10px; font-size:16px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.05);">FAQ</a>
+    <a href="./" onClick="{{ closeMenu }}" style="padding:13px 16px; border-radius:10px; font-size:16px; font-weight:600; color:#F2F4F8; background:rgba(255,255,255,0.07);">Home</a>
+    <a href="app/" onClick="{{ closeMenu }}" style="padding:13px 16px; border-radius:10px; font-size:16px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.05);">App</a>
+    <a href="sensor/" onClick="{{ closeMenu }}" style="padding:13px 16px; border-radius:10px; font-size:16px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.05);">Sensor</a>
+    <a href="setup/" onClick="{{ closeMenu }}" style="padding:13px 16px; border-radius:10px; font-size:16px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.05);">Setup</a>
+    <a href="buy/" onClick="{{ closeMenu }}" style="padding:13px 16px; border-radius:10px; font-size:16px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.05);">Buy now</a>
+    <a href="contact/" onClick="{{ closeMenu }}" style="padding:13px 16px; border-radius:10px; font-size:16px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.05);">Contact us</a>
+    <a href="faq/" onClick="{{ closeMenu }}" style="padding:13px 16px; border-radius:10px; font-size:16px; font-weight:500; color:#8E97AC;" style-hover="color:#F2F4F8; background:rgba(255,255,255,0.05);">FAQ</a>
   </aside>
 
   <section data-screen-label="hero" data-r="hero-sect" style="position:relative; min-height:calc(100vh - 64px); display:flex; align-items:stretch; overflow:hidden; background:#05080F;">
@@ -144,7 +110,7 @@
         </p>
         <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:32px;">
           <a href="#download" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; background:#fff; color:#000; font-size:16px; font-weight:650;" style-hover="background:#e8e8e8;">Coming soon to the App Store</a>
-          <a href="/buy" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; background:#3B6EF2; color:#fff; font-size:16px; font-weight:650;" style-hover="background:#5A85F6; color:#fff;">Buy now</a>
+          <a href="buy/" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; background:#3B6EF2; color:#fff; font-size:16px; font-weight:650;" style-hover="background:#5A85F6; color:#fff;">Buy now</a>
         </div>
       </div>
 
@@ -252,8 +218,8 @@
     <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px; display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap;">
       <h2 style="margin:0; font-family:'Archivo Black',sans-serif; font-size:clamp(30px,3.6vw,48px); line-height:1; letter-spacing:-0.035em; text-transform:uppercase; max-width:16ch;">Stop guessing.<br/>Get your edge.</h2>
       <div style="display:flex; flex-wrap:wrap; gap:12px;">
-        <a href="/buy" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; background:#3B6EF2; color:#fff; font-size:16px; font-weight:650;" style-hover="background:#1B3A8A;">Buy now</a>
-        <a href="/sensor" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); color:#F2F4F8; font-size:16px; font-weight:650;" style-hover="background:rgba(255,255,255,0.16);">See the sensor</a>
+        <a href="buy/" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; background:#3B6EF2; color:#fff; font-size:16px; font-weight:650;" style-hover="background:#1B3A8A;">Buy now</a>
+        <a href="sensor/" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); color:#F2F4F8; font-size:16px; font-weight:650;" style-hover="background:rgba(255,255,255,0.16);">See the sensor</a>
       </div>
     </div>
   </section>
@@ -273,9 +239,9 @@
         <div>
           <h4 style="font-size:11px; text-transform:uppercase; letter-spacing:0.14em; color:#5C657A; font-weight:600; margin:0 0 14px;">Explore</h4>
           <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
-            <a href="/" style="color:#8E97AC;" style-hover="color:#F2F4F8;">Home</a>
-            <a href="/app" style="color:#8E97AC;" style-hover="color:#F2F4F8;">The app</a>
-            <a href="/sensor" style="color:#8E97AC;" style-hover="color:#F2F4F8;">The sensor</a>
+            <a href="./" style="color:#8E97AC;" style-hover="color:#F2F4F8;">Home</a>
+            <a href="app/" style="color:#8E97AC;" style-hover="color:#F2F4F8;">The app</a>
+            <a href="sensor/" style="color:#8E97AC;" style-hover="color:#F2F4F8;">The sensor</a>
           </div>
         </div>
         <div>
@@ -288,9 +254,9 @@
         <div>
           <h4 style="font-size:11px; text-transform:uppercase; letter-spacing:0.14em; color:#5C657A; font-weight:600; margin:0 0 14px;">Company</h4>
           <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
-            <a href="/contact" style="color:#8E97AC;" style-hover="color:#F2F4F8;">Contact us</a>
-            <a href="/info" style="color:#8E97AC;" style-hover="color:#F2F4F8;">Product info</a>
-            <a href="/patents" style="color:#8E97AC;" style-hover="color:#F2F4F8;">Patents</a>
+            <a href="contact/" style="color:#8E97AC;" style-hover="color:#F2F4F8;">Contact us</a>
+            <a href="info/" style="color:#8E97AC;" style-hover="color:#F2F4F8;">Product info</a>
+            <a href="patents/" style="color:#8E97AC;" style-hover="color:#F2F4F8;">Patents</a>
             <a href="assets/FaceoffEdge-Privacy-Policy.pdf" target="_blank" rel="noopener" style="color:#8E97AC;" style-hover="color:#F2F4F8;">Privacy policy</a>
             <a href="assets/FaceoffEdge-Terms-of-Use.pdf" target="_blank" rel="noopener" style="color:#8E97AC;" style-hover="color:#F2F4F8;">Terms of service</a>
           </div>

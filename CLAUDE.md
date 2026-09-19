@@ -15,6 +15,20 @@ Do these before the real public launch:
 4. **Poster frame for setup step 3** — `assets/setup-step-03-poster.png` is still the old
    video's first frame.
 
+## Deploy structure (GitHub Pages)
+
+The site deploys to **GitHub Pages**, which ignores `vercel.json` and `_redirects`. Routing
+is done with real folders instead:
+
+- `index.html` + `404.html` = Home. `app/`, `sensor/`, `setup/`, `buy/`, `contact/`, `faq/`,
+  `info/`, `patents/` each hold a built `index.html` plus their own `SiteNav.dc.html` /
+  `SiteFooter.dc.html` copies.
+- All links in built files are RELATIVE (`../app/`, `../assets/…`) so the site works both at
+  a domain root and under `username.github.io/repo/`.
+- `.nojekyll` is required (keeps Pages from filtering files).
+- The `*.dc.html` files at the root are the EDITABLE SOURCES. After editing any of them the
+  built folders must be regenerated — otherwise the deploy keeps serving the old page.
+
 ## Things to know
 
 - Nav/footer links use pretty routes (`/`, `/app`, `/sensor`, `/setup`, `/buy`, `/contact`,
