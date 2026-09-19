@@ -4,9 +4,8 @@
 
 Do these before the real public launch:
 
-1. **Remove stray folders from the deploy** — `uploads/`, `backups/`, `screenshots/` are
-   publicly reachable once pushed. `uploads/FaceoffEdge website/` contains full copies of the
-   previous site. Delete or exclude them.
+1. ~~**Remove stray folders from the deploy**~~ — done: `uploads/`, `backups/`, `screenshots/`
+   deleted 2026-09-19.
 2. **Unlinked-but-live pages** — `FaceoffEdge Waitlist -saved - not live-.dc.html`,
    `FaceoffEdge Preorder -saved - not live-.dc.html`, and
    `FaceoffEdge Buy (link button backup).dc.html` still deploy as guessable URLs. Decide

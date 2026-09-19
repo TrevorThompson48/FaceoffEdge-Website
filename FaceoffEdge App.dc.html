@@ -46,6 +46,9 @@
     [data-r~="screen-grid"] { grid-template-columns:repeat(2, minmax(0,1fr)) !important; }
     [data-r~="offset"] { margin-top:0 !important; }
   }
+  @media (max-width: 760px) {
+    [data-r~="appstore-cta"] { display:none !important; }
+  }
   @media (max-width: 720px) {
     [data-r~="pad"] { padding-left:20px !important; padding-right:20px !important; }
     [data-r~="sect"] { padding-top:64px !important; padding-bottom:64px !important; }
@@ -67,12 +70,12 @@
           Instant<br/>feedback<br/><span style="color:#3B6EF2;">in your pocket</span>
         </h1>
         <p style="margin:30px 0 0; max-width:48ch; font-size:clamp(17px,1.5vw,20px); line-height:1.55; color:#C4CBDA; text-wrap:pretty;">
-          The FaceoffEdge&trade; app turns your stick into an instrumented training rig. Run a
+          The FaceoffEdge&trade; sensor turns your stick into an instrumented training rig. Run a
           session anywhere &mdash; backyard, basement, before practice &mdash; and get
           immediate, objective feedback on every rep.
         </p>
         <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:34px;">
-          <a href="/#download" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; background:#fff; color:#000; font-size:16px; font-weight:650;" style-hover="background:#e8e8e8;">Coming soon to the App Store</a>
+          <a data-r="appstore-cta" href="/#download" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; background:#fff; color:#000; font-size:16px; font-weight:650;" style-hover="background:#e8e8e8;">Coming soon to the App Store</a>
           <a href="#screens" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; border:1px solid rgba(255,255,255,0.16); color:#F2F4F8; font-size:16px; font-weight:650;" style-hover="background:rgba(255,255,255,0.10);">Tour the screens ↓</a>
         </div>
       </div>
