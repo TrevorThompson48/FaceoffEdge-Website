@@ -23,7 +23,7 @@
     [data-r~="method-grid"] { grid-template-columns:1fr !important; gap:32px !important; }
     [data-r~="sticky"] { position:static !important; }
     [data-r~="collage"] { grid-template-columns:1fr 1fr !important; }
-    [data-r~="collage"] img { margin-top:0 !important; }
+    [data-r~="collage"] > img, [data-r~="cg"] { margin-top:0 !important; }
   }
   @media (max-width: 720px) {
     [data-r~="pad"] { padding-left:20px !important; padding-right:20px !important; }
@@ -36,12 +36,12 @@
 
   <dc-import name="SiteNav" active="sensor" hint-size="100%,64px"></dc-import>
 
-  <section data-screen-label="sensor-hero" style="position:relative; min-height:78vh; display:flex; align-items:flex-end; overflow:hidden;">
+  <section data-screen-label="sensor-hero" style="position:relative; min-height:104vh; display:flex; align-items:flex-end; overflow:hidden; background:#05080F;">
     <img src="assets/sensor-hero-render.png" alt="FaceoffEdge Clip mounted on turf" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:46% 34%; opacity:0; animation:heroFade 1.4s cubic-bezier(0.22,1,0.36,1) 0.1s forwards;"/>
     <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(5,8,15,0.50) 0%, rgba(5,8,15,0.02) 42%, rgba(5,8,15,0.42) 78%, #05080F 100%);"></div>
     <div style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(5,8,15,0.78) 0%, rgba(5,8,15,0.34) 46%, rgba(5,8,15,0) 100%);"></div>
     <div style="position:absolute; left:0; right:0; bottom:0; height:22%; background:linear-gradient(180deg, rgba(5,8,15,0) 0%, rgba(5,8,15,0.05) 70%, #05080F 100%);"></div>
-    <div data-r="pad" style="position:relative; width:100%; max-width:1200px; margin:0 auto; padding:0 28px 72px;">
+    <div data-r="pad" style="position:relative; width:100%; max-width:1200px; margin:0 auto; padding:0 28px 16vh; display:flex; flex-direction:column; align-items:flex-start; text-align:left;">
       <div style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#C4CBDA;">
         <span style="width:26px; height:1px; background:rgba(255,255,255,0.45);"></span>The hardware
       </div>
@@ -98,10 +98,18 @@
           </p>
 
           <div data-r="collage" style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:36px;">
-            <img src="assets/sensor-render-top.jpg" alt="Sensor V1 top view" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:18px; display:block;"/>
-            <img src="assets/sensor-render-34.jpg" alt="Sensor V1 three-quarter view" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:18px; display:block; margin-top:28px;"/>
-            <img src="assets/sensor-render-mounted.jpg" alt="Sensor mounted on shaft" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:18px; display:block;"/>
-            <img src="assets/sensor-render-scale.jpg" alt="Sensor scale next to phone" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:18px; display:block; margin-top:28px;"/>
+            <div data-r="cg" style="position:relative; width:100%; aspect-ratio:1/1; border-radius:18px; overflow:hidden; background:#05080F;">
+              <img src="assets/collage-1.jpeg" alt="Sensor clipped, top view" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 50%; transform:scale(1);"/>
+            </div>
+            <div data-r="cg" style="position:relative; width:100%; aspect-ratio:1/1; border-radius:18px; overflow:hidden; background:#05080F; margin-top:28px;">
+              <img src="assets/collage-2.jpeg" alt="Sensor mounted along the shaft" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:9% 44%; transform:scale(1);"/>
+            </div>
+            <div data-r="cg" style="position:relative; width:100%; aspect-ratio:1/1; border-radius:18px; overflow:hidden; background:#05080F;">
+              <img src="assets/collage-3.jpeg" alt="Sensor beside the shaft on the line" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 50%; transform:scale(1);"/>
+            </div>
+            <div data-r="cg" style="position:relative; width:100%; aspect-ratio:1/1; border-radius:18px; overflow:hidden; background:#05080F; margin-top:28px;">
+              <img src="assets/collage-4.jpeg" alt="Sensor held in a glove" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 50%; transform:scale(1);"/>
+            </div>
           </div>
         </div>
 

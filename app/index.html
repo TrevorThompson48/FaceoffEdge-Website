@@ -55,6 +55,27 @@
     [data-r~="screen-grid"] { grid-template-columns:1fr !important; }
   }
 </style>
+<script>
+// Preview-only: the preview server does not resolve "app/" to "app/index.html".
+// On GitHub Pages the path has no .html extension, so this never runs.
+(function () {
+  if (window.__fePagesShim) return;
+  window.__fePagesShim = true;
+  if (!/\.html$/.test(location.pathname)) return;
+  document.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a || a.target === "_blank") return;
+    var href = a.getAttribute("href");
+    if (!href || /^(https?:|mailto:|tel:|#)/.test(href)) return;
+    var hash = "", h = href.indexOf("#");
+    if (h > -1) { hash = href.slice(h); href = href.slice(0, h); }
+    if (!href) return;
+    if (!/\/$/.test(href)) return;
+    e.preventDefault();
+    location.href = href + "index.html" + hash;
+  }, true);
+})();
+</script>
 </helmet>
 
 <div style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,'Helvetica Neue',sans-serif; background:#05080F; color:#F2F4F8; overflow-x:clip;">

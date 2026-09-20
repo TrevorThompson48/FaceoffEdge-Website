@@ -28,6 +28,27 @@
     [data-r~="sect"] { padding-top:56px !important; padding-bottom:64px !important; }
   }
 </style>
+<script>
+// Preview-only: the preview server does not resolve "app/" to "app/index.html".
+// On GitHub Pages the path has no .html extension, so this never runs.
+(function () {
+  if (window.__fePagesShim) return;
+  window.__fePagesShim = true;
+  if (!/\.html$/.test(location.pathname)) return;
+  document.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a || a.target === "_blank") return;
+    var href = a.getAttribute("href");
+    if (!href || /^(https?:|mailto:|tel:|#)/.test(href)) return;
+    var hash = "", h = href.indexOf("#");
+    if (h > -1) { hash = href.slice(h); href = href.slice(0, h); }
+    if (!href) return;
+    if (!/\/$/.test(href)) return;
+    e.preventDefault();
+    location.href = href + "index.html" + hash;
+  }, true);
+})();
+</script>
 </helmet>
 
 <div style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,'Helvetica Neue',sans-serif; background:#05080F; color:#F2F4F8; overflow-x:clip;">
@@ -43,10 +64,10 @@
       <div style="position:relative;">
         <div style="position:absolute; inset:-24px; border-radius:36px; background:linear-gradient(160deg, rgba(59,110,242,0.35), rgba(79,179,138,0.12) 60%, transparent 80%); filter:blur(2px); z-index:0;"></div>
         <sc-if value="{{ isWhite }}" hint-placeholder-val="{{ true }}">
-          <img src="../assets/clip-white.jpeg" alt="FaceoffEdge Clip in white" style="position:relative; z-index:1; display:block; width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:24px; border:1px solid rgba(120,150,220,0.22); box-shadow:0 60px 100px -40px rgba(0,0,0,0.95);"/>
+          <img src="../assets/clip-white-v3.png" alt="FaceoffEdge Clip in white" style="position:relative; z-index:1; display:block; width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:24px; border:1px solid rgba(120,150,220,0.22); box-shadow:0 60px 100px -40px rgba(0,0,0,0.95);"/>
         </sc-if>
         <sc-if value="{{ isBlack }}" hint-placeholder-val="{{ false }}">
-          <img src="../assets/clip-black.jpg" alt="FaceoffEdge Clip in black" style="position:relative; z-index:1; display:block; width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:24px; border:1px solid rgba(120,150,220,0.22); box-shadow:0 60px 100px -40px rgba(0,0,0,0.95);"/>
+          <img src="../assets/clip-black-v2.jpeg" alt="FaceoffEdge Clip in black" style="position:relative; z-index:1; display:block; width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:24px; border:1px solid rgba(120,150,220,0.22); box-shadow:0 60px 100px -40px rgba(0,0,0,0.95);"/>
         </sc-if>
       </div>
 

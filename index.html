@@ -23,11 +23,11 @@
     [data-r~="nav-links"] { display:none !important; }
     [data-r~="burger"] { display:flex !important; }
     [data-r~="hero-sect"] { height:auto !important; max-height:none !important; min-height:calc(100svh - 64px) !important; }
-    [data-r~="hero-sect"] > img { object-position:center 38% !important; }
+    [data-r~="hero-sect"] > img { object-position:58% 34% !important; transform:scale(1.18) !important; transform-origin:58% 34% !important; }
     [data-r~="hero-grid"] { grid-template-columns:1fr !important; padding:40px 24px 40px !important; }
     [data-r~="hero-card"] { justify-content:flex-start !important; }
     [data-r~="step"] { grid-template-columns:1fr !important; gap:22px !important; padding:44px 0 !important; }
-    [data-r~="step"] img { height:240px !important; order:3; }
+    [data-r~="step"] > img, [data-r~="step-media"] { height:240px !important; order:3; }
     [data-r~="faq-grid"] { grid-template-columns:1fr !important; gap:40px !important; }
   }
   @media (max-width: 760px) {
@@ -42,6 +42,27 @@
   }
 </style>
 
+<script>
+// Preview-only: the preview server does not resolve "app/" to "app/index.html".
+// On GitHub Pages the path has no .html extension, so this never runs.
+(function () {
+  if (window.__fePagesShim) return;
+  window.__fePagesShim = true;
+  if (!/\.html$/.test(location.pathname)) return;
+  document.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a || a.target === "_blank") return;
+    var href = a.getAttribute("href");
+    if (!href || /^(https?:|mailto:|tel:|#)/.test(href)) return;
+    var hash = "", h = href.indexOf("#");
+    if (h > -1) { hash = href.slice(h); href = href.slice(0, h); }
+    if (!href) return;
+    if (!/\/$/.test(href)) return;
+    e.preventDefault();
+    location.href = href + "index.html" + hash;
+  }, true);
+})();
+</script>
 </helmet>
 
 <div style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,'Helvetica Neue',sans-serif; background:#05080F; color:#F2F4F8; overflow-x:clip;">
@@ -83,7 +104,7 @@
   </aside>
 
   <section data-screen-label="hero" data-r="hero-sect" style="position:relative; min-height:calc(100vh - 64px); display:flex; align-items:stretch; overflow:hidden; background:#05080F;">
-    <img src="assets/hero-sensor-web.png" alt="FaceoffEdge sensor clipped to a shaft on the field" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 58%;"/>
+    <img src="assets/hero-sensor-web-v3.png" alt="FaceoffEdge sensor clipped to a shaft on the field" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:100% 18%; transform:scale(1.08); transform-origin:100% 18%;"/>
     <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(5,8,15,0.50) 0%, rgba(5,8,15,0.02) 42%, rgba(5,8,15,0.42) 78%, #05080F 100%);"></div>
     <div style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(5,8,15,0.50) 0%, rgba(5,8,15,0.02) 54%, rgba(5,8,15,0) 100%);"></div>
     <div style="position:absolute; left:-260px; top:-180px; width:760px; height:760px; border-radius:50%; pointer-events:none; background:radial-gradient(circle, rgba(59,110,242,0.07) 0%, rgba(59,110,242,0) 62%); filter:blur(20px);"></div>
@@ -155,12 +176,16 @@
             no adjustments. Snap it on and start training.
           </p>
         </div>
-        <img src="assets/how-sensor-clip.jpg" alt="Sensor clipped to a stick shaft" style="width:100%; height:280px; object-fit:cover; border-radius:20px;"/>
+        <div data-r="step-media" style="position:relative; width:100%; height:280px; border-radius:20px; overflow:hidden;">
+          <img src="assets/how-sensor-clip-v3.jpeg" alt="Sensor clipped to a stick shaft" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:70% 60%;"/>
+        </div>
       </div>
 
       <div data-r="step" style="display:grid; grid-template-columns:120px minmax(0,1fr) minmax(0,1fr); gap:40px; align-items:center; padding:56px 0; border-bottom:1px solid rgba(0,0,0,0.10);">
         <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:64px; font-weight:700; letter-spacing:-0.05em; color:#3B6EF2; line-height:1;">02</div>
-        <img src="assets/how-step2-web.png" alt="Waiting for the whistle" style="width:100%; height:280px; object-fit:cover; border-radius:20px;"/>
+        <div data-r="step-media" style="position:relative; width:100%; height:280px; border-radius:20px; overflow:hidden;">
+          <img src="assets/how-step2-v2.jpeg" alt="Waiting for the whistle" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 18%;"/>
+        </div>
         <div>
           <h3 style="margin:0; font-size:clamp(26px,2.6vw,36px); font-weight:800; letter-spacing:-0.03em;">Wait for the whistle</h3>
           <p style="margin:14px 0 0; max-width:44ch; font-size:17px; line-height:1.6; color:#4A5468; text-wrap:pretty;">
