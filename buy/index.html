@@ -223,6 +223,9 @@
               </div>
 
               <button type="submit" disabled="{{ sending }}" style="{{ submitStyle }}">{{ submitLabel }}</button>
+              <sc-if value="{{ failed }}" hint-placeholder-val="{{ false }}">
+                <p role="alert" style="margin:12px 0 0; font-size:14px; line-height:1.5; color:#FF8A80; text-align:center;">That didn't go through. Check your connection and try again, or email <a href="mailto:hello@faceoffedge.com" style="color:#FF8A80; text-decoration:underline;">hello@faceoffedge.com</a>.</p>
+              </sc-if>
 
               <p style="font-size:11px; color:#5C657A; text-align:center; margin:12px 0 0; line-height:1.5;">
                 No charge today. We'll email you when production starts. Cancel anytime — no questions asked.
@@ -291,7 +294,7 @@ class Component extends DCLogic {
     e.preventDefault();
     const f = e.target;
     const g = n => (f.elements[n] || {}).value || "";
-    if (g("botcheck")) return;
+    if (f.elements.botcheck && f.elements.botcheck.checked) return;
     const first = g("first"), last = g("last"), email = g("email");
     this.setState({ status: "sending" });
     const payload = {
@@ -309,14 +312,17 @@ class Component extends DCLogic {
       zip: g("zip"),
       country: g("country")
     };
+    let ok = false;
     try {
-      await fetch("https://api.web3forms.com/submit", {
+      const r = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(payload)
       });
+      const j = await r.json().catch(() => ({}));
+      ok = r.ok && j.success !== false;
     } catch (err) {}
-    this.setState({ status: "sent" });
+    this.setState({ status: ok ? "sent" : "error" });
   }
 
   renderVals() {
@@ -353,6 +359,7 @@ class Component extends DCLogic {
       })),
       notSent: status !== "sent",
       sent: status === "sent",
+      failed: status === "error",
       sending: status === "sending",
       submitLabel: status === "sending" ? "Reserving…" : "Reserve my sensor",
       submitStyle: `width:100%; margin-top:22px; padding:17px 24px; border-radius:999px; border:none; font-family:inherit; font-size:16px; font-weight:650; background:#fff; color:#000; cursor:${status === "sending" ? "default" : "pointer"}; opacity:${status === "sending" ? 0.6 : 1};`,
