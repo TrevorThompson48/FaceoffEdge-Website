@@ -2,8 +2,10 @@
 <html>
 <head>
 <meta charset="utf-8">
+<title>FaceoffEdge Info</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<script src="./fe-v2.js"></script>
 </head>
 <body>
 <x-dc>
@@ -27,19 +29,18 @@
     [data-r~="tiles"] { grid-template-columns:1fr !important; }
   }
 </style>
+<link rel="stylesheet" href="fe-v2.css"/>
 </helmet>
 
 <div style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,'Helvetica Neue',sans-serif; background:#05080F; color:#F2F4F8; overflow-x:clip;">
 
-  <dc-import name="SiteNav" active="info" hint-size="100%,64px"></dc-import>
+  <dc-import name="SiteNav" active="info" hint-size="100%,56px"></dc-import>
 
-  <section data-screen-label="info-hero" data-r="sect" style="position:relative; overflow:hidden; padding:88px 0 0;">
+  <section data-screen-label="info-hero" data-r="sect" style="position:relative; overflow-x:clip; overflow-y:visible; padding:88px 0 0;">
     <div style="position:absolute; left:-180px; top:-260px; width:900px; height:900px; border-radius:50%; pointer-events:none; background:radial-gradient(circle, rgba(59,110,242,0.24) 0%, rgba(59,110,242,0) 62%); filter:blur(22px);"></div>
     <div data-r="pad hero-split" style="position:relative; max-width:1200px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr); gap:48px; align-items:end;">
       <div>
-        <div style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8E97AC;">
-          <span style="width:26px; height:1px; background:rgba(255,255,255,0.30);"></span>faceoffedge.com/info
-        </div>
+        <div class="fe-eyebrow">faceoffedge.com/info</div>
         <h1 style="margin:20px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(52px,9vw,140px); line-height:0.82; letter-spacing:-0.05em; text-transform:uppercase;">Product<br/><span style="color:#3B6EF2;">info</span></h1>
       </div>
       <p style="margin:0 0 12px; max-width:42ch; font-size:19px; line-height:1.6; color:#C4CBDA; text-wrap:pretty;">
@@ -49,35 +50,35 @@
     </div>
   </section>
 
-  <section data-screen-label="info-links" data-r="sect" style="padding:72px 0 0;">
+  <section data-screen-label="info-links" data-r="sect" style="position:relative; padding:72px 0 0;">
     <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px;">
-      <h2 style="margin:0 0 26px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#5C657A;">Start here</h2>
+      <h2 class="fe-eyebrow fe-eyebrow-lt" style="margin:0 0 26px;">Start here</h2>
       <div data-r="tiles" style="display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px;">
 
         <a href="assets/FaceoffEdge-Manual.pdf" target="_blank" rel="noopener" style="display:block; padding:28px; border-radius:22px; background:linear-gradient(165deg, rgba(26,34,56,0.92) 0%, rgba(10,16,32,0.94) 65%); border:1px solid rgba(120,150,220,0.18); color:#F2F4F8;" style-hover="border-color:rgba(59,110,242,0.55);">
           <div style="color:#3B6EF2;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 3h8l4 4v14H6z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 3v4h4M9 13h6M9 17h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-          <h3 style="margin:16px 0 0; font-size:19px; font-weight:800; letter-spacing:-0.02em;">Owner's manual</h3>
+          <h3 style="margin:16px 0 0; font-size:19px; font-weight:700; letter-spacing:-0.02em;">Owner's manual</h3>
           <p style="margin:9px 0 0; font-size:14px; line-height:1.6; color:#8E97AC;">Full PDF — installation, charging, care, and specifications.</p>
           <span style="display:inline-block; margin-top:12px; font-size:14px; font-weight:600; color:#3B6EF2;">Open PDF →</span>
         </a>
 
         <a href="assets/FaceoffEdge-Product-Info.pdf" target="_blank" rel="noopener" style="display:block; padding:28px; border-radius:22px; background:linear-gradient(165deg, rgba(26,34,56,0.92) 0%, rgba(10,16,32,0.94) 65%); border:1px solid rgba(120,150,220,0.18); color:#F2F4F8;" style-hover="border-color:rgba(59,110,242,0.55);">
           <div style="color:#3B6EF2;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.1" fill="currentColor"/></svg></div>
-          <h3 style="margin:16px 0 0; font-size:19px; font-weight:800; letter-spacing:-0.02em;">Product information</h3>
+          <h3 style="margin:16px 0 0; font-size:19px; font-weight:700; letter-spacing:-0.02em;">Product information</h3>
           <p style="margin:9px 0 0; font-size:14px; line-height:1.6; color:#8E97AC;">What's in the box, what the sensor measures, and how to get help.</p>
           <span style="display:inline-block; margin-top:12px; font-size:14px; font-weight:600; color:#3B6EF2;">Open PDF →</span>
         </a>
 
         <a href="/setup" style="display:block; padding:28px; border-radius:22px; background:linear-gradient(165deg, rgba(26,34,56,0.92) 0%, rgba(10,16,32,0.94) 65%); border:1px solid rgba(120,150,220,0.18); color:#F2F4F8;" style-hover="border-color:rgba(59,110,242,0.55);">
           <div style="color:#3B6EF2;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M10 8.5l6 3.5-6 3.5z" fill="currentColor"/></svg></div>
-          <h3 style="margin:16px 0 0; font-size:19px; font-weight:800; letter-spacing:-0.02em;">Setup &amp; videos</h3>
+          <h3 style="margin:16px 0 0; font-size:19px; font-weight:700; letter-spacing:-0.02em;">Setup &amp; videos</h3>
           <p style="margin:9px 0 0; font-size:14px; line-height:1.6; color:#8E97AC;">Mount the clip, pair the sensor, run your first faceoff.</p>
           <span style="display:inline-block; margin-top:12px; font-size:14px; font-weight:600; color:#3B6EF2;">Watch setup →</span>
         </a>
 
         <a href="/patents" style="display:block; padding:28px; border-radius:22px; background:linear-gradient(165deg, rgba(26,34,56,0.92) 0%, rgba(10,16,32,0.94) 65%); border:1px solid rgba(120,150,220,0.18); color:#F2F4F8;" style-hover="border-color:rgba(59,110,242,0.55);">
           <div style="color:#3B6EF2;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6l7-3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
-          <h3 style="margin:16px 0 0; font-size:19px; font-weight:800; letter-spacing:-0.02em;">Patents &amp; trademarks</h3>
+          <h3 style="margin:16px 0 0; font-size:19px; font-weight:700; letter-spacing:-0.02em;">Patents &amp; trademarks</h3>
           <p style="margin:9px 0 0; font-size:14px; line-height:1.6; color:#8E97AC;">Intellectual property notices for FaceoffEdge products.</p>
           <span style="display:inline-block; margin-top:12px; font-size:14px; font-weight:600; color:#3B6EF2;">View notices →</span>
         </a>
@@ -90,7 +91,7 @@
     <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px;">
       <div data-r="two" style="display:grid; grid-template-columns:minmax(0,0.72fr) minmax(0,1.28fr); gap:56px; align-items:start;">
         <div>
-          <h2 style="margin:0; font-family:'Archivo Black',sans-serif; font-size:clamp(28px,3.2vw,44px); line-height:0.98; letter-spacing:-0.035em; text-transform:uppercase;">Regulatory<br/>&amp; safety</h2>
+          <h2 style="margin:0; font-size:clamp(31px,3.5vw,51px); line-height:1.04; letter-spacing:-0.035em; font-weight:700;">Regulatory<br/>&amp; safety</h2>
           <p style="margin:20px 0 0; max-width:34ch; font-size:16px; line-height:1.65; color:#8E97AC; text-wrap:pretty;">
             Compliance markings also appear on the sensor housing and inside the manual.
           </p>
@@ -142,7 +143,7 @@
     <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px;">
       <div data-r="two" style="display:grid; grid-template-columns:minmax(0,0.72fr) minmax(0,1.28fr); gap:56px; align-items:start;">
         <div>
-          <h2 style="margin:0; font-family:'Archivo Black',sans-serif; font-size:clamp(28px,3.2vw,44px); line-height:0.98; letter-spacing:-0.035em; text-transform:uppercase;">Legal</h2>
+          <h2 style="margin:0; font-size:clamp(31px,3.5vw,51px); line-height:1.04; letter-spacing:-0.035em; font-weight:700;">Legal</h2>
           <p style="margin:20px 0 0; max-width:34ch; font-size:16px; line-height:1.65; color:#8E97AC; text-wrap:pretty;">
             Short version below, with the full documents attached as PDFs. Questions go to
             <a href="mailto:support@faceoffedge.com">support@faceoffedge.com</a>.
@@ -151,21 +152,21 @@
 
         <div style="display:flex; flex-direction:column; gap:0; border-top:1px solid rgba(120,150,220,0.16);">
           <div style="padding:26px 0; border-bottom:1px solid rgba(120,150,220,0.16);">
-            <h3 style="margin:0; font-size:19px; font-weight:800; letter-spacing:-0.02em;">Warranty</h3>
+            <h3 style="margin:0; font-size:19px; font-weight:700; letter-spacing:-0.02em;">Warranty</h3>
             <p style="margin:10px 0 0; font-size:15px; line-height:1.7; color:#8E97AC; text-wrap:pretty;">
               One year from delivery against defects in materials and workmanship. Normal wear, impact damage,
               and water ingress outside the rated seal are not covered. Contact support to start a claim.
             </p>
           </div>
           <div style="padding:26px 0; border-bottom:1px solid rgba(120,150,220,0.16);">
-            <h3 style="margin:0; font-size:19px; font-weight:800; letter-spacing:-0.02em;">Returns</h3>
+            <h3 style="margin:0; font-size:19px; font-weight:700; letter-spacing:-0.02em;">Returns</h3>
             <p style="margin:10px 0 0; font-size:15px; line-height:1.7; color:#8E97AC; text-wrap:pretty;">
               Unused hardware can be returned within 30 days of delivery for a refund of the purchase price.
               Pre-order reservations can be cancelled any time before your unit ships.
             </p>
           </div>
           <div style="padding:26px 0; border-bottom:1px solid rgba(120,150,220,0.16);">
-            <h3 style="margin:0; font-size:19px; font-weight:800; letter-spacing:-0.02em;">Privacy</h3>
+            <h3 style="margin:0; font-size:19px; font-weight:700; letter-spacing:-0.02em;">Privacy</h3>
             <p style="margin:10px 0 0; font-size:15px; line-height:1.7; color:#8E97AC; text-wrap:pretty;">
               Your faceoff data belongs to you. We collect what the app needs to work and what you choose to
               send us. We do not sell personal data. You can request deletion of your account and its data at
@@ -174,7 +175,7 @@
             <a href="assets/FaceoffEdge-Privacy-Policy.pdf" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; margin-top:14px; font-size:15px; font-weight:600;">Privacy policy (PDF) →</a>
           </div>
           <div style="padding:26px 0;">
-            <h3 style="margin:0; font-size:19px; font-weight:800; letter-spacing:-0.02em;">Terms of use</h3>
+            <h3 style="margin:0; font-size:19px; font-weight:700; letter-spacing:-0.02em;">Terms of use</h3>
             <p style="margin:10px 0 0; font-size:15px; line-height:1.7; color:#8E97AC; text-wrap:pretty;">
               The app and sensor are provided for training use. FaceoffEdge is not liable for injury or
               equipment damage arising from use of the product. Follow the installation instructions in the

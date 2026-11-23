@@ -2,8 +2,10 @@
 <html>
 <head>
 <meta charset="utf-8">
+<title>FaceoffEdge Sensor</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<script src="./fe-v2.js"></script>
 </head>
 <body>
 <x-dc>
@@ -35,11 +37,12 @@
     [data-r~="sect"] { padding-top:64px !important; padding-bottom:64px !important; }
   }
 </style>
+<link rel="stylesheet" href="fe-v2.css"/>
 </helmet>
 
 <div style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,'Helvetica Neue',sans-serif; background:#05080F; color:#F2F4F8; overflow-x:clip;">
 
-  <dc-import name="SiteNav" active="sensor" hint-size="100%,64px"></dc-import>
+  <dc-import name="SiteNav" active="sensor" hint-size="100%,56px"></dc-import>
 
   <section data-screen-label="sensor-hero" style="position:relative; min-height:104vh; display:flex; align-items:flex-end; overflow:hidden; background:#05080F;">
     <img data-r="hero-img" src="assets/sensor-hero-turf.jpeg" alt="FaceoffEdge Clip mounted on turf" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:55% 55%; opacity:0; animation:heroFade 1.4s cubic-bezier(0.22,1,0.36,1) 0.1s forwards;"/>
@@ -49,8 +52,8 @@
     <div style="position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse 60% 42% at 22% 80%, rgba(5,8,15,0.78) 0%, rgba(5,8,15,0.5) 45%, rgba(5,8,15,0) 100%);"></div>
     <div data-r="mob-shade" style="display:none; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse 65% 18% at 25% 52%, rgba(5,8,15,0.7) 0%, rgba(5,8,15,0.4) 50%, rgba(5,8,15,0) 100%), radial-gradient(ellipse 70% 38% at 85% 72%, rgba(5,8,15,0.7) 0%, rgba(5,8,15,0.4) 50%, rgba(5,8,15,0) 100%);"></div>
     <div data-r="pad" style="position:relative; width:100%; max-width:1200px; margin:0 auto; padding:0 28px 16vh; display:flex; flex-direction:column; align-items:flex-start; text-align:left;">
-      <div data-r="hw-eyebrow" style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#C4CBDA;">
-        <span style="width:26px; height:1px; background:rgba(255,255,255,0.45);"></span>The hardware
+      <div data-r="hw-eyebrow" style="display:inline-flex; align-items:center; gap:10px; padding:7px 14px; border-radius:999px; background:rgba(255,255,255,0.82); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:#0A1020;">
+        <span style="width:26px; height:1px; background:rgba(10,16,32,0.55);"></span>The hardware
       </div>
       <h1 style="margin:20px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(46px,8vw,120px); line-height:0.84; letter-spacing:-0.045em; text-transform:uppercase;">
         Every<br/>millisecond,<br/><span style="color:#3B6EF2;">measured.</span>
@@ -60,18 +63,16 @@
         all the data of a faceoff and report it to your phone before you're starting the next rep.
       </p>
       <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:32px;">
-        <a href="#spec" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; border:1px solid rgba(255,255,255,0.22); background:rgba(5,8,15,0.35); color:#F2F4F8; font-size:16px; font-weight:650;" style-hover="background:rgba(255,255,255,0.12);">Full specs ↓</a>
-        <a href="/buy" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; background:#3B6EF2; color:#fff; font-size:16px; font-weight:650;" style-hover="background:#5A85F6; color:#fff;">Reserve sensor</a>
+        <a class="fe-btn fe-ghost" href="#spec">Full specs ↓</a>
+        <a class="fe-btn fe-primary" href="/buy">Reserve sensor</a>
       </div>
     </div>
   </section>
 
   <section data-screen-label="sensor-metrics" data-r="sect" id="metrics" style="padding:96px 0;">
     <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px;">
-      <div style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8E97AC;">
-        <span style="width:26px; height:1px; background:rgba(255,255,255,0.30);"></span>What we measure
-      </div>
-      <h2 style="margin:18px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(28px,4vw,54px); line-height:1; letter-spacing:-0.035em; text-transform:uppercase;">
+      <div class="fe-eyebrow">What we measure</div>
+      <h2 style="margin:18px 0 0; font-size:clamp(31px,4.4vw,62px); line-height:1.04; letter-spacing:-0.035em; font-weight:700;">
         Faceoffs are won in milliseconds.<br/><span style="color:#5C657A;">We measure all of them.</span>
       </h2>
 
@@ -92,15 +93,13 @@
     </div>
   </section>
 
-  <section data-screen-label="sensor-spec" data-r="sect" id="spec" style="background:#F4F2EE; color:#0a1020; padding:104px 0;">
+  <section data-screen-label="sensor-spec" data-r="sect" id="spec" style="background:#F5F5F7; color:#1D1D1F; padding:104px 0;">
     <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px;">
       <div data-r="spec-layout" style="display:grid; grid-template-columns:minmax(0,0.95fr) minmax(0,1.05fr); gap:64px; align-items:start;">
         <div data-r="sticky" style="position:sticky; top:96px;">
-          <div style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#5C657A;">
-            <span style="width:26px; height:1px; background:rgba(0,0,0,0.30);"></span>Specifications
-          </div>
-          <h2 style="margin:16px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(34px,4.6vw,64px); line-height:0.94; letter-spacing:-0.04em; text-transform:uppercase;">Built for<br/>the dot</h2>
-          <p style="margin:22px 0 0; max-width:44ch; font-size:18px; line-height:1.6; color:#4A5468; text-wrap:pretty;">
+          <div class="fe-eyebrow fe-eyebrow-lt">Specifications</div>
+          <h2 style="margin:16px 0 0; font-size:clamp(38px,5.1vw,74px); line-height:1.04; letter-spacing:-0.035em; font-weight:700;">Built for<br/>the dot</h2>
+          <p style="margin:22px 0 0; max-width:44ch; font-size:18px; line-height:1.6; color:#424245; text-wrap:pretty;">
             Everything in it is there for one reason: get accurate data from your stick to your phone before you start the next rep.
           </p>
 
@@ -123,10 +122,10 @@
         <div style="background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:24px; padding:34px 32px; margin-top:64px;">
           <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#5C657A;">Sensor V1 · spec sheet</div>
           <div style="margin-top:20px;">
-            <sc-for list="{{ specs }}" as="s" hint-placeholder-count="10">
+            <sc-for list="{{ specs }}" as="s" hint-placeholder-count="9">
               <div style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; padding:16px 0; border-bottom:1px solid rgba(0,0,0,0.08);">
                 <span style="font-size:13px; text-transform:uppercase; letter-spacing:0.12em; color:#5C657A; font-weight:600;">{{ s.k }}</span>
-                <span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:15px; text-align:right; color:#0a1020;">{{ s.v }}</span>
+                <span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:15px; text-align:right; color:#1D1D1F;">{{ s.v }}<sup style="font-size:.7em; line-height:0; margin-left:1px;">{{ s.sup }}</sup></span>
               </div>
             </sc-for>
           </div>
@@ -139,10 +138,8 @@
     <div style="position:absolute; left:-320px; bottom:-260px; width:820px; height:820px; border-radius:50%; pointer-events:none; background:radial-gradient(circle, rgba(59,110,242,0.16) 0%, rgba(59,110,242,0) 62%); filter:blur(20px);"></div>
     <div data-r="pad method-grid" style="position:relative; max-width:1200px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:minmax(0,0.8fr) minmax(0,1.2fr); gap:64px; align-items:start;">
       <div data-r="sticky" style="position:sticky; top:96px;">
-        <div style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8E97AC;">
-          <span style="width:26px; height:1px; background:rgba(255,255,255,0.30);"></span>Measurement methodology
-        </div>
-        <h2 style="margin:18px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(30px,4vw,54px); line-height:0.96; letter-spacing:-0.035em; text-transform:uppercase;">How the<br/>measurement<br/>actually works.</h2>
+        <div class="fe-eyebrow">Measurement methodology</div>
+        <h2 style="margin:18px 0 0; font-size:clamp(34px,4.4vw,62px); line-height:1.04; letter-spacing:-0.035em; font-weight:700;">How the<br/>measurement<br/>actually works.</h2>
         <p style="margin:22px 0 0; max-width:40ch; font-size:17px; line-height:1.6; color:#8E97AC; text-wrap:pretty;">
           FaceoffEdge&trade; exists because the eye test isn't enough. Here's exactly how we get from the
           whistle to a coachable number in your app.
@@ -153,7 +150,7 @@
         <sc-for list="{{ method }}" as="m" hint-placeholder-count="4">
           <div style="position:relative; padding:30px 30px 30px 34px; border-radius:22px; margin-bottom:16px; background:linear-gradient(165deg, rgba(26,34,56,0.75) 0%, rgba(10,16,32,0.85) 70%); border:1px solid rgba(120,150,220,0.16); overflow:hidden;">
             <div style="position:absolute; right:18px; top:2px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:82px; font-weight:700; line-height:1; color:rgba(59,110,242,0.16); letter-spacing:-0.06em;">{{ m.n }}</div>
-            <h3 style="position:relative; margin:0; max-width:22ch; font-size:23px; font-weight:800; letter-spacing:-0.025em;">{{ m.title }}</h3>
+            <h3 style="position:relative; margin:0; max-width:22ch; font-size:23px; font-weight:700; letter-spacing:-0.025em;">{{ m.title }}</h3>
             <p style="position:relative; margin:12px 0 0; max-width:70ch; font-size:16px; line-height:1.65; color:#8E97AC; text-wrap:pretty;">{{ m.body }}</p>
           </div>
         </sc-for>
@@ -163,10 +160,10 @@
 
   <section data-screen-label="sensor-cta" data-r="sect" style="background:#070A14; border-top:1px solid rgba(120,150,220,0.12); padding:88px 0;">
     <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px; display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap;">
-      <h2 style="margin:0; max-width:16ch; font-family:'Archivo Black',sans-serif; font-size:clamp(28px,3.4vw,46px); line-height:1; letter-spacing:-0.035em; text-transform:uppercase;">Stop guessing.<br/>Get your edge.</h2>
+      <h2 style="margin:0; max-width:16ch; font-size:clamp(31px,3.7vw,53px); line-height:1.04; letter-spacing:-0.035em; font-weight:700;">Stop guessing.<br/>Get your edge.</h2>
       <div style="display:flex; flex-wrap:wrap; gap:12px;">
-        <a href="/buy" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; background:#3B6EF2; color:#fff; font-size:16px; font-weight:650;" style-hover="background:#1B3A8A;">Reserve sensor</a>
-        <a href="/setup" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; border:1px solid rgba(255,255,255,0.16); color:#F2F4F8; font-size:16px; font-weight:650;" style-hover="background:rgba(255,255,255,0.10);">See the setup</a>
+        <a class="fe-btn fe-primary" href="/buy">Reserve sensor</a>
+        <a class="fe-btn fe-ghost" href="/setup">See the setup</a>
       </div>
     </div>
   </section>
@@ -190,11 +187,10 @@ class Component extends DCLogic {
         { k: "Sensor", v: "6-axis IMU (accelerometer + gyroscope)" },
         { k: "Sample rate", v: "208 Hz" },
         { k: "Mount", v: "Clip-on, standard men's shaft" },
-        { k: "Weight", v: "33 g" },
+        { k: "Weight", v: "34 g" },
         { k: "Dimensions", v: "63 × 34 × 33 mm" },
         { k: "Wireless", v: "Bluetooth LE 5.0" },
         { k: "Range", v: "~30 m line-of-sight" },
-        { k: "Battery life", v: "—" },
         { k: "Charging", v: "~8 hours to full" },
         { k: "Sealing", v: "Sweat and rain-proof" }
       ],

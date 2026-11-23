@@ -2,8 +2,10 @@
 <html>
 <head>
 <meta charset="utf-8">
+<title>FaceoffEdge Contact</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<script src="./fe-v2.js"></script>
 </head>
 <body>
 <x-dc>
@@ -34,19 +36,18 @@
     [data-r~="row"] { grid-template-columns:1fr !important; }
   }
 </style>
+<link rel="stylesheet" href="fe-v2.css"/>
 </helmet>
 
 <div style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,'Helvetica Neue',sans-serif; background:#05080F; color:#F2F4F8; overflow-x:clip;">
 
-  <dc-import name="SiteNav" active="contact" hint-size="100%,64px"></dc-import>
+  <dc-import name="SiteNav" active="contact" hint-size="100%,56px"></dc-import>
 
   <section data-screen-label="contact-hero" data-r="sect" style="position:relative; overflow:hidden; padding:88px 0 0;">
     <div style="position:absolute; left:-180px; top:-260px; width:900px; height:900px; border-radius:50%; pointer-events:none; background:radial-gradient(circle, rgba(59,110,242,0.24) 0%, rgba(59,110,242,0) 62%); filter:blur(22px);"></div>
     <div data-r="pad hero-split" style="position:relative; max-width:1200px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr); gap:48px; align-items:end;">
       <div>
-        <div style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8E97AC;">
-          <span style="width:26px; height:1px; background:rgba(255,255,255,0.30);"></span>We're a small team
-        </div>
+        <div class="fe-eyebrow">We're a small team</div>
         <h1 style="margin:20px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(52px,9vw,140px); line-height:0.82; letter-spacing:-0.05em; text-transform:uppercase;">Talk<br/>to <span style="color:#3B6EF2;">us</span></h1>
       </div>
       <p style="margin:0 0 12px; max-width:42ch; font-size:19px; line-height:1.6; color:#C4CBDA; text-wrap:pretty;">
@@ -61,7 +62,7 @@
           <div style="color:#3B6EF2;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-          <h3 style="margin:18px 0 0; font-size:20px; font-weight:800; letter-spacing:-0.02em;">Support</h3>
+          <h3 style="margin:18px 0 0; font-size:20px; font-weight:700; letter-spacing:-0.02em;">Support</h3>
           <p style="margin:10px 0 0; color:#8E97AC; font-size:15px; line-height:1.6;">The fastest way to reach us. A real person answers.</p>
           <a href="mailto:support@faceoffedge.com" style="display:inline-block; margin-top:12px; color:#3B6EF2; font-weight:600; font-size:15px;">support@faceoffedge.com →</a>
         </div>
@@ -69,14 +70,14 @@
           <div style="color:#3B6EF2;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2a7 7 0 017 7c0 5-7 13-7 13S5 14 5 9a7 7 0 017-7z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
           </div>
-          <h3 style="margin:18px 0 0; font-size:20px; font-weight:800; letter-spacing:-0.02em;">Where we're based</h3>
+          <h3 style="margin:18px 0 0; font-size:20px; font-weight:700; letter-spacing:-0.02em;">Where we're based</h3>
           <p style="margin:10px 0 0; color:#8E97AC; font-size:15px; line-height:1.6;">Built in the U.S.<br/>Mailing address available on request — just email us.</p>
         </div>
         <div data-r="chan" style="padding:30px 0 34px 28px; border-left:1px solid rgba(120,150,220,0.16);">
           <div style="color:#3B6EF2;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2v6M12 16v6M2 12h6M16 12h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/></svg>
           </div>
-          <h3 style="margin:18px 0 0; font-size:20px; font-weight:800; letter-spacing:-0.02em;">Press &amp; partnerships</h3>
+          <h3 style="margin:18px 0 0; font-size:20px; font-weight:700; letter-spacing:-0.02em;">Press &amp; partnerships</h3>
           <p style="margin:10px 0 0; color:#8E97AC; font-size:15px; line-height:1.6;">Media inquiries, brand collaborations, equipment-rules conversations.</p>
           <a href="mailto:press@faceoffedge.com" style="display:inline-block; margin-top:12px; color:#3B6EF2; font-weight:600; font-size:15px;">press@faceoffedge.com →</a>
         </div>
@@ -90,7 +91,7 @@
         <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
           <div data-r="form-grid" style="display:grid; grid-template-columns:minmax(0,0.75fr) minmax(0,1.25fr); gap:56px; align-items:start;">
             <div data-r="sticky" style="position:sticky; top:96px;">
-              <h2 style="margin:0; font-family:'Archivo Black',sans-serif; font-size:clamp(28px,3.2vw,44px); line-height:0.98; letter-spacing:-0.035em; text-transform:uppercase;">Send us<br/>a message</h2>
+              <h2 style="margin:0; font-size:clamp(31px,3.5vw,51px); line-height:1.04; letter-spacing:-0.035em; font-weight:700;">Send us<br/>a message</h2>
               <p style="margin:20px 0 0; max-width:34ch; font-size:16px; line-height:1.65; color:#8E97AC; text-wrap:pretty;">
                 We read every message and will get back to you as soon as we can.
               </p>
@@ -128,7 +129,7 @@
         <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
           <div style="text-align:center; padding:56px 0;">
             <div style="width:56px; height:56px; margin:0 auto; border-radius:50%; background:rgba(79,179,138,0.14); color:#4FB38A; display:flex; align-items:center; justify-content:center; font-size:24px; border:1px solid rgba(79,179,138,0.3);">✓</div>
-            <h3 style="margin:20px 0 0; font-family:'Archivo Black',sans-serif; font-size:36px; letter-spacing:-0.035em; text-transform:uppercase;">Got it.</h3>
+            <h3 style="margin:20px 0 0; font-size:36px; letter-spacing:-0.035em; font-weight:700;">Got it.</h3>
             <p style="margin:14px auto 0; max-width:34ch; font-size:16px; line-height:1.6; color:#8E97AC;">
               Thanks for reaching out — we'll be in touch shortly.
             </p>

@@ -6,10 +6,9 @@ Do these before the real public launch:
 
 1. ~~**Remove stray folders from the deploy**~~ — done: `uploads/`, `backups/`, `screenshots/`
    deleted 2026-09-19.
-2. **Unlinked-but-live pages** — `FaceoffEdge Waitlist -saved - not live-.dc.html`,
-   `FaceoffEdge Preorder -saved - not live-.dc.html`, and
-   `FaceoffEdge Buy (link button backup).dc.html` still deploy as guessable URLs. Decide
-   whether to keep or remove.
+2. ~~**Unlinked-but-live pages**~~ — done: the Waitlist, Preorder and Buy backup pages, the
+   `social/` posts, `uploads/` and unused images were deleted 2026-11-23 to keep the
+   export to one zip.
 3. **App Store buttons** currently point at Home's `#download` anchor, not a real listing.
    Swap in the App Store URL when the app is published.
 4. **Poster frame for setup step 3** — `assets/setup-step-03-poster.png` is still the old

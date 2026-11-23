@@ -1,0 +1,92 @@
+/* FaceoffEdge v2 shared design layer.
+   Linked by every "... v2" page. Apple-style materials, type, motion and press feedback.
+   Hero headlines keep their original Archivo Black / JetBrains Mono styling (set inline on each page). */
+
+:root { --ease:cubic-bezier(.16,1,.3,1); }
+html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+html, body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; text-rendering:optimizeLegibility; font-optical-sizing:auto; -webkit-tap-highlight-color:transparent; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline:2px solid #7FA0FF; outline-offset:3px; }
+.fe-sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+
+@keyframes fe-up { from { opacity:0; transform:translate3d(0,1.25rem,0); } to { opacity:1; transform:none; } }
+@keyframes fe-fade { from { opacity:0; } to { opacity:1; } }
+
+/* Scroll reveal. Hidden only once the script has marked the page, so nothing is lost if it never runs. */
+.fe-js .rv { opacity:0; transform:translate3d(0,1.5rem,0); transition:opacity .6s var(--ease), transform .7s var(--ease); transition-delay:var(--d,0s); }
+.fe-js .rv.in { opacity:1; transform:none; }
+
+/* Eyebrow labels */
+.fe-eyebrow { display:block; font-size:1.125rem; font-weight:600; letter-spacing:-.01em; line-height:1.2; color:#8FAEFF; }
+.fe-eyebrow-lt { color:#2F5BD6; }
+
+/* Buttons: press feedback is instant (100ms), release settles slower. */
+.fe-btn { display:inline-flex; align-items:center; justify-content:center; padding:.9375rem 1.75rem; border-radius:999px; font-size:1.0625rem; font-weight:600; letter-spacing:0; line-height:1.2; text-align:center; transition:transform .4s var(--ease), background-color .25s ease, box-shadow .4s var(--ease); }
+.fe-primary { background:#3566F0; color:#fff; box-shadow:0 .625rem 1.75rem -.625rem rgba(53,102,240,.75); }
+.fe-primary:hover { color:#fff; }
+.fe-ghost { background:rgba(255,255,255,.10); color:#F5F7FA; border:1px solid rgba(255,255,255,.18); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); }
+.fe-ghost:hover { color:#fff; }
+.fe-badge { display:inline-flex; align-items:center; border-radius:.8125rem; transition:transform .4s var(--ease), opacity .25s ease; }
+.fe-btn:active, .fe-badge:active, .fe-soc:active { transform:scale(.97); transition-duration:.1s; }
+
+/* Forms: visual refinement only. */
+input, textarea, select { border-radius:.875rem; font-size:1rem; transition:border-color .2s ease, background-color .2s ease, box-shadow .3s var(--ease); }
+input:focus, textarea:focus, select:focus { border-color:#6C93FF; box-shadow:0 0 0 4px rgba(108,147,255,.18); }
+button[type="submit"] { transition:transform .4s var(--ease), opacity .25s ease; }
+button[type="submit"]:active { transform:scale(.98); transition-duration:.1s; }
+
+/* Nav: a translucent layer with content scrolling underneath. Soft scroll-edge fade instead of a hard divider. */
+.fe-nav { position:sticky; top:0; z-index:50; height:3.5rem; -webkit-backdrop-filter:blur(20px) saturate(180%); backdrop-filter:blur(20px) saturate(180%); background:rgba(8,11,20,.62); }
+.fe-nav::after { content:""; position:absolute; left:0; right:0; top:100%; height:1.5rem; pointer-events:none; background:linear-gradient(180deg, rgba(5,8,15,.6), rgba(5,8,15,0)); opacity:var(--edge,0); transition:opacity .3s ease; }
+.fe-nl { padding:.5rem .8125rem; border-radius:999px; font-size:.875rem; font-weight:500; letter-spacing:0; color:#A1A9BD; white-space:nowrap; transition:color .2s ease, background-color .2s ease, transform .4s var(--ease); }
+.fe-nl-on { color:#fff; background:rgba(255,255,255,.10); font-weight:600; }
+.fe-dl { padding:.875rem 1.125rem; border-radius:.875rem; font-size:1.1875rem; font-weight:600; letter-spacing:-.01em; color:#A1A9BD; transition:color .2s ease, background-color .2s ease, transform .4s var(--ease); }
+.fe-dl-on { color:#fff; background:rgba(255,255,255,.09); }
+.fe-nl:active, .fe-dl:active { transform:scale(.96); transition-duration:.1s; }
+[data-drawer] { display:flex; flex-direction:column; gap:.25rem; position:fixed; top:0; left:0; bottom:0; z-index:61; width:18.75rem; max-width:82vw; padding:1.75rem .875rem 1.5rem; background:rgba(10,13,24,.80); -webkit-backdrop-filter:blur(30px) saturate(180%); backdrop-filter:blur(30px) saturate(180%); border-right:.5px solid rgba(255,255,255,.12); border-radius:0 1.75rem 1.75rem 0; box-shadow:0 0 5rem rgba(0,0,0,.5); touch-action:pan-y; overscroll-behavior:contain; }
+
+/* Footer */
+.fe-fl { color:#8E97AC; font-size:.9375rem; letter-spacing:.005em; transition:color .2s ease; }
+.fe-soc { display:inline-flex; align-items:center; justify-content:center; width:2.75rem; height:2.75rem; border-radius:999px; color:#8E97AC; background:rgba(255,255,255,.05); transition:color .2s ease, background-color .25s ease, transform .4s var(--ease); }
+
+@media (hover:hover) {
+  .fe-primary:hover { background:#2A55D6; transform:translateY(-1px); }
+  .fe-ghost:hover { background:rgba(255,255,255,.18); transform:translateY(-1px); }
+  .fe-badge:hover { transform:translateY(-1px); opacity:.92; }
+  .fe-nl:hover { color:#fff; background:rgba(255,255,255,.07); }
+  .fe-dl:hover { color:#fff; background:rgba(255,255,255,.06); }
+  .fe-soc:hover { color:#fff; background:rgba(255,255,255,.12); transform:translateY(-2px); }
+  .fe-fl:hover { color:#fff; }
+}
+
+/* Responsive rules the shared nav and footer rely on */
+[data-r~="burger"] { display:none; }
+@media (max-width: 980px) {
+  [data-r~="nav-links"] { display:none !important; }
+  [data-r~="burger"] { display:flex !important; }
+}
+@media (max-width: 720px) {
+  [data-r~="nav-appstore"] { display:none !important; }
+  [data-r~="pad"] { padding-left:1.25rem !important; padding-right:1.25rem !important; }
+  [data-r~="sect"] { padding-top:4.5rem !important; padding-bottom:4.5rem !important; }
+  [data-r~="footer-grid"] { grid-template-columns:1fr 1fr !important; gap:2rem !important; }
+}
+
+/* Reduced motion: no slides, springs or loops. Replace with short cross-fades. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior:auto; }
+  .fe-js .rv { transform:none !important; transition:opacity .35s ease !important; transition-delay:0s !important; }
+  [data-drawer] { transform:none !important; opacity:0; transition:opacity .25s ease, visibility 0s linear .25s !important; }
+  [data-drawer].fe-open { opacity:1; transition:opacity .25s ease, visibility 0s linear 0s !important; }
+}
+/* Reduced transparency: frostier, then solid. */
+@media (prefers-reduced-transparency: reduce) {
+  .fe-nav { background:#0A0E1A; -webkit-backdrop-filter:none; backdrop-filter:none; }
+  [data-drawer] { background:#0A0E18; -webkit-backdrop-filter:none; backdrop-filter:none; }
+  .fe-ghost { background:#1A2238; -webkit-backdrop-filter:none; backdrop-filter:none; }
+}
+/* Increased contrast: near-solid surfaces with a defined border. */
+@media (prefers-contrast: more) {
+  .fe-nav { background:#05080F; border-bottom:1px solid #fff; }
+  [data-drawer] { background:#05080F; border-right:1px solid #fff; }
+  .fe-ghost { border-color:#fff; }
+}

@@ -2,15 +2,17 @@
 <html>
 <head>
 <meta charset="utf-8">
+<title>FaceoffEdge Buy</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="../support.js"></script>
+<script src="../fe-v2.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Archivo+Black&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Archivo+Black&amp;display=swap" rel="stylesheet">
 <style>
   html, body { margin:0; padding:0; background:#05080F; color:#F2F4F8; -webkit-font-smoothing:antialiased; }
   * { box-sizing:border-box; }
@@ -19,7 +21,7 @@
   input, select, textarea { width:100%; padding:12px 14px; background:rgba(255,255,255,0.03); border:1px solid rgba(120,150,220,0.16); border-radius:10px; color:#F2F4F8; font-family:inherit; font-size:14px; }
   input::placeholder { color:#5C657A; }
   input:focus, select:focus { outline:none; border-color:#3B6EF2; background:rgba(59,110,242,0.05); }
-  select option { color:#0a1020; background:#fff; }
+  select option { color:#1D1D1F; background:#fff; }
   @keyframes fe-pulse { 0%,100% { opacity:1; } 50% { opacity:.35; } }
   @media (max-width: 1080px) {
     [data-r~="roadmap"] { grid-template-columns:repeat(2, minmax(0,1fr)) !important; }
@@ -39,11 +41,33 @@
     [data-r~="stat-first"] { border-top:none !important; }
   }
 </style>
+<link rel="stylesheet" href="../fe-v2.css">
+<script>
+// Preview-only: the preview server does not resolve "app/" to "app/index.html".
+// On GitHub Pages the path has no .html extension, so this never runs.
+(function () {
+  if (window.__fePagesShim) return;
+  window.__fePagesShim = true;
+  if (!/\.html$/.test(location.pathname)) return;
+  document.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a || a.target === "_blank") return;
+    var href = a.getAttribute("href");
+    if (!href || /^(https?:|mailto:|tel:|#)/.test(href)) return;
+    var hash = "", h = href.indexOf("#");
+    if (h > -1) { hash = href.slice(h); href = href.slice(0, h); }
+    if (!href) return;
+    if (!/\/$/.test(href)) return;
+    e.preventDefault();
+    location.href = href + "index.html" + hash;
+  }, true);
+})();
+</script>
 </helmet>
 
 <div style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,'Helvetica Neue',sans-serif; background:#05080F; color:#F2F4F8; overflow-x:clip;">
 
-  <dc-import name="SiteNav" active="buy" hint-size="100%,64px"></dc-import>
+  <dc-import name="SiteNav" active="buy" hint-size="100%,56px"></dc-import>
 
   <section data-screen-label="preorder-hero" data-r="sect" style="position:relative; overflow:hidden; padding:72px 0 0;">
     <div style="position:absolute; left:50%; top:-320px; transform:translateX(-50%); width:1100px; height:1000px; border-radius:50%; pointer-events:none; background:radial-gradient(circle, rgba(59,110,242,0.22) 0%, rgba(59,110,242,0) 60%); filter:blur(22px);"></div>
@@ -53,17 +77,17 @@
           <span style="width:7px; height:7px; border-radius:50%; background:#4FB38A; box-shadow:0 0 8px #4FB38A; animation:fe-pulse 2.4s ease-in-out infinite;"></span>
           Pre-order · sensor in development
         </div>
-        <h1 style="margin:24px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(38px,4.6vw,68px); line-height:0.9; letter-spacing:-0.04em; text-transform:uppercase; overflow-wrap:break-word;">Reserve the<br/><span style="color:#3B6EF2;">FaceoffEdge Clip<span style="font-size:0.32em; vertical-align:0.9em; margin-left:0.12em; letter-spacing:0;">&trade;</span></span></h1>
+        <h1 style="margin:24px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(38px,4.6vw,68px); line-height:0.9; letter-spacing:-0.04em; text-transform:uppercase; overflow-wrap:break-word;">Reserve the<br><span style="color:#3B6EF2;">FaceoffEdge Clip<span style="font-size:0.32em; vertical-align:0.9em; margin-left:0.12em; letter-spacing:0;">™</span></span></h1>
         <p style="margin:26px 0 0; max-width:48ch; font-size:19px; line-height:1.55; color:#C4CBDA; text-wrap:pretty;">
           The sensor isn't shipping yet — but reservations lock in launch pricing
           and early access to the first production run.
         </p>
         <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:32px;">
           <a href="#reserve" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; background:#fff; color:#000; font-size:16px; font-weight:650;" style-hover="background:#e8e8e8;">Reserve my sensor ↓</a>
-          <a href="../sensor/" style="display:inline-flex; align-items:center; justify-content:center; padding:16px 26px; border-radius:999px; border:1px solid rgba(255,255,255,0.16); color:#F2F4F8; font-size:16px; font-weight:650;" style-hover="background:rgba(255,255,255,0.10);">See the specs</a>
+          <a class="fe-btn fe-ghost" href="../sensor/">See the specs</a>
         </div>
       </div>
-      <img src="../assets/preorder-hero-v3.jpeg" alt="FaceoffEdge Sensor V1 hero shot" style="width:100%; aspect-ratio:4/3; object-fit:cover; object-position:50% 50%; border-radius:24px; display:block; border:1px solid rgba(120,150,220,0.16); box-shadow:0 50px 90px -40px rgba(0,0,0,0.9);"/>
+      <img src="../assets/preorder-hero-v3.jpeg" alt="FaceoffEdge Sensor V1 hero shot" style="width:100%; aspect-ratio:4/3; object-fit:cover; object-position:50% 50%; border-radius:24px; display:block; border:1px solid rgba(120,150,220,0.16); box-shadow:0 50px 90px -40px rgba(0,0,0,0.9);">
     </div>
 
     <div data-r="pad" style="position:relative; max-width:1200px; margin:64px auto 0; padding:0 28px;">
@@ -87,10 +111,8 @@
   <section data-screen-label="preorder-roadmap" data-r="sect" style="padding:96px 0;">
     <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px;">
       <div style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; flex-wrap:wrap;">
-        <div style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8E97AC;">
-          <span style="width:26px; height:1px; background:rgba(255,255,255,0.30);"></span>Roadmap
-        </div>
-        <h2 style="margin:0; font-family:'Archivo Black',sans-serif; font-size:clamp(28px,3.6vw,48px); line-height:1; letter-spacing:-0.035em; text-transform:uppercase;">What's happening when</h2>
+        <div class="fe-eyebrow">Roadmap</div>
+        <h2 style="margin:0; font-size:clamp(31px,4vw,55px); line-height:1.04; letter-spacing:-0.035em; font-weight:700;">What's happening when</h2>
       </div>
 
       <div data-r="roadmap" style="display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:0; margin-top:52px;">
@@ -113,7 +135,7 @@
           <div data-r="reserve-grid" style="display:grid; grid-template-columns:minmax(0,0.8fr) minmax(0,1.2fr); gap:56px; align-items:start;">
             <div>
               <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8E97AC;">Reserve</div>
-              <h2 style="margin:10px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(28px,3.2vw,42px); line-height:1; letter-spacing:-0.035em; text-transform:uppercase;">FaceoffEdge Clip</h2>
+              <h2 style="margin:10px 0 0; font-size:clamp(31px,3.5vw,48px); line-height:1.04; letter-spacing:-0.035em; font-weight:700;">FaceoffEdge Clip</h2>
 
               <div style="margin-top:28px;">
                 <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.12em; color:#8E97AC; font-weight:600;">Quantity</div>
@@ -134,15 +156,15 @@
                 <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.12em; color:#8E97AC; font-weight:600;">Reservation perks</div>
                 <div style="display:flex; flex-direction:column; gap:12px; margin-top:14px;">
                   <div style="display:flex; gap:10px; align-items:flex-start; font-size:14px; line-height:1.5; color:#C4CBDA;">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:1px;"><path d="M5 12l5 5L20 7" stroke="#4FB38A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:1px;"><path d="M5 12l5 5L20 7" stroke="#4FB38A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     Launch pricing locked in (before retail markup)
                   </div>
                   <div style="display:flex; gap:10px; align-items:flex-start; font-size:14px; line-height:1.5; color:#C4CBDA;">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:1px;"><path d="M5 12l5 5L20 7" stroke="#4FB38A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:1px;"><path d="M5 12l5 5L20 7" stroke="#4FB38A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     First in line when production starts shipping
                   </div>
                   <div style="display:flex; gap:10px; align-items:flex-start; font-size:14px; line-height:1.5; color:#C4CBDA;">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:1px;"><path d="M5 12l5 5L20 7" stroke="#4FB38A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:1px;"><path d="M5 12l5 5L20 7" stroke="#4FB38A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     Free shipping
                   </div>
                 </div>
@@ -151,7 +173,7 @@
               <div style="display:flex; gap:12px; margin-top:30px; flex-wrap:wrap;">
                 <div style="flex:1; min-width:140px; display:flex; gap:12px; align-items:flex-start; padding:16px; border-radius:16px; background:rgba(255,255,255,0.03); border:1px solid rgba(120,150,220,0.14);">
                   <div style="color:#3B6EF2; flex-shrink:0;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v6c0 5 4 9 9 10 5-1 9-5 9-10V7l-9-5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 12l3 3 5-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v6c0 5 4 9 9 10 5-1 9-5 9-10V7l-9-5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path><path d="M8 12l3 3 5-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   </div>
                   <div>
                     <div style="font-size:14px; font-weight:700;">$0 today</div>
@@ -160,7 +182,7 @@
                 </div>
                 <div style="flex:1; min-width:140px; display:flex; gap:12px; align-items:flex-start; padding:16px; border-radius:16px; background:rgba(255,255,255,0.03); border:1px solid rgba(120,150,220,0.14);">
                   <div style="color:#3B6EF2; flex-shrink:0;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 12h18M3 12l4-4M3 12l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="13" y="4" width="8" height="16" rx="1" stroke="currentColor" stroke-width="1.6"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 12h18M3 12l4-4M3 12l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><rect x="13" y="4" width="8" height="16" rx="1" stroke="currentColor" stroke-width="1.6"></rect></svg>
                   </div>
                   <div>
                     <div style="font-size:14px; font-weight:700;">First in line</div>
@@ -171,19 +193,19 @@
             </div>
 
             <form onSubmit="{{ submit }}">
-              <input type="checkbox" name="botcheck" tabIndex="-1" autoComplete="off" style="position:absolute; left:-9999px; opacity:0; width:auto;" aria-hidden="true"/>
+              <input type="checkbox" name="botcheck" tabIndex="-1" autoComplete="off" style="position:absolute; left:-9999px; opacity:0; width:auto;" aria-hidden="true">
               <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.12em; color:#8E97AC; font-weight:600;">Your info</div>
               <div data-r="row" style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
-                <input type="text" name="first" placeholder="First name" required="{{ true }}"/>
-                <input type="text" name="last" placeholder="Last name" required="{{ true }}"/>
+                <input type="text" name="first" placeholder="First name" required="{{ true }}">
+                <input type="text" name="last" placeholder="Last name" required="{{ true }}">
               </div>
-              <input type="email" name="email" placeholder="Email" required="{{ true }}" style="margin-top:12px;"/>
-              <input type="text" name="address" placeholder="Street address" required="{{ true }}" style="margin-top:12px;"/>
+              <input type="email" name="email" placeholder="Email" required="{{ true }}" style="margin-top:12px;">
+              <input type="text" name="address" placeholder="Street address" required="{{ true }}" style="margin-top:12px;">
               <div data-r="row" style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
-                <input type="text" name="state" placeholder="State / province" required="{{ true }}"/>
-                <input type="text" name="zip" placeholder="ZIP / postal code" required="{{ true }}"/>
+                <input type="text" name="state" placeholder="State / province" required="{{ true }}">
+                <input type="text" name="zip" placeholder="ZIP / postal code" required="{{ true }}">
               </div>
-              <input type="text" name="country" placeholder="Country" defaultValue="United States" required="{{ true }}" style="margin-top:12px;"/>
+              <input type="text" name="country" placeholder="Country" defaultValue="United States" required="{{ true }}" style="margin-top:12px;">
 
               <div style="margin-top:26px; font-size:12px; text-transform:uppercase; letter-spacing:0.12em; color:#8E97AC; font-weight:600;">Tell us about you (optional)</div>
               <div data-r="row" style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
@@ -237,14 +259,14 @@
         <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
           <div style="text-align:center; padding:48px 0;">
             <div style="width:56px; height:56px; margin:0 auto; border-radius:50%; background:rgba(79,179,138,0.14); color:#4FB38A; display:flex; align-items:center; justify-content:center; font-size:24px; border:1px solid rgba(79,179,138,0.3);">✓</div>
-            <h3 style="margin:20px 0 0; font-family:'Archivo Black',sans-serif; font-size:36px; letter-spacing:-0.035em; text-transform:uppercase;">You're in.</h3>
+            <h3 style="margin:20px 0 0; font-size:36px; letter-spacing:-0.035em; font-weight:700;">You're in.</h3>
             <p style="margin:14px auto 0; max-width:38ch; font-size:16px; line-height:1.6; color:#8E97AC;">
               Reservation locked. We'll email with progress updates and ship-date confirmations.
               You're in. We'll take it from here.
             </p>
             <div style="margin-top:32px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
               <a href="../#download" style="display:inline-flex; align-items:center; padding:13px 22px; border-radius:999px; background:#fff; color:#000; font-size:15px; font-weight:650;">Download the app</a>
-              <a href="../" style="display:inline-flex; align-items:center; padding:13px 22px; border-radius:999px; border:1px solid rgba(255,255,255,0.16); color:#F2F4F8; font-size:15px; font-weight:650;">Back to home</a>
+              <a class="fe-btn fe-ghost" href="../">Back to home</a>
             </div>
           </div>
         </sc-if>
@@ -252,28 +274,26 @@
     </div>
   </section>
 
-  <section data-screen-label="preorder-faq" data-r="sect" style="background:#F4F2EE; color:#0a1020; padding:100px 0;">
+  <section data-screen-label="preorder-faq" data-r="sect" style="background:#F5F5F7; color:#1D1D1F; padding:100px 0;">
     <div data-r="pad" style="max-width:1200px; margin:0 auto; padding:0 28px;">
       <div data-r="faq-grid" style="display:grid; grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr); gap:64px;">
         <div>
-          <div style="display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#5C657A;">
-            <span style="width:26px; height:1px; background:rgba(0,0,0,0.30);"></span>Reservation questions
-          </div>
-          <h2 style="margin:16px 0 0; font-family:'Archivo Black',sans-serif; font-size:clamp(32px,4vw,54px); line-height:0.98; letter-spacing:-0.035em; text-transform:uppercase;">Honest<br/>answers</h2>
-          <p style="margin:18px 0 0; max-width:32ch; font-size:15px; line-height:1.6; color:#4A5468;">
-            We're a small team. Reach us directly:<br/>
+          <div class="fe-eyebrow fe-eyebrow-lt">Reservation questions</div>
+          <h2 style="margin:16px 0 0; font-size:clamp(36px,4.4vw,62px); line-height:1.04; letter-spacing:-0.035em; font-weight:700;">Honest<br>answers</h2>
+          <p style="margin:18px 0 0; max-width:32ch; font-size:15px; line-height:1.6; color:#424245;">
+            We're a small team. Reach us directly:<br>
             <a href="mailto:hello@faceoffedge.com" style="color:#3B6EF2; font-weight:600;">hello@faceoffedge.com →</a>
           </p>
         </div>
         <div>
           <sc-for list="{{ faqs }}" as="item" hint-placeholder-count="3">
             <div style="border-bottom:1px solid rgba(0,0,0,0.10);">
-              <button type="button" onClick="{{ item.toggle }}" style="width:100%; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:24px 0; background:none; border:none; cursor:pointer; text-align:left; font-family:inherit; font-size:19px; font-weight:600; letter-spacing:-0.015em; color:#0a1020;">
+              <button type="button" onClick="{{ item.toggle }}" style="width:100%; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:24px 0; background:none; border:none; cursor:pointer; text-align:left; font-family:inherit; font-size:19px; font-weight:600; letter-spacing:-0.015em; color:#1D1D1F;">
                 <span>{{ item.q }}</span>
                 <span style="flex-shrink:0; width:30px; height:30px; border-radius:50%; border:1px solid rgba(0,0,0,0.18); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:18px; color:#3B6EF2;">{{ item.icon }}</span>
               </button>
               <sc-if value="{{ item.open }}" hint-placeholder-val="{{ false }}">
-                <div style="padding:0 0 26px; max-width:64ch; font-size:16px; line-height:1.65; color:#4A5468;">{{ item.a }}</div>
+                <div style="padding:0 0 26px; max-width:64ch; font-size:16px; line-height:1.65; color:#424245;">{{ item.a }}</div>
               </sc-if>
             </div>
           </sc-for>
